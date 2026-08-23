@@ -1,0 +1,527 @@
+{
+ "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/stage3_block9_pathway_rescue_2026_08_19/summary.json",
+ "task": "stage3_block9_pathway_rescue_2026_08_19",
+ "m_eval": 1024,
+ "controls": {
+  "baseline_self_patch_identity": {
+   "LOW_site10_ell0": {
+    "max_abs_diff": 4.76837158203125e-07,
+    "max_rel_diff": 1.283466221286775e-07,
+    "passed": true
+   },
+   "LOW_site11_ell0-1": {
+    "max_abs_diff": 0.0,
+    "max_rel_diff": 0.0,
+    "passed": true
+   },
+   "HIGH_site10_ell0": {
+    "max_abs_diff": 3.5762786865234375e-07,
+    "max_rel_diff": 9.569735748972816e-08,
+    "passed": true
+   },
+   "HIGH_site11_ell0-1": {
+    "max_abs_diff": 0.0,
+    "max_rel_diff": 0.0,
+    "passed": true
+   }
+  },
+  "ablated_self_patch_noop": {
+   "LOW_alpha0.5": {
+    "max_abs_diff": 4.76837158203125e-07,
+    "max_rel_diff": 1.2957105631378379e-07,
+    "passed": true
+   },
+   "HIGH_alpha0.5": {
+    "max_abs_diff": 3.5762786865234375e-07,
+    "max_rel_diff": 9.808713734324449e-08,
+    "passed": true
+   }
+  },
+  "sector_isolation": {
+   "LOW_alpha0.5": {
+    "other_sectors_max_rel_diff": 2.5751549309774787e-07,
+    "target_sector_max_rel_diff_from_baseline": 0.0,
+    "passed": true
+   },
+   "HIGH_alpha0.5": {
+    "other_sectors_max_rel_diff": 2.892054360210576e-07,
+    "target_sector_max_rel_diff_from_baseline": 0.0,
+    "passed": true
+   }
+  },
+  "rotation_equivariance": {
+   "HIGH_alpha0.0_site11_ell01": {
+    "tol": 0.003,
+    "by_seed": {
+     "999": {
+      "max_rel_error": 0.0007767205242998898,
+      "passed": true
+     },
+     "4242": {
+      "max_rel_error": 0.00033953419188037515,
+      "passed": true
+     },
+     "77": {
+      "max_rel_error": 0.0008028561132960021,
+      "passed": true
+     }
+    },
+    "passed_all_seeds": true
+   }
+  },
+  "reproduce_dose_response": {
+   "LOW": {
+    "Delta_abl_alpha0": 0.15168016484033733
+   },
+   "HIGH": {
+    "Delta_abl_alpha0": 1.0685657263472594
+   }
+  }
+ },
+ "controls_all_passed": true,
+ "part_a_propagation_trace": {
+  "LOW_alpha0.0": {
+   "site10_ell0": {
+    "D_abs": 0.2650211236764964,
+    "D_rel": 0.006106223872434788,
+    "cosine": 0.9999834650892963
+   },
+   "site10_ell1": {
+    "D_abs": 0.12434778336814765,
+    "D_rel": 0.02897271874394854,
+    "cosine": 0.9995858561336033
+   },
+   "site10_ell2": {
+    "D_abs": 0.4444825656006295,
+    "D_rel": 0.04954187961839663,
+    "cosine": 0.9987855763949958
+   },
+   "site10_ell3": {
+    "D_abs": 0.38328310414810457,
+    "D_rel": 0.033145630738866706,
+    "cosine": 0.9994635646190039
+   },
+   "site10_ell4": {
+    "D_abs": 3.8527666432920693,
+    "D_rel": 0.8786882874721236,
+    "cosine": 0.5688429291472319
+   },
+   "site11_ell0": {
+    "D_abs": 0.567221703773041,
+    "D_rel": 0.010151469768199438,
+    "cosine": 0.9999796085737824
+   },
+   "site11_ell1": {
+    "D_abs": 0.16388359666726535,
+    "D_rel": 0.036131459333405905,
+    "cosine": 0.9993786460017668
+   },
+   "site11_ell2": {
+    "D_abs": 0.880002528980374,
+    "D_rel": 0.06608414157443901,
+    "cosine": 0.9985313750714339
+   },
+   "site11_ell3": {
+    "D_abs": 1.3645242368090098,
+    "D_rel": 0.09126755687981258,
+    "cosine": 0.9968451793920259
+   },
+   "site11_ell4": {
+    "D_abs": 4.014131149428706,
+    "D_rel": 0.672962060596114,
+    "cosine": 0.822183881232012
+   }
+  },
+  "LOW_alpha0.5": {
+   "site10_ell0": {
+    "D_abs": 0.13244898521054388,
+    "D_rel": 0.003051693178841166,
+    "cosine": 0.9999958376599798
+   },
+   "site10_ell1": {
+    "D_abs": 0.06184212387073555,
+    "D_rel": 0.014409058311321773,
+    "cosine": 0.999897458946918
+   },
+   "site10_ell2": {
+    "D_abs": 0.22118046314836964,
+    "D_rel": 0.024652701201970884,
+    "cosine": 0.9997006011894406
+   },
+   "site10_ell3": {
+    "D_abs": 0.19068939215830763,
+    "D_rel": 0.0164904742992686,
+    "cosine": 0.9998675972506668
+   },
+   "site10_ell4": {
+    "D_abs": 1.9260246050221392,
+    "D_rel": 0.4392623323716265,
+    "cosine": 0.9829943969925485
+   },
+   "site11_ell0": {
+    "D_abs": 0.2787612913319505,
+    "D_rel": 0.004988943128722057,
+    "cosine": 0.9999949351233544
+   },
+   "site11_ell1": {
+    "D_abs": 0.08077357183608484,
+    "D_rel": 0.017808170465863252,
+    "cosine": 0.9998489532341498
+   },
+   "site11_ell2": {
+    "D_abs": 0.43372996180632073,
+    "D_rel": 0.03257112480607901,
+    "cosine": 0.9996510874814811
+   },
+   "site11_ell3": {
+    "D_abs": 0.674411243497902,
+    "D_rel": 0.04510866488547775,
+    "cosine": 0.9992621096542752
+   },
+   "site11_ell4": {
+    "D_abs": 2.0049109339583904,
+    "D_rel": 0.33611980854694823,
+    "cosine": 0.9821379571900055
+   }
+  },
+  "HIGH_alpha0.0": {
+   "site10_ell0": {
+    "D_abs": 1.4272061358346027,
+    "D_rel": 0.014855958722926482,
+    "cosine": 0.999896568304121
+   },
+   "site10_ell1": {
+    "D_abs": 0.5835786830795874,
+    "D_rel": 0.042897891619787,
+    "cosine": 0.9991330980175539
+   },
+   "site10_ell2": {
+    "D_abs": 1.5810858838111275,
+    "D_rel": 0.07756453978584803,
+    "cosine": 0.9971606513377326
+   },
+   "site10_ell3": {
+    "D_abs": 1.2514032242481232,
+    "D_rel": 0.04189080201974655,
+    "cosine": 0.9992207533530045
+   },
+   "site10_ell4": {
+    "D_abs": 12.652889003652344,
+    "D_rel": 0.813428703412482,
+    "cosine": 0.7516567764016565
+   },
+   "site11_ell0": {
+    "D_abs": 7.633804835014256,
+    "D_rel": 0.06429242657457565,
+    "cosine": 0.9984652398302336
+   },
+   "site11_ell1": {
+    "D_abs": 1.394725664738307,
+    "D_rel": 0.08368871774381653,
+    "cosine": 0.9972325300821391
+   },
+   "site11_ell2": {
+    "D_abs": 32.82867633775159,
+    "D_rel": 0.21581131296209594,
+    "cosine": 0.9916729131629433
+   },
+   "site11_ell3": {
+    "D_abs": 49.351375445950524,
+    "D_rel": 0.25273224244695924,
+    "cosine": 0.9886049796068951
+   },
+   "site11_ell4": {
+    "D_abs": 71.13136030018968,
+    "D_rel": 0.40963956911295724,
+    "cosine": 0.9862442234375597
+   }
+  },
+  "HIGH_alpha0.5": {
+   "site10_ell0": {
+    "D_abs": 0.7217589998937931,
+    "D_rel": 0.007512875429205344,
+    "cosine": 0.9999729265890496
+   },
+   "site10_ell1": {
+    "D_abs": 0.28816176650683467,
+    "D_rel": 0.021182288844657334,
+    "cosine": 0.9997896975199075
+   },
+   "site10_ell2": {
+    "D_abs": 0.7751895201125759,
+    "D_rel": 0.03802906533414283,
+    "cosine": 0.9993275450567016
+   },
+   "site10_ell3": {
+    "D_abs": 0.6167985394592662,
+    "D_rel": 0.020647370089749633,
+    "cosine": 0.999810057803365
+   },
+   "site10_ell4": {
+    "D_abs": 6.317576595297201,
+    "D_rel": 0.4061442518888979,
+    "cosine": 0.9887317090675696
+   },
+   "site11_ell0": {
+    "D_abs": 3.6651347709371707,
+    "D_rel": 0.030868015784944042,
+    "cosine": 0.9996453057216154
+   },
+   "site11_ell1": {
+    "D_abs": 0.6658313558516581,
+    "D_rel": 0.039952353221597396,
+    "cosine": 0.9993838489024274
+   },
+   "site11_ell2": {
+    "D_abs": 15.331712468230847,
+    "D_rel": 0.10078862040262358,
+    "cosine": 0.9984412056076162
+   },
+   "site11_ell3": {
+    "D_abs": 22.899865631700393,
+    "D_rel": 0.1172719978022129,
+    "cosine": 0.9980620091425274
+   },
+   "site11_ell4": {
+    "D_abs": 33.705665663110686,
+    "D_rel": 0.19410811631652772,
+    "cosine": 0.9981507909316182
+   }
+  }
+ },
+ "part_b_rescue": {
+  "LOW_alpha0.0": {
+   "site10_ell0": {
+    "R": -0.007536560606825913,
+    "Delta_recovered": -0.0011431467551725472,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 1.0051070906722404
+   },
+   "site10_ell1": {
+    "R": 0.4381140006693683,
+    "Delta_recovered": 0.06645320384038944,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 0.6965265998632796
+   },
+   "site10_ell2": {
+    "R": 0.01901228822149165,
+    "Delta_recovered": 0.0028837870114278574,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 0.9849492832127786
+   },
+   "site10_ell4": {
+    "R": 0.7100752416614599,
+    "Delta_recovered": 0.1077043297042526,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 0.4918178548587467
+   },
+   "site10_ell0-1": {
+    "R": 0.4321079013482512,
+    "Delta_recovered": 0.06554219770531497,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 0.7012339216368232
+   },
+   "site11_ell0": {
+    "R": -3.283669906667873e-08,
+    "Delta_recovered": -4.980675927246381e-09,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 0.9999999960738456
+   },
+   "site11_ell1": {
+    "R": 1.0,
+    "Delta_recovered": 0.15168016484033733,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 0.0
+   },
+   "site11_ell2": {
+    "R": -3.761340099082533e-09,
+    "Delta_recovered": -5.705206862494094e-10,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 0.99999996466461
+   },
+   "site11_ell0-1": {
+    "R": 1.0,
+    "Delta_recovered": 0.15168016484033733,
+    "Delta_abl": 0.15168016484033733,
+    "force_disp_ratio_rescue_over_abl": 0.0
+   }
+  },
+  "LOW_alpha0.5": {
+   "site10_ell0": {
+    "R": -0.011405539622624404,
+    "Delta_recovered": -0.000517534964338276,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 1.0064396659712254
+   },
+   "site10_ell1": {
+    "R": 0.4579762839069494,
+    "Delta_recovered": 0.02078101936443244,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 0.7085216834679506
+   },
+   "site10_ell2": {
+    "R": 0.020261160401539653,
+    "Delta_recovered": 0.0009193654375688476,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 0.9850911235893545
+   },
+   "site10_ell4": {
+    "R": 0.7613838189983148,
+    "Delta_recovered": 0.03454836514980817,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 0.4932510849332074
+   },
+   "site10_ell0-1": {
+    "R": 0.44901454734356205,
+    "Delta_recovered": 0.02037437380743121,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 0.7149228772332966
+   },
+   "site11_ell0": {
+    "R": -6.602135404650454e-08,
+    "Delta_recovered": -2.9957687441850567e-09,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 0.9999999838079942
+   },
+   "site11_ell1": {
+    "R": 1.0,
+    "Delta_recovered": 0.04537575436691102,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 0.0
+   },
+   "site11_ell2": {
+    "R": 2.5877521400025765e-07,
+    "Delta_recovered": 1.1742120546720525e-08,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 0.99999991701597
+   },
+   "site11_ell0-1": {
+    "R": 1.0,
+    "Delta_recovered": 0.04537575436691102,
+    "Delta_abl": 0.04537575436691102,
+    "force_disp_ratio_rescue_over_abl": 0.0
+   }
+  },
+  "HIGH_alpha0.0": {
+   "site10_ell0": {
+    "R": -0.010594452422543777,
+    "Delta_recovered": -0.011320868748146973,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 1.0137091854449216
+   },
+   "site10_ell1": {
+    "R": 0.1520674820187235,
+    "Delta_recovered": 0.1624940993771361,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 0.804252083330388
+   },
+   "site10_ell2": {
+    "R": 0.0231405197721957,
+    "Delta_recovered": 0.024727166318429417,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 0.9689264733318164
+   },
+   "site10_ell4": {
+    "R": 0.6677581439383982,
+    "Delta_recovered": 0.7135434661018323,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 0.33221721818437844
+   },
+   "site10_ell0-1": {
+    "R": 0.14011474302072924,
+    "Delta_recovered": 0.14972181214790514,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 0.8173447364916954
+   },
+   "site11_ell0": {
+    "R": 6.535527996712686e-09,
+    "Delta_recovered": 6.98364122087014e-09,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 1.0
+   },
+   "site11_ell1": {
+    "R": 1.0,
+    "Delta_recovered": 1.0685657263472594,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 0.0
+   },
+   "site11_ell2": {
+    "R": 3.3779707265670505e-09,
+    "Delta_recovered": 3.6095837430139e-09,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 1.0000000027135327
+   },
+   "site11_ell0-1": {
+    "R": 1.0,
+    "Delta_recovered": 1.0685657263472594,
+    "Delta_abl": 1.0685657263472594,
+    "force_disp_ratio_rescue_over_abl": 0.0
+   }
+  },
+  "HIGH_alpha0.5": {
+   "site10_ell0": {
+    "R": -0.017278094432629988,
+    "Delta_recovered": -0.009591852311862659,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 1.014564516277725
+   },
+   "site10_ell1": {
+    "R": 0.20417833126338444,
+    "Delta_recovered": 0.11334863380896848,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 0.8002888447318307
+   },
+   "site10_ell2": {
+    "R": 0.03018358876273056,
+    "Delta_recovered": 0.01675627638122823,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 0.9702392373327274
+   },
+   "site10_ell4": {
+    "R": 0.7728116289958562,
+    "Delta_recovered": 0.42902271654559565,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 0.3410502683391485
+   },
+   "site10_ell0-1": {
+    "R": 0.18522659575650754,
+    "Delta_recovered": 0.10282766757948963,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 0.81435295777023
+   },
+   "site11_ell0": {
+    "R": 5.428339138686762e-09,
+    "Delta_recovered": 3.0135167694567144e-09,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 0.9999999659293156
+   },
+   "site11_ell1": {
+    "R": 1.0,
+    "Delta_recovered": 0.5551452649632632,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 0.0
+   },
+   "site11_ell2": {
+    "R": -1.2144442976939998e-08,
+    "Delta_recovered": -6.741930014264597e-09,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 0.9999999943215526
+   },
+   "site11_ell0-1": {
+    "R": 1.0,
+    "Delta_recovered": 0.5551452649632632,
+    "Delta_abl": 0.5551452649632632,
+    "force_disp_ratio_rescue_over_abl": 0.0
+   }
+  }
+ },
+ "headline": {
+  "pathway": "block9 ell=4 -> (regenerated across blocks 10-11 via tensor-product coupling) -> ell=1 sector of the pre-final-norm state (after block 11) -> force head (narrow(1,0,4))",
+  "site11_ell1_rescue_is_structural": "R=1.0000 (to fp32 precision) at site 11 for ell=1-only and ell={0,1}-joint restoration, for both tiers and both alpha values. This is expected by construction (not a discovery): the force head only reads node_embedding.narrow(1,0,4)=l0+l1, and NORM_FIXED already fixes the RMS statistic to baseline, so patching l0+l1 (or l1 alone, since l0 patching alone gives R=0.0000 -- force output does not depend on l0) exactly reconstructs the baseline force. The informative result is upstream of this: how the block-9 ell=4 damage arrives at that l=1 sector by the time it reaches site 11.",
+  "site10_partial_rescue_is_the_real_finding": "At site 10 (one block upstream of the force-relevant site), restoring ell=1 alone only recovers R~=0.44-0.46 (LOW) / R~=0.15-0.20 (HIGH) of the damage, while restoring ell=4 alone (the localization control) recovers MORE: R~=0.71-0.76 (LOW) / R~=0.67-0.77 (HIGH). Restoring the original high-order signal before block 11 processes it rescues more than directly overwriting the low-order sector block 11 will read -- block 11 itself performs substantial ell=4 -> ell=1 tensor-product conversion that a site-10 l=1-only patch cannot substitute for."
+ },
+ "full_population_confirmation": {
+  "run": false,
+  "reason": "The headline site-11 ell=1 rescue is exact (R=1.0000 to fp32 precision, deterministic paired per-config evaluation) at M=1024 for both tiers and both alpha values -- not power-limited, so a full-27,697 confirmation would not change this conclusion. The scientifically informative site-10 partial-rescue numbers are consistent in sign and magnitude across tier x alpha (4 independent cells each for the ell=1 and ell=4 comparisons), which is the same evidentiary bar used to accept Stage-3's own M=1024 dose-response result before its optional full-population confirmation. Skipped per the task's 'quick' scope; can be added on request."
+ }
+}

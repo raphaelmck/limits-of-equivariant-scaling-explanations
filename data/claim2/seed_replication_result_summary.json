@@ -1,0 +1,75 @@
+{
+  "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/seed_replication_2026_08_20/REPORT.md (+ results/G_s_analysis.json, results/alpha_curves_all_seeds.csv)",
+  "status": "ANALYSIS_COMPLETE",
+  "primary_estimand_p_star": 0.15,
+  "metric": "P_total = RMS(h_int - h_base) / RMS(h_base) (raw metric, NOT degree-balanced-RMS)",
+  "estimand": "G(seed) = Delta_HIGH(seed) - Delta_LOW(seed), Delta = log(L_intervened/L_baseline), block k=9, ell=4, NORM_FIXED, linear-interpolated to P*=0.15 between the two bracketing measured alpha points",
+  "n_boot": 2000,
+  "bootstrap_seed": 0,
+  "G_by_seed": {
+    "1": 0.47723895713067155,
+    "2": 0.715041712617329,
+    "3": 0.13426890199183045
+  },
+  "G_ci95_by_seed": {
+    "1": [
+      0.42930798778086227,
+      0.5337733021775514
+    ],
+    "2": [
+      0.6576819589296388,
+      0.7776867600477312
+    ],
+    "3": [
+      0.10689515164321825,
+      0.16646703160284262
+    ]
+  },
+  "sign_replication": "3/3 positive",
+  "across_seed_mean_G": 0.4421831905799436,
+  "across_seed_min_G": 0.13426890199183045,
+  "across_seed_max_G": 0.715041712617329,
+  "across_seed_note": "descriptive only (n=3 seeds) -- no cross-seed bootstrap/CI computed, per task instruction",
+  "baseline_loss_comparison": {
+    "1": {
+      "L_baseline_LOW": 0.02362621206423435,
+      "L_baseline_HIGH": 0.007132378682770923
+    },
+    "2": {
+      "L_baseline_LOW": 0.02246090531429106,
+      "L_baseline_HIGH": 0.007156724950051554
+    },
+    "3": {
+      "L_baseline_LOW": 0.02211831324808878,
+      "L_baseline_HIGH": 0.007261425148795194
+    },
+    "LOW_spread_pct": 6.817422283662918,
+    "HIGH_spread_pct": 1.8093047461991554
+  },
+  "baseline_loss_precedent_note": "Project's own established between-run noise precedent (final_validation_sprint_2026_08_20/FINAL_VALIDATION_REPORT.md Section D item 1) is a 3-13% spread at FIXED initialisation (Control C). Both LOW (6.8%) and HIGH (1.8%) spreads here fall within that band despite these being genuinely independent-seed runs -- no seed shows a divergent/bad training run.",
+  "validation_gates": {
+    "note": "Gates 1/2 (frozen baseline/damage reproduction) do not apply -- these are new checkpoints. Gates 3 (alpha=1 identity), 4 (sector isolation), 5 (rotation equivariance vs noise floor) all ran.",
+    "seedrepl_LOW_w10_seed2": {
+      "identity": "PASS",
+      "sector_isolation": "PASS",
+      "rotation": "2/3 seeds PASS; seed=999 flagged as benign (excess_over_noise_floor negative overall; same pattern as FINAL_VALIDATION_REPORT.md Section D item 6 for small-width models)"
+    },
+    "seedrepl_LOW_w10_seed3": {
+      "identity": "PASS",
+      "sector_isolation": "PASS",
+      "rotation": "3/3 PASS"
+    },
+    "seedrepl_HIGH_w24_seed2": {
+      "identity": "PASS",
+      "sector_isolation": "PASS",
+      "rotation": "3/3 PASS"
+    },
+    "seedrepl_HIGH_w24_seed3": {
+      "identity": "PASS",
+      "sector_isolation": "PASS",
+      "rotation": "3/3 PASS"
+    }
+  },
+  "verdict": "Sign of G_s > 0 (block-9 ell=4 HIGH-vs-LOW causal-load-bearing contrast) replicates 3/3 across independent training seeds (both weight init and data order varied together) -- promotes seed-generality from PROVISIONAL/NOT-ESTABLISHED to ESTABLISHED FOR SIGN. Magnitude does NOT tightly replicate (G_s ranges 0.134 to 0.715, >5x spread) -- this is a separate, more qualified finding that must not be conflated with the sign result.",
+  "full_analysis_and_report": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/seed_replication_2026_08_20/REPORT.md"
+}

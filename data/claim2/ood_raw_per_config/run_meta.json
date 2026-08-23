@@ -1,0 +1,442 @@
+{
+  "source_file": "analysis_outputs/esen_irrep_ood_2026_08_22/eval/raw/run_meta.json",
+  "git": {
+    "head": "8cb4e7c1de93631a03b5e47410f18ea5ee30dfa1",
+    "n_changed": 192
+  },
+  "layer": 9,
+  "ell": 4,
+  "alphas": [
+    1.0,
+    0.75,
+    0.5,
+    0.25,
+    0.0
+  ],
+  "m_max": 16384,
+  "degree_weights": {
+    "0": 1.0,
+    "1": 0.3333333333333333,
+    "2": 0.2,
+    "3": 0.14285714285714285,
+    "4": 0.1111111111111111
+  },
+  "owners": {
+    "w10/50k::ID": {
+      "tag": "w10/50k",
+      "width": 10,
+      "step": 50000,
+      "C_flops": 2.3989785957410084e+16,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-10-neutral-epoch/esen/run_9741255_params_1.1_million/dim_32_step_step=50000.ckpt",
+      "checkpoint_sha256": "c839ef8fcf38f2bdfec7d9cdef8d92594bef88b51f890cad0a1eba83baa6d2d3",
+      "checkpoint_global_step": 50000,
+      "domain": "ID",
+      "L_baseline": 0.02288126408597641,
+      "ss_by_ell_raw": {
+        "0": 9474023741.25163,
+        "1": 362787775.9413615,
+        "2": 2066461530.6209533,
+        "3": 5833769572.114229,
+        "4": 1018353115.0700414
+      },
+      "ss_by_ell_centered": {
+        "0": 9402799389.588905,
+        "1": 362787775.9413615,
+        "2": 2066461530.6209538,
+        "3": 5833769572.114229,
+        "4": 1018353115.0700417
+      },
+      "n_elements_by_ell": {
+        "0": 7321390,
+        "1": 21964170,
+        "2": 36606950,
+        "3": 51249730,
+        "4": 65892510
+      },
+      "sanity": {
+        "identity_alpha1_rel": 3.6905355745486175e-07,
+        "identity_ok": true,
+        "sector_isolation_other_rel": 3.6905355745486175e-07,
+        "sector_isolation_target_rel": 1.1964095271526338e-07,
+        "sector_isolation_ok": true
+      },
+      "wall_seconds_domain": 202.76928663253784
+    },
+    "w10/50k::OOD": {
+      "tag": "w10/50k",
+      "width": 10,
+      "step": 50000,
+      "C_flops": 2.3989785957410084e+16,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-10-neutral-epoch/esen/run_9741255_params_1.1_million/dim_32_step_step=50000.ckpt",
+      "checkpoint_sha256": "c839ef8fcf38f2bdfec7d9cdef8d92594bef88b51f890cad0a1eba83baa6d2d3",
+      "checkpoint_global_step": 50000,
+      "domain": "OOD",
+      "L_baseline": 0.022676041512334915,
+      "ss_by_ell_raw": {
+        "0": 24817790177.508232,
+        "1": 706990840.3711122,
+        "2": 5121032903.22317,
+        "3": 12906635683.871698,
+        "4": 2370972026.474809
+      },
+      "ss_by_ell_centered": {
+        "0": 24646608258.615807,
+        "1": 706990840.3711122,
+        "2": 5121032903.22317,
+        "3": 12906635683.871698,
+        "4": 2370972026.474809
+      },
+      "n_elements_by_ell": {
+        "0": 17026890,
+        "1": 51080670,
+        "2": 85134450,
+        "3": 119188230,
+        "4": 153242010
+      },
+      "sanity": {
+        "identity_alpha1_rel": 3.8785352353538093e-07,
+        "identity_ok": true,
+        "sector_isolation_other_rel": 2.9707929462284497e-07,
+        "sector_isolation_target_rel": 1.6132522433885698e-07,
+        "sector_isolation_ok": true
+      },
+      "wall_seconds_domain": 436.66862440109253
+    },
+    "w16/150k::ID": {
+      "tag": "w16/150k",
+      "width": 16,
+      "step": 150000,
+      "C_flops": 1.1268708929342485e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch/esen/run_9721383_params_1.7_million/dim_32_step_step=150000.ckpt",
+      "checkpoint_sha256": "1d7e8d23a3c29310c08925648eaf217d69cb62122011febf2805ccd23599abbf",
+      "checkpoint_global_step": 150000,
+      "domain": "ID",
+      "L_baseline": 0.01081115041303732,
+      "ss_by_ell_raw": {
+        "0": 38810349553.39391,
+        "1": 824076550.5368942,
+        "2": 2774338885.9795294,
+        "3": 19724377541.510593,
+        "4": 3379276368.079891
+      },
+      "ss_by_ell_centered": {
+        "0": 38608339311.723854,
+        "1": 824076550.5368942,
+        "2": 2774338885.9795294,
+        "3": 19724377541.51059,
+        "4": 3379276368.079891
+      },
+      "n_elements_by_ell": {
+        "0": 11714224,
+        "1": 35142672,
+        "2": 58571120,
+        "3": 81999568,
+        "4": 105428016
+      },
+      "sanity": {
+        "identity_alpha1_rel": 3.999662283061045e-07,
+        "identity_ok": true,
+        "sector_isolation_other_rel": 3.2724509588681275e-07,
+        "sector_isolation_target_rel": 1.2123403640722772e-07,
+        "sector_isolation_ok": true
+      },
+      "wall_seconds_domain": 211.48570680618286
+    },
+    "w16/150k::OOD": {
+      "tag": "w16/150k",
+      "width": 16,
+      "step": 150000,
+      "C_flops": 1.1268708929342485e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch/esen/run_9721383_params_1.7_million/dim_32_step_step=150000.ckpt",
+      "checkpoint_sha256": "1d7e8d23a3c29310c08925648eaf217d69cb62122011febf2805ccd23599abbf",
+      "checkpoint_global_step": 150000,
+      "domain": "OOD",
+      "L_baseline": 0.0109531603434369,
+      "ss_by_ell_raw": {
+        "0": 99282682000.06346,
+        "1": 1510601597.5572953,
+        "2": 5795817474.28523,
+        "3": 36617225660.72542,
+        "4": 7261014725.601404
+      },
+      "ss_by_ell_centered": {
+        "0": 98798235286.16577,
+        "1": 1510601597.5572953,
+        "2": 5795817474.28523,
+        "3": 36617225660.72542,
+        "4": 7261014725.601403
+      },
+      "n_elements_by_ell": {
+        "0": 27243024,
+        "1": 81729072,
+        "2": 136215120,
+        "3": 190701168,
+        "4": 245187216
+      },
+      "sanity": {
+        "identity_alpha1_rel": 2.799405442405394e-07,
+        "identity_ok": true,
+        "sector_isolation_other_rel": 2.8897088437733095e-07,
+        "sector_isolation_target_rel": 1.7335143006695613e-07,
+        "sector_isolation_ok": true
+      },
+      "wall_seconds_domain": 445.829363822937
+    },
+    "w20/200k::ID": {
+      "tag": "w20/200k",
+      "width": 20,
+      "step": 200000,
+      "C_flops": 1.8649009486112646e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-20-neutral-epoch/esen/run_9741258_params_2.1_million/dim_32_step_step=200000.ckpt",
+      "checkpoint_sha256": "b7d9299cf2b7caabc817486ad32296ac374927715e1dd029c9a08d5bc3ebabae",
+      "checkpoint_global_step": 200000,
+      "domain": "ID",
+      "L_baseline": 0.008571066380358823,
+      "ss_by_ell_raw": {
+        "0": 64260639050.67253,
+        "1": 1515928839.097658,
+        "2": 5008535121.674468,
+        "3": 23647330143.574978,
+        "4": 3763073128.742831
+      },
+      "ss_by_ell_centered": {
+        "0": 63989637696.62652,
+        "1": 1515928839.097658,
+        "2": 5008535121.674469,
+        "3": 23647330143.57498,
+        "4": 3763073128.742831
+      },
+      "n_elements_by_ell": {
+        "0": 14642780,
+        "1": 43928340,
+        "2": 73213900,
+        "3": 102499460,
+        "4": 131785020
+      },
+      "sanity": {
+        "identity_alpha1_rel": 2.3081658367912864e-07,
+        "identity_ok": true,
+        "sector_isolation_other_rel": 2.3081658367912864e-07,
+        "sector_isolation_target_rel": 1.1940437937444036e-07,
+        "sector_isolation_ok": true
+      },
+      "wall_seconds_domain": 235.52362656593323
+    },
+    "w20/200k::OOD": {
+      "tag": "w20/200k",
+      "width": 20,
+      "step": 200000,
+      "C_flops": 1.8649009486112646e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-20-neutral-epoch/esen/run_9741258_params_2.1_million/dim_32_step_step=200000.ckpt",
+      "checkpoint_sha256": "b7d9299cf2b7caabc817486ad32296ac374927715e1dd029c9a08d5bc3ebabae",
+      "checkpoint_global_step": 200000,
+      "domain": "OOD",
+      "L_baseline": 0.00915064874230513,
+      "ss_by_ell_raw": {
+        "0": 165769701937.85693,
+        "1": 2611530250.547008,
+        "2": 9078556092.2904,
+        "3": 48302903832.93153,
+        "4": 8351769514.265119
+      },
+      "ss_by_ell_centered": {
+        "0": 165142171862.09457,
+        "1": 2611530250.547008,
+        "2": 9078556092.2904,
+        "3": 48302903832.93153,
+        "4": 8351769514.265119
+      },
+      "n_elements_by_ell": {
+        "0": 34053780,
+        "1": 102161340,
+        "2": 170268900,
+        "3": 238376460,
+        "4": 306484020
+      },
+      "sanity": {
+        "identity_alpha1_rel": 3.2395662479959236e-07,
+        "identity_ok": true,
+        "sector_isolation_other_rel": 2.6321475764966875e-07,
+        "sector_isolation_target_rel": 1.7515104150063808e-07,
+        "sector_isolation_ok": true
+      },
+      "wall_seconds_domain": 504.6831839084625
+    },
+    "w24/300k::ID": {
+      "tag": "w24/300k",
+      "width": 24,
+      "step": 300000,
+      "C_flops": 3.346812983455683e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-24-neutral-epoch/esen/run_9721434_params_2.6_million/dim_32_step_step=300000.ckpt",
+      "checkpoint_sha256": "22a19328ad8c3ec7f9566f63afb630f6b49c6dd6dd8cc026394a2ff46dfffbd8",
+      "checkpoint_global_step": 300000,
+      "domain": "ID",
+      "L_baseline": 0.00686766193637755,
+      "ss_by_ell_raw": {
+        "0": 86232679957.18668,
+        "1": 3952431215.6187057,
+        "2": 8631545072.574202,
+        "3": 40030751325.30828,
+        "4": 12450870445.222525
+      },
+      "ss_by_ell_centered": {
+        "0": 86003618818.63657,
+        "1": 3952431215.618706,
+        "2": 8631545072.574202,
+        "3": 40030751325.30828,
+        "4": 12450870445.22252
+      },
+      "n_elements_by_ell": {
+        "0": 17571336,
+        "1": 52714008,
+        "2": 87856680,
+        "3": 122999352,
+        "4": 158142024
+      },
+      "sanity": {
+        "identity_alpha1_rel": 2.9546436868550434e-07,
+        "identity_ok": true,
+        "sector_isolation_other_rel": 1.688367821060025e-07,
+        "sector_isolation_target_rel": 1.0106806711970765e-07,
+        "sector_isolation_ok": true
+      },
+      "wall_seconds_domain": 248.10544109344482
+    },
+    "w24/300k::OOD": {
+      "tag": "w24/300k",
+      "width": 24,
+      "step": 300000,
+      "C_flops": 3.346812983455683e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-24-neutral-epoch/esen/run_9721434_params_2.6_million/dim_32_step_step=300000.ckpt",
+      "checkpoint_sha256": "22a19328ad8c3ec7f9566f63afb630f6b49c6dd6dd8cc026394a2ff46dfffbd8",
+      "checkpoint_global_step": 300000,
+      "domain": "OOD",
+      "L_baseline": 0.00728752264148344,
+      "ss_by_ell_raw": {
+        "0": 202219961040.23328,
+        "1": 6593685946.032233,
+        "2": 16255326298.238482,
+        "3": 80010113286.59,
+        "4": 27274798457.418438
+      },
+      "ss_by_ell_centered": {
+        "0": 201768334758.41583,
+        "1": 6593685946.032233,
+        "2": 16255326298.238482,
+        "3": 80010113286.59,
+        "4": 27274798457.418438
+      },
+      "n_elements_by_ell": {
+        "0": 40864536,
+        "1": 122593608,
+        "2": 204322680,
+        "3": 286051752,
+        "4": 367780824
+      },
+      "sanity": {
+        "identity_alpha1_rel": 3.702998419652849e-07,
+        "identity_ok": true,
+        "sector_isolation_other_rel": 2.777248814739637e-07,
+        "sector_isolation_target_rel": 1.1974082338260482e-07,
+        "sector_isolation_ok": true
+      },
+      "wall_seconds_domain": 535.3817095756531
+    },
+    "esen_lmax2_LOWtrue_w16_s125000::ID": {
+      "tag": "esen_lmax2_LOWtrue_w16_s125000",
+      "matched_to": "w10/50k",
+      "width": 16,
+      "step": 125000,
+      "C_flops": 2.3263382050074412e+16,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch-lmax2/esen/run_10337251_params_494.3_thousand/dim_32_step_step=125000.ckpt",
+      "checkpoint_sha256": "fc9f36762c4444185c63b63ac1a89beec620ad8b33b4bda7ac93f9ae3f887eb9",
+      "checkpoint_global_step": 125000,
+      "domain": "ID",
+      "L_baseline": 0.01868583875260767
+    },
+    "esen_lmax2_LOWtrue_w16_s125000::OOD": {
+      "tag": "esen_lmax2_LOWtrue_w16_s125000",
+      "matched_to": "w10/50k",
+      "width": 16,
+      "step": 125000,
+      "C_flops": 2.3263382050074412e+16,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch-lmax2/esen/run_10337251_params_494.3_thousand/dim_32_step_step=125000.ckpt",
+      "checkpoint_sha256": "fc9f36762c4444185c63b63ac1a89beec620ad8b33b4bda7ac93f9ae3f887eb9",
+      "checkpoint_global_step": 125000,
+      "domain": "OOD",
+      "L_baseline": 0.01926394417315614
+    },
+    "esen_lmax2_MIDtrue_w32_s300000::ID": {
+      "tag": "esen_lmax2_MIDtrue_w32_s300000",
+      "matched_to": "w16/150k",
+      "width": 32,
+      "step": 300000,
+      "C_flops": 1.079113752037894e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-32-neutral-epoch-lmax2/esen/run_10337245_params_955.5_thousand/dim_32_step_step=300000.ckpt",
+      "checkpoint_sha256": "3c7c4d9ec54581d305bf01c90a4c221fa873ae3e0322d05f8ee7dfba6ec7eb4e",
+      "checkpoint_global_step": 300000,
+      "domain": "ID",
+      "L_baseline": 0.009954958767761599
+    },
+    "esen_lmax2_MIDtrue_w32_s300000::OOD": {
+      "tag": "esen_lmax2_MIDtrue_w32_s300000",
+      "matched_to": "w16/150k",
+      "width": 32,
+      "step": 300000,
+      "C_flops": 1.079113752037894e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-32-neutral-epoch-lmax2/esen/run_10337245_params_955.5_thousand/dim_32_step_step=300000.ckpt",
+      "checkpoint_sha256": "3c7c4d9ec54581d305bf01c90a4c221fa873ae3e0322d05f8ee7dfba6ec7eb4e",
+      "checkpoint_global_step": 300000,
+      "domain": "OOD",
+      "L_baseline": 0.010092519773118607
+    },
+    "esen_lmax2_UPPERMID_w32_s525000::ID": {
+      "tag": "esen_lmax2_UPPERMID_w32_s525000",
+      "matched_to": "w20/200k",
+      "width": 32,
+      "step": 525000,
+      "C_flops": 1.8880455768069203e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-32-neutral-epoch-lmax2/esen/run_10337245_params_955.5_thousand/dim_32_step_step=525000.ckpt",
+      "checkpoint_sha256": "9d62631ca5356ccdf27648b2f112d392a4a671a5eec58d370a5e197ebd378cdd",
+      "checkpoint_global_step": 525000,
+      "domain": "ID",
+      "L_baseline": 0.008309479391529252
+    },
+    "esen_lmax2_UPPERMID_w32_s525000::OOD": {
+      "tag": "esen_lmax2_UPPERMID_w32_s525000",
+      "matched_to": "w20/200k",
+      "width": 32,
+      "step": 525000,
+      "C_flops": 1.8880455768069203e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-32-neutral-epoch-lmax2/esen/run_10337245_params_955.5_thousand/dim_32_step_step=525000.ckpt",
+      "checkpoint_sha256": "9d62631ca5356ccdf27648b2f112d392a4a671a5eec58d370a5e197ebd378cdd",
+      "checkpoint_global_step": 525000,
+      "domain": "OOD",
+      "L_baseline": 0.008388919573827867
+    },
+    "esen_lmax2_HIGH_w64_s525000::ID": {
+      "tag": "esen_lmax2_HIGH_w64_s525000",
+      "matched_to": "w24/300k",
+      "width": 64,
+      "step": 525000,
+      "C_flops": 3.724042082098752e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-64-neutral-epoch-lmax2/esen/run_10338627_params_1.9_million/dim_32_step_step=525000.ckpt",
+      "checkpoint_sha256": "ca7fca1b6c2ff67e59a32de1827f4e3c492272c1e7798cbdb34d63dc2397edeb",
+      "checkpoint_global_step": 525000,
+      "domain": "ID",
+      "L_baseline": 0.0065224734041060195
+    },
+    "esen_lmax2_HIGH_w64_s525000::OOD": {
+      "tag": "esen_lmax2_HIGH_w64_s525000",
+      "matched_to": "w24/300k",
+      "width": 64,
+      "step": 525000,
+      "C_flops": 3.724042082098752e+17,
+      "ckpt_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-64-neutral-epoch-lmax2/esen/run_10338627_params_1.9_million/dim_32_step_step=525000.ckpt",
+      "checkpoint_sha256": "ca7fca1b6c2ff67e59a32de1827f4e3c492272c1e7798cbdb34d63dc2397edeb",
+      "checkpoint_global_step": 525000,
+      "domain": "OOD",
+      "L_baseline": 0.006728026873604187
+    }
+  }
+}

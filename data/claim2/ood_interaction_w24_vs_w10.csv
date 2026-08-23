@@ -1,0 +1,6 @@
+M,interaction,ci_lo,ci_hi,ci_excludes_zero,source_file
+1024,-0.130600078789619,-0.19838063173381318,-0.06302601382593091,True,analysis_outputs/esen_irrep_ood_2026_08_22/eval/interaction_w24_vs_w10.csv
+2048,-0.17567230824947633,-0.22272162636305148,-0.12891890684471088,True,analysis_outputs/esen_irrep_ood_2026_08_22/eval/interaction_w24_vs_w10.csv
+4096,-0.18312863087852915,-0.21637640689146118,-0.15047147183156692,True,analysis_outputs/esen_irrep_ood_2026_08_22/eval/interaction_w24_vs_w10.csv
+8192,-0.20263942261134416,-0.22589446239378333,-0.17838070604792897,True,analysis_outputs/esen_irrep_ood_2026_08_22/eval/interaction_w24_vs_w10.csv
+16384,-0.20939155055773973,-0.22545174932543385,-0.19308845383321774,True,analysis_outputs/esen_irrep_ood_2026_08_22/eval/interaction_w24_vs_w10.csv

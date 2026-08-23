@@ -1,0 +1,175 @@
+{
+ "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/control_C_seeds/summary.json",
+ "runs": {
+  "runA_main_9721383": {
+   "baseline_L": 0.01886284084051555,
+   "cells": {
+    "ell4_alpha0.50": {
+     "L_int": 0.022974245246898492,
+     "delta": 0.1971799229691431,
+     "delta_ci95": [
+      0.17946009763542178,
+      0.21609249569288433
+     ]
+    },
+    "ell4_alpha0.00": {
+     "L_int": 0.030390620857567583,
+     "delta": 0.4769401427135196,
+     "delta_ci95": [
+      0.44047587205023014,
+      0.5145736528916929
+     ]
+    },
+    "ell3_alpha0.50": {
+     "L_int": 0.03209604582968397,
+     "delta": 0.5315389459993614,
+     "delta_ci95": [
+      0.4933274861708024,
+      0.572791125186657
+     ]
+    },
+    "ell3_alpha0.00": {
+     "L_int": 0.05849919003182799,
+     "delta": 1.131819014859095,
+     "delta_ci95": [
+      1.0718265187902942,
+      1.1961689906256292
+     ]
+    }
+   },
+   "checkpoint": {
+    "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch/esen/run_9721383_params_1.7_million/dim_32_step_step=50000.ckpt",
+    "checkpoint_sha256": "6010c0953377d1db754518b38e850e7abbc148e09f59b75043c391803992e770",
+    "checkpoint_global_step": 50000,
+    "checkpoint_net_state_parameter_count": 1722258,
+    "run_kind": "main",
+    "job_id": "9721383",
+    "recorded_force_mse_norm_fullval": 0.0042301646138228
+   }
+  },
+  "runB_dense_replicate_10359676": {
+   "baseline_L": 0.018938367203842402,
+   "cells": {
+    "ell4_alpha0.50": {
+     "L_int": 0.02250576272195406,
+     "delta": 0.17258152222943623,
+     "delta_ci95": [
+      0.156774688933599,
+      0.18966717264695032
+     ]
+    },
+    "ell4_alpha0.00": {
+     "L_int": 0.02924439551819393,
+     "delta": 0.43449807394016116,
+     "delta_ci95": [
+      0.4014885459143744,
+      0.4699788986211969
+     ]
+    },
+    "ell3_alpha0.50": {
+     "L_int": 0.033365308710467306,
+     "delta": 0.5663268236735903,
+     "delta_ci95": [
+      0.5273091894642006,
+      0.6086490685283731
+     ]
+    },
+    "ell3_alpha0.00": {
+     "L_int": 0.060544781515488054,
+     "delta": 1.1621934064063804,
+     "delta_ci95": [
+      1.1013557826765166,
+      1.2248275403810274
+     ]
+    }
+   },
+   "checkpoint": {
+    "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch-lmax4-dense0to50k/esen/run_10359676_params_1.7_million/dim_32_step_step=50000.ckpt",
+    "checkpoint_sha256": "c7e294adb01aff58901eabfab085add975b765b735c0d3b7ef4ffcef3fe97d15",
+    "checkpoint_global_step": 50000,
+    "checkpoint_net_state_parameter_count": 1722258,
+    "run_kind": "dense_replicate",
+    "job_id": "10359676",
+    "recorded_force_mse_norm_fullval": 0.0044639461441436
+   }
+  }
+ },
+ "across_run_contrasts": {
+  "ell4_alpha0.50": {
+   "delta_runA": 0.1971799229691431,
+   "delta_runB": 0.17258152222943623,
+   "difference": 0.02459840073970687,
+   "relative_difference": 0.12475104143111113,
+   "difference_ci95": [
+    0.02104351832487006,
+    0.028415937057166562
+   ],
+   "difference_ci_excludes_zero": true,
+   "same_sign_and_nontrivial": true
+  },
+  "ell4_alpha0.00": {
+   "delta_runA": 0.4769401427135196,
+   "delta_runB": 0.43449807394016116,
+   "difference": 0.04244206877335843,
+   "relative_difference": 0.0889882502485261,
+   "difference_ci95": [
+    0.036911568440985976,
+    0.04835576693895349
+   ],
+   "difference_ci_excludes_zero": true,
+   "same_sign_and_nontrivial": true
+  },
+  "ell3_alpha0.50": {
+   "delta_runA": 0.5315389459993614,
+   "delta_runB": 0.5663268236735903,
+   "difference": -0.03478787767422897,
+   "relative_difference": -0.06544746708789759,
+   "difference_ci95": [
+    -0.03991345442306245,
+    -0.02954072587334187
+   ],
+   "difference_ci_excludes_zero": true,
+   "same_sign_and_nontrivial": true
+  },
+  "ell3_alpha0.00": {
+   "delta_runA": 1.131819014859095,
+   "delta_runB": 1.1621934064063804,
+   "difference": -0.030374391547285384,
+   "relative_difference": -0.026836792056428582,
+   "difference_ci95": [
+    -0.03721186696071742,
+    -0.02279895950697835
+   ],
+   "difference_ci_excludes_zero": true,
+   "same_sign_and_nontrivial": true
+  }
+ },
+ "weight_divergence": {
+  "n_float_tensors": 649,
+  "n_tensors_differing": 318,
+  "max_abs_diff": 1.4167661666870117,
+  "relative_l2_diff": 0.00036360794346941365,
+  "bitwise_identical": false
+ },
+ "rotation_equivariance": {
+  "runA_main_9721383": {
+   "max_rel": 0.00184644665569067,
+   "max_noise_floor": 0.001740623963996768,
+   "max_excess_over_noise_floor": 0.00012367789167910814,
+   "passed_all_seeds": true,
+   "passed_vs_noise_floor": true
+  },
+  "runB_dense_replicate_10359676": {
+   "max_rel": 0.0036879563704133034,
+   "max_noise_floor": 0.0037733132485300303,
+   "max_excess_over_noise_floor": -5.567795597016811e-06,
+   "passed_all_seeds": false,
+   "passed_vs_noise_floor": true
+  }
+ },
+ "validation_summary": {
+  "identity_alpha1_max_rel": 3.5967600385572674e-07,
+  "sector_isolation_max_rel": 2.997300032131056e-07
+ },
+ "scope_warning": "Both runs carry hydra seed=1 and differ only in realized trajectory (relative L2 weight divergence 3.6e-4). This is TRAINING-RUN reproducibility at fixed initialization, NOT seed generality, and it covers ONE compute point (w16, s50000). G(seed)=Delta_HIGH-Delta_LOW cannot be formed for a second run because no second run exists at any other (width, step). See SEED_REPLICATION_REQUIRED.md."
+}

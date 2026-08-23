@@ -1,0 +1,22 @@
+[project]
+name = "paper-repro"
+version = "0.2.0"
+description = "CPU-only analysis/validation layer regenerating the main-paper numbers from paper_repro/data + manifests."
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+]
+
+# No build backend is declared -- this project is not published as a package. `pyproject.toml`
+# exists solely to make the numpy dependency explicit and pip-installable
+# (`pip install -e .` / `pip install numpy` in any normal environment with network access).
+#
+# Sandbox note (see AUDIT_STAGE2.md): the environment this Stage-2 pass was built and run in has
+# no pip/venv-bootstrap network access (`python3 -m ensurepip` and `pip3` are both absent). A
+# local virtualenv was still created with the stdlib `venv` module (`python3 -m venv --without-pip
+# .venv`), and a working numpy 2.2.6 build already installed in a sibling project's virtualenv
+# on the same machine (force-target-accessibility/.venv, itself built the normal way with pip) was
+# copied -- not symlinked, not imported by path -- into paper_repro/.venv's site-packages so that
+# paper_repro/.venv is self-contained and does not depend on that sibling repo continuing to
+# exist. This is a one-time sandbox workaround, not the intended install path: a normal
+# environment should simply run `pip install numpy` (or `pip install -e .`).

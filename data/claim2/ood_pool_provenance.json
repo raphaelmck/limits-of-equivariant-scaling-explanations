@@ -1,0 +1,252 @@
+{
+  "source_file": {
+    "ood_pool_manifest": "analysis_outputs/esen_irrep_ood_2026_08_22/dataset/ood_pool_manifest.json",
+    "ood_dataset_audit": "analysis_outputs/esen_irrep_ood_2026_08_22/dataset/DATASET_AUDIT.md",
+    "ood_eligible_summary": "analysis_outputs/esen_irrep_ood_2026_08_22/dataset/eligible_summary.json",
+    "id_pool_manifest": "analysis_outputs/esen_irrep_ood_2026_08_22/id_pool/id_pool_manifest.json",
+    "id_dataset_audit": "analysis_outputs/esen_irrep_ood_2026_08_22/id_pool/DATASET_AUDIT.md",
+    "id_eligible_summary": "analysis_outputs/esen_irrep_ood_2026_08_22/id_pool/eligible_summary.json",
+    "neutral_val_provenance": "analysis_outputs/esen_irrep_ood_2026_08_22/robustness/neutral_val_provenance.json"
+  },
+  "note": "This file summarizes both frozen pools' definitions, sizes, and support criteria. The raw per-structure index arrays (large .npy/.npz probe-index files) are NOT copied here -- they are referenced by path below, matching the convention used elsewhere in this repo for large arrays (e.g. Claim-1's kernel .npz files).",
+  "raw_index_files_referenced_not_copied": {
+    "ood_pool_indices_npy": "analysis_outputs/esen_irrep_ood_2026_08_22/dataset/ood_pool_indices.npy",
+    "ood_eligible_full_index_npz": "analysis_outputs/esen_irrep_ood_2026_08_22/dataset/eligible_full_index.npz",
+    "id_pool_indices_npy": "analysis_outputs/esen_irrep_ood_2026_08_22/id_pool/id_pool_indices.npy",
+    "id_eligible_full_index_npz": "analysis_outputs/esen_irrep_ood_2026_08_22/id_pool/eligible_full_index.npz",
+    "ood_pool_manifest_pools_field_note": "dataset/ood_pool_manifest.json itself (6.4MB) contains a top-level 'pools' key with the full per-M index lists (1024..16384) -- also NOT copied inline here for the same reason; use the source path directly to recover exact indices.",
+    "id_pool_manifest_pools_field_note": "id_pool/id_pool_manifest.json itself (6.8MB) contains the analogous 'pools' key for the ID (Neutral-val) pool -- also referenced by path only."
+  },
+  "terminology_correction": "OOD_ROBUSTNESS.md Sec 0 (2026-08-22) supersedes REPORT.md's 'ID vs OOD' shorthand: the Neutral-val pool is not an independently-sampled in-distribution set -- for its 4 constituent data_id families (ani2x, spice, geom_orca6, orbnet_denali) it is exactly, 100% identical to Val-Comp's eligible population for those same families. The precise framing is 'Neutral-domain validation vs. the broader support-matched Val-Comp population'; genuine OOD signal comes only from the 4 composition families Val-Comp has that Neutral-val excludes entirely (elytes, biomolecules, reactivity, metal_complexes).",
+  "neutral_domain_pool": {
+    "definition": "Frozen ID (Neutral-val) pool: open_mol/neutral_val, charge=0, spin=1, all Z in Neutral-training element support (17 elements)",
+    "source_scan_dir": "/network/scratch/k/khang.ngo/geometric_pos/dataset/open_mol/neutral_val",
+    "total_val_structures": 27697,
+    "n_eligible": 27697,
+    "fraction_eligible": 1.0,
+    "eligible_counts_by_data_id": {
+      "orbnet_denali": 13072,
+      "spice": 6369,
+      "ani2x": 2952,
+      "geom_orca6": 5304
+    },
+    "neutral_element_support_Z": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      19,
+      20,
+      35,
+      53
+    ],
+    "eligible_natoms_stats": {
+      "min": 2,
+      "max": 110,
+      "mean": 44.72123334657183,
+      "median": 46.0,
+      "p10": 19.0,
+      "p90": 67.0
+    },
+    "requested_pool_sizes": [
+      1024,
+      2048,
+      4096,
+      8192,
+      16384
+    ],
+    "achieved_pool_sizes": [
+      1024,
+      2048,
+      4096,
+      8192,
+      16384
+    ],
+    "n_eligible_total": 27697,
+    "max_pool": 16384,
+    "stratification": {
+      "method": "sequential proportional (largest-remainder) interleaving across (data_id x natoms-quartile-bin) strata, seeded per-stratum shuffle",
+      "size_bin_edges_natoms_quartiles_of_eligible_pop": [
+        28.0,
+        46.0,
+        59.0
+      ],
+      "strata_sizes_in_eligible_pop": {
+        "ani2x|size0": 2857,
+        "ani2x|size1": 92,
+        "ani2x|size2": 3,
+        "geom_orca6|size0": 927,
+        "geom_orca6|size1": 3269,
+        "geom_orca6|size2": 828,
+        "geom_orca6|size3": 280,
+        "orbnet_denali|size0": 3134,
+        "orbnet_denali|size1": 3095,
+        "orbnet_denali|size2": 3172,
+        "orbnet_denali|size3": 3671,
+        "spice|size0": 10,
+        "spice|size1": 746,
+        "spice|size2": 2665,
+        "spice|size3": 2948
+      }
+    },
+    "seed": 42
+  },
+  "valcomp_ood_pool": {
+    "definition": "Frozen Val-Comp (OMol25-val) pool: /network/scratch/m/michnikr/omol25/val, charge=0, spin=1, all Z in Neutral-training element support (support-matched, NOT an unrestricted OOD sample)",
+    "source_scan_dir": "/network/scratch/m/michnikr/omol25/val",
+    "total_val_structures": 2762021,
+    "n_eligible": 1011426,
+    "fraction_eligible": 0.36619055394582445,
+    "eligible_counts_by_data_id": {
+      "elytes": 670901,
+      "biomolecules": 202929,
+      "geom_orca6": 5304,
+      "spice": 6369,
+      "orbnet_denali": 13072,
+      "reactivity": 107977,
+      "ani2x": 2952,
+      "metal_complexes": 1922
+    },
+    "neutral_element_support_Z": [
+      1,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      19,
+      20,
+      35,
+      53
+    ],
+    "eligible_natoms_stats": {
+      "min": 2,
+      "max": 350,
+      "mean": 103.66273162841374,
+      "median": 98.0,
+      "p10": 24.0,
+      "p90": 179.0
+    },
+    "requested_pool_sizes": [
+      1024,
+      2048,
+      4096,
+      8192,
+      16384
+    ],
+    "achieved_pool_sizes": [
+      1024,
+      2048,
+      4096,
+      8192,
+      16384
+    ],
+    "n_eligible_total": 1011426,
+    "max_pool": 16384,
+    "stratification": {
+      "method": "sequential proportional (largest-remainder) interleaving across (data_id x natoms-quartile-bin) strata, seeded per-stratum shuffle",
+      "size_bin_edges_natoms_quartiles_of_eligible_pop": [
+        62.0,
+        98.0,
+        134.0
+      ],
+      "strata_sizes_in_eligible_pop": {
+        "ani2x|size0": 2952,
+        "biomolecules|size0": 2537,
+        "biomolecules|size1": 28668,
+        "biomolecules|size2": 75289,
+        "biomolecules|size3": 96435,
+        "elytes|size0": 127587,
+        "elytes|size1": 215057,
+        "elytes|size2": 176667,
+        "elytes|size3": 151590,
+        "geom_orca6|size0": 5106,
+        "geom_orca6|size1": 198,
+        "metal_complexes|size0": 953,
+        "metal_complexes|size1": 681,
+        "metal_complexes|size2": 251,
+        "metal_complexes|size3": 37,
+        "orbnet_denali|size0": 10347,
+        "orbnet_denali|size1": 2725,
+        "reactivity|size0": 103398,
+        "reactivity|size1": 3970,
+        "reactivity|size2": 572,
+        "reactivity|size3": 37,
+        "spice|size0": 4231,
+        "spice|size1": 1790,
+        "spice|size2": 348
+      }
+    },
+    "seed": 42
+  },
+  "neutral_val_vs_valcomp_family_overlap": {
+    "neutral_val_data_ids": [
+      "ani2x",
+      "geom_orca6",
+      "orbnet_denali",
+      "spice"
+    ],
+    "valcomp_data_ids": [
+      "ani2x",
+      "biomolecules",
+      "elytes",
+      "geom_orca6",
+      "metal_complexes",
+      "orbnet_denali",
+      "reactivity",
+      "spice"
+    ],
+    "families": {
+      "ani2x": {
+        "neutral_val_eligible_n": 2952,
+        "valcomp_eligible_n": 2952,
+        "overlap_n": 2952,
+        "neutral_val_is_exact_subset_of_valcomp_eligible": true,
+        "identical_populations": true
+      },
+      "geom_orca6": {
+        "neutral_val_eligible_n": 5304,
+        "valcomp_eligible_n": 5304,
+        "overlap_n": 5304,
+        "neutral_val_is_exact_subset_of_valcomp_eligible": true,
+        "identical_populations": true
+      },
+      "orbnet_denali": {
+        "neutral_val_eligible_n": 13072,
+        "valcomp_eligible_n": 13072,
+        "overlap_n": 13072,
+        "neutral_val_is_exact_subset_of_valcomp_eligible": true,
+        "identical_populations": true
+      },
+      "spice": {
+        "neutral_val_eligible_n": 6369,
+        "valcomp_eligible_n": 6369,
+        "overlap_n": 6369,
+        "neutral_val_is_exact_subset_of_valcomp_eligible": true,
+        "identical_populations": true
+      }
+    },
+    "families_present_in_valcomp_absent_from_neutral_val": [
+      "biomolecules",
+      "elytes",
+      "metal_complexes",
+      "reactivity"
+    ]
+  }
+}

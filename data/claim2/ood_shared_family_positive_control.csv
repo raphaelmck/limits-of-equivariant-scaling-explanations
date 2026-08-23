@@ -1,0 +1,7 @@
+stratum,n_configs,insufficient_n,contrast_w24_minus_w10,ci_lo,ci_hi,ci_excludes_zero,source_file
+elytes,10867,False,0.34422356346764915,0.3320376867558083,0.35562750480157446,True,analysis_outputs/esen_irrep_ood_2026_08_22/robustness/w24_vs_w10_contrast_by_stratum.csv
+biomolecules,3286,False,0.42672350871899967,0.413441804030216,0.4401674770946328,True,analysis_outputs/esen_irrep_ood_2026_08_22/robustness/w24_vs_w10_contrast_by_stratum.csv
+reactivity,1749,False,0.14868708139668385,0.13846592459393905,0.15997045360940287,True,analysis_outputs/esen_irrep_ood_2026_08_22/robustness/w24_vs_w10_contrast_by_stratum.csv
+metal_complexes,32,True,,,,,analysis_outputs/esen_irrep_ood_2026_08_22/robustness/w24_vs_w10_contrast_by_stratum.csv
+pooled_neutral_like_sources_in_ValComp,450,False,0.5876145498962908,0.5012837553894044,0.6759399339544542,True,analysis_outputs/esen_irrep_ood_2026_08_22/robustness/w24_vs_w10_contrast_by_stratum.csv
+Neutral_val_pooled_(ID_reference),16384,False,0.5647262067985724,0.5505573398447923,0.579375202770006,True,analysis_outputs/esen_irrep_ood_2026_08_22/robustness/w24_vs_w10_contrast_by_stratum.csv

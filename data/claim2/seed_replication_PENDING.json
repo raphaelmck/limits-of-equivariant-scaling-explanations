@@ -1,0 +1,87 @@
+{
+  "status": "SUPERSEDED_BY_ANALYSIS_COMPLETE",
+  "note": "HISTORICAL/PLANNING FILE, KEPT FOR PROVENANCE. Analysis is now COMPLETE (2026-08-22) -- the canonical result files are `data/claim2/seed_replication_result.csv` and `data/claim2/seed_replication_result_summary.json` (full derivation: dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/seed_replication_2026_08_20/REPORT.md). This file is retained unmodified below this note as a historical record of the pre-analysis planning state; do not read any 'result' out of it -- it predates the analysis and was never updated with a numeric value.",
+  "training_status_2026_08_22": {
+    "summary": "All 4 seed-replication training jobs are COMPLETE, verified via sacct and direct checkpoint-directory inspection on 2026-08-22. This corrects run_manifest.json's own 'status: submitted' field, which is stale (written at submission time 2026-08-20, never updated).",
+    "evidence_source": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/seed_replication_2026_08_20/run_manifest.json (job IDs, GRES gpu:a100l:1) cross-checked against live sacct output and checkpoint directory listings under /network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-{10,24}-neutral-epoch-seed{2,3}/",
+    "jobs": [
+      {"tag": "w10_seed2", "job_id": "10429387", "sacct_state": "COMPLETED", "sacct_end": "2026-08-22T01:51:06", "checkpoints_present": "full ladder 50k-500k + last.ckpt"},
+      {"tag": "w10_seed3", "job_id": "10429388", "sacct_state": "COMPLETED", "sacct_end": "2026-08-22T01:29:27", "checkpoints_present": "full ladder 50k-500k + last.ckpt"},
+      {"tag": "w24_seed2", "job_id": "10429389", "sacct_state": "COMPLETED", "sacct_end": "2026-08-22T13:32:26", "checkpoints_present": "full ladder 50k-500k + last.ckpt"},
+      {"tag": "w24_seed3", "job_id": "10429390", "sacct_state": "COMPLETED", "sacct_end": "2026-08-22T14:31:02", "checkpoints_present": "full ladder 50k-500k + last.ckpt (plus a last-v1.ckpt)"}
+    ],
+    "target_checkpoints_confirmed_on_disk": [
+      "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-10-neutral-epoch-seed2/esen/run_10429387_params_1.1_million/dim_32_step_step=50000.ckpt",
+      "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-10-neutral-epoch-seed3/esen/run_10429388_params_1.1_million/dim_32_step_step=50000.ckpt",
+      "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-24-neutral-epoch-seed2/esen/run_10429389_params_2.6_million/dim_32_step_step=300000.ckpt",
+      "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-24-neutral-epoch-seed3/esen/run_10429390_params_2.6_million/dim_32_step_step=300000.ckpt"
+    ],
+    "analysis_still_pending": "Searched dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/ for any dose-response/intervention output referencing seed2 or seed3 dated after 2026-08-20: none found (only run_manifest.json itself, a training-submission artifact, and an unrelated stage2b_representation_target_spectra_2026_08_15 hit). No G(seed) numeric result exists anywhere in this repo as of 2026-08-22."
+  },
+  "estimand": "G(seed) = Delta_HIGH(seed) - Delta_LOW(seed), Delta = log(L_intervened / L_baseline), block k=9, NORM_FIXED, ell=4, alpha=0.5",
+  "primary_estimand_p_star": 0.15,
+  "why_required": "The eSEN checkpoint store contains exactly one training run per (lmax, sphere_channels) on the main width ladder; every apparent duplicate is a preemption/requeue resume chain or a fixed-init (config_seed_top_level=1 for all) dense_replicate trajectory, not an independent seed draw. G(seed) cannot currently be formed for any second run at any width.",
+  "canonical_endpoints_2026_08_22": {
+    "note": "CANONICAL final-paper choice, confirmed by user 2026-08-22. The experiment actually being run uses LOW=w10/s50000 and HIGH=w24/s300000 (the Stage-3B.1 matched-compute HIGH lmax4 owner), seeds 2 and 3, paired across LOW/HIGH.",
+    "LOW": {"sphere_channels": 10, "target_global_step": 50000},
+    "HIGH": {"sphere_channels": 24, "target_global_step": 300000}
+  },
+  "cost_estimate_gpu_hours": {
+    "value": "~70 (PRE_REGISTRATION.md estimate for the canonical w10/w24 endpoints, full-epoch runs)",
+    "source_note": "PRE_REGISTRATION.md's estimate applies directly to the canonical w24/s300000 HIGH endpoint. The superseded SEED_REPLICATION_REQUIRED.md estimate (~22 GPU-hours) was computed for the historical w40/s275000 HIGH endpoint and is NOT the cost of the canonical experiment -- retained below only as provenance, not as a current estimate."
+  },
+  "provenance_note_resolved_discrepancy": "Prior to 2026-08-22, SEED_REPLICATION_REQUIRED.md and seed_replication_2026_08_20/PRE_REGISTRATION.md disagreed on the 'HIGH' endpoint for seed replication: SEED_REPLICATION_REQUIRED.md specified width=40/step=275000 (matching the block-9 dose-response HIGH owner and the Claim-1 eSEN HIGH owner); PRE_REGISTRATION.md specified width=24/step=300000 (matching the Stage-3B.1 matched-compute-study HIGH lmax4 owner). RESOLVED 2026-08-22: the user confirmed the executed/audited experiment uses PRE_REGISTRATION.md's endpoint, width=24/step=300000, paired with LOW=width=10/step=50000, seeds 2 and 3. The historical w40/s275000 candidate is retained below as provenance only and MUST NOT be used as the pending endpoint going forward.",
+  "planned_runs": [
+    {
+      "run_id": "LOW_seed2",
+      "role_tier": "LOW",
+      "seed": 2,
+      "data_seed": 2,
+      "lmax": 4,
+      "sphere_channels": 10,
+      "target_global_step": 50000,
+      "reuses_config_of": "esen_LOW_w10_s50000 (seed=1, existing)",
+      "est_gpu_hours": 2.5
+    },
+    {
+      "run_id": "HIGH_seed2",
+      "role_tier": "HIGH",
+      "seed": 2,
+      "data_seed": 2,
+      "lmax": 4,
+      "sphere_channels": 24,
+      "target_global_step": 300000,
+      "reuses_config_of": "esen_lmax4_NEARMAX_w24_s300000 (seed=1, existing; Stage-3B.1 matched-compute HIGH owner)",
+      "est_gpu_hours": 32.4,
+      "historical_superseded_candidate_per_SEED_REPLICATION_REQUIRED_md": {"sphere_channels": 40, "target_global_step": 275000, "est_gpu_hours": 8.5, "status": "SUPERSEDED, not used"}
+    },
+    {
+      "run_id": "LOW_seed3",
+      "role_tier": "LOW",
+      "seed": 3,
+      "data_seed": 3,
+      "lmax": 4,
+      "sphere_channels": 10,
+      "target_global_step": 50000,
+      "reuses_config_of": "esen_LOW_w10_s50000 (seed=1, existing)",
+      "est_gpu_hours": 2.5
+    },
+    {
+      "run_id": "HIGH_seed3",
+      "role_tier": "HIGH",
+      "seed": 3,
+      "data_seed": 3,
+      "lmax": 4,
+      "sphere_channels": 24,
+      "target_global_step": 300000,
+      "reuses_config_of": "esen_lmax4_NEARMAX_w24_s300000 (seed=1, existing; Stage-3B.1 matched-compute HIGH owner)",
+      "est_gpu_hours": 32.4,
+      "historical_superseded_candidate_per_SEED_REPLICATION_REQUIRED_md": {"sphere_channels": 40, "target_global_step": 275000, "est_gpu_hours": 8.5, "status": "SUPERSEDED, not used"}
+    }
+  ],
+  "cross_references": {
+    "checkpoint_manifest_rows": "paper_repro/manifests/checkpoints.csv, claim=2, study starting with 'seed_replication_PENDING (CANONICAL...)', status=PENDING (4 rows: LOW_seed2, HIGH_seed2, LOW_seed3, HIGH_seed3)",
+    "source_file_primary_canonical": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/seed_replication_2026_08_20/PRE_REGISTRATION.md",
+    "source_file_secondary_superseded": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/control_C_seeds/SEED_REPLICATION_REQUIRED.md"
+  }
+}

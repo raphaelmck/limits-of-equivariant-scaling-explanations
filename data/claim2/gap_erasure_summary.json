@@ -1,0 +1,275 @@
+{
+ "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/stage3_high_order_gap_erasure_2026_08_20/summary.json",
+ "task": "Stage-3 high-order-pathway gap-erasure follow-up (2026-08-20)",
+ "m_eval": 1024,
+ "pairs": {
+  "LOW": {
+   "C4_flops": 2.399e+16,
+   "C2_flops": 2.326e+16,
+   "mismatch_pct": 3.0429345560650267,
+   "L4": 0.023626211745878527,
+   "L2": 0.019261467157768223,
+   "gap_log_L2_minus_log_L4": -0.20425018301081455,
+   "gap_favors": "ell_max=2",
+   "interventions": {
+    "ell4_alpha0.50": {
+     "L4_int": 0.024722963822008375,
+     "intervention_damage": 0.04537575821957285,
+     "fraction_gap_erased": -0.22215773592315613
+    },
+    "ell4_alpha0.00": {
+     "L4_int": 0.027495900988724217,
+     "intervention_damage": 0.15168017571193504,
+     "fraction_gap_erased": -0.7426195339267038
+    },
+    "ell23_alpha0.50": {
+     "L4_int": 0.027754211175936107,
+     "intervention_damage": 0.16103081987143053,
+     "fraction_gap_erased": -0.7883998804686718
+    },
+    "ell23_alpha0.00": {
+     "L4_int": 0.03887274591318704,
+     "intervention_damage": 0.49793662298248265,
+     "fraction_gap_erased": -2.437876018726104
+    },
+    "ell2_alpha0.50": {
+     "L4_int": 0.026598946060632615,
+     "intervention_damage": 0.11851483032664722,
+     "fraction_gap_erased": -0.5802434474214015
+    },
+    "ell2_alpha0.00": {
+     "L4_int": 0.0331888794759081,
+     "intervention_damage": 0.33985810137205386,
+     "fraction_gap_erased": -1.66393046195733
+    }
+   }
+  },
+  "MID": {
+   "C4_flops": 1.127e+17,
+   "C2_flops": 1.079e+17,
+   "mismatch_pct": 4.259094942324756,
+   "L4": 0.011178636585068236,
+   "L2": 0.010113905660551235,
+   "gap_log_L2_minus_log_L4": -0.1000932340399956,
+   "gap_favors": "ell_max=2",
+   "interventions": {
+    "ell4_alpha0.50": {
+     "L4_int": 0.016626839574010826,
+     "intervention_damage": 0.39701372244469724,
+     "fraction_gap_erased": -3.9664391529806813
+    },
+    "ell4_alpha0.00": {
+     "L4_int": 0.025257032509583097,
+     "intervention_damage": 0.815100123130053,
+     "fraction_gap_erased": -8.143408802280806
+    },
+    "ell23_alpha0.50": {
+     "L4_int": 0.03109922771845746,
+     "intervention_damage": 1.0231784776287611,
+     "fraction_gap_erased": -10.222254155759579
+    },
+    "ell23_alpha0.00": {
+     "L4_int": 0.06786807216819915,
+     "intervention_damage": 1.8035611964971827,
+     "fraction_gap_erased": -18.018812298306894
+    },
+    "ell2_alpha0.50": {
+     "L4_int": 0.024427586884847242,
+     "intervention_damage": 0.7817085946315281,
+     "fraction_gap_erased": -7.80980455001754
+    },
+    "ell2_alpha0.00": {
+     "L4_int": 0.04331150920717233,
+     "intervention_damage": 1.3544138921966313,
+     "fraction_gap_erased": -13.531522936459721
+    }
+   }
+  },
+  "UPPERMID": {
+   "C4_flops": 1.865e+17,
+   "C2_flops": 1.888e+17,
+   "mismatch_pct": 1.2182203389830508,
+   "L4": 0.008749231251962742,
+   "L2": 0.008400005215533553,
+   "gap_log_L2_minus_log_L4": -0.04073351284540738,
+   "gap_favors": "ell_max=2",
+   "interventions": {
+    "ell4_alpha0.50": {
+     "L4_int": 0.01382110432638984,
+     "intervention_damage": 0.45723088339869733,
+     "fraction_gap_erased": -11.22493130248768
+    },
+    "ell4_alpha0.00": {
+     "L4_int": 0.02166193241635572,
+     "intervention_damage": 0.9065906139002413,
+     "fraction_gap_erased": -22.256627297060078
+    },
+    "ell23_alpha0.50": {
+     "L4_int": 0.026337439422141846,
+     "intervention_damage": 1.102025639475268,
+     "fraction_gap_erased": -27.054520037535116
+    },
+    "ell23_alpha0.00": {
+     "L4_int": 0.05557441057844078,
+     "intervention_damage": 1.8487570143266736,
+     "fraction_gap_erased": -45.38663339307641
+    },
+    "ell2_alpha0.50": {
+     "L4_int": 0.019297280150613397,
+     "intervention_damage": 0.7909983215499832,
+     "fraction_gap_erased": -19.418858485198548
+    },
+    "ell2_alpha0.00": {
+     "L4_int": 0.034466804653364526,
+     "intervention_damage": 1.3710308372894002,
+     "fraction_gap_erased": -33.65854652636425
+    }
+   }
+  },
+  "HIGH": {
+   "C4_flops": 3.347e+17,
+   "C2_flops": 3.724e+17,
+   "mismatch_pct": 10.123523093447906,
+   "L4": 0.007132378582695413,
+   "L2": 0.006675305133659578,
+   "gap_log_L2_minus_log_L4": -0.06622986470516512,
+   "gap_favors": "ell_max=2",
+   "interventions": {
+    "ell4_alpha0.50": {
+     "L4_int": 0.012069848563543425,
+     "intervention_damage": 0.5260657076595541,
+     "fraction_gap_erased": -7.943028571799685
+    },
+    "ell4_alpha0.00": {
+     "L4_int": 0.019358711793325642,
+     "intervention_damage": 0.998497759179148,
+     "fraction_gap_erased": -15.076246397665935
+    },
+    "ell23_alpha0.50": {
+     "L4_int": 0.02459045262244089,
+     "intervention_damage": 1.2377134819728628,
+     "fraction_gap_erased": -18.688147522009604
+    },
+    "ell23_alpha0.00": {
+     "L4_int": 0.05073016791397541,
+     "intervention_damage": 1.9618759806728208,
+     "fraction_gap_erased": -29.62222540249004
+    },
+    "ell2_alpha0.50": {
+     "L4_int": 0.021985748222801284,
+     "intervention_damage": 1.125749654531051,
+     "fraction_gap_erased": -16.997613682929
+    },
+    "ell2_alpha0.00": {
+     "L4_int": 0.041110356908794596,
+     "intervention_damage": 1.7516153018175404,
+     "fraction_gap_erased": -26.447514419894866
+    }
+   }
+  }
+ },
+ "validation": {
+  "reproduction": {
+   "LOW": {
+    "L4": 0.023626211745878527,
+    "frozen_L4": 0.02362621203799249,
+    "rel_err_L4": 1.2363977961921636e-08,
+    "L2": 0.019261467157768223,
+    "frozen_L2": 0.019261466912076988,
+    "rel_err_L2": 1.2755582731039692e-08,
+    "passed": true
+   },
+   "MID": {
+    "L4": 0.011178636585068236,
+    "frozen_L4": 0.01117863637670748,
+    "rel_err_L4": 1.8639192537520753e-08,
+    "L2": 0.010113905660551235,
+    "frozen_L2": 0.01011390566556508,
+    "rel_err_L2": 4.957377898860889e-10,
+    "passed": true
+   },
+   "UPPERMID": {
+    "L4": 0.008749231251962742,
+    "frozen_L4": 0.00874923130113212,
+    "rel_err_L4": 5.61985126987311e-09,
+    "L2": 0.008400005215533553,
+    "frozen_L2": 0.008400005322621189,
+    "rel_err_L2": 1.2748519973631972e-08,
+    "passed": true
+   },
+   "HIGH": {
+    "L4": 0.007132378582695413,
+    "frozen_L4": 0.007132378738350824,
+    "rel_err_L4": 2.182377254678609e-08,
+    "L2": 0.006675305133659578,
+    "frozen_L2": 0.006675305061219506,
+    "rel_err_L2": 1.0851949182581309e-08,
+    "passed": true
+   }
+  },
+  "identity_alpha1": {
+   "LOW": {
+    "rel": 4.823368586874966e-07,
+    "passed": true
+   },
+   "MID": {
+    "rel": 2.300415498100922e-07,
+    "passed": true
+   },
+   "UPPERMID": {
+    "rel": 2.3790661213847116e-07,
+    "passed": true
+   },
+   "HIGH": {
+    "rel": 2.559511413160001e-07,
+    "passed": true
+   }
+  },
+  "sector_isolation": {
+   "LOW": {
+    "other_sectors_rel": 3.1007369487053354e-07,
+    "target_scaled_rel": 1.5140585695621865e-07,
+    "passed": true
+   },
+   "MID": {
+    "other_sectors_rel": 3.0823301255342403e-07,
+    "target_scaled_rel": 1.0171173734123687e-07,
+    "passed": true
+   },
+   "UPPERMID": {
+    "other_sectors_rel": 2.3790661213847116e-07,
+    "target_scaled_rel": 1.0587078935990098e-07,
+    "passed": true
+   },
+   "HIGH": {
+    "other_sectors_rel": 2.132926177633334e-07,
+    "target_scaled_rel": 1.3411834889225397e-07,
+    "passed": true
+   }
+  },
+  "rotation_equivariance": {
+   "HIGH": {
+    "tol": 0.003,
+    "by_seed": {
+     "999": {
+      "max_rel_error": 0.0010674750665202737,
+      "passed": true
+     },
+     "4242": {
+      "max_rel_error": 0.001008255872875452,
+      "passed": true
+     },
+     "77": {
+      "max_rel_error": 0.0007446766248904169,
+      "passed": true
+     }
+    },
+    "passed_all_seeds": true
+   }
+  }
+ },
+ "headline": {
+  "gap_sign_at_every_pair": "negative (ell_max=2 favor) at all 4 pairs",
+  "interpretation": "Because the matched-compute baseline gap log(L2)-log(L4) is negative (not positive) at every one of the 4 genuinely matched pairs, there is no positive ell_max=4 log-loss advantage for the block-9 intervention to erase. fraction_gap_erased is reported unclipped per the task spec but is not a meaningful 'fraction of an advantage removed' quantity here -- it is dominated by a small/negative denominator. The intervention_damage values (all positive, i.e. every intervention makes ell_max=4 worse) are the honest quantities to read: ablating ell=4 (or {3,4}, or the ell=2 control) at block 9 makes the already-not-better ell_max=4 model fall further behind the matched ell_max=2 model."
+ }
+}
