@@ -1,37 +1,19 @@
 #!/usr/bin/env python3
-"""Regenerate the FULL 3-depth (block 3, block 6, block 9) depth-localization analysis --
-per-alpha delta/CI, common-P_bal-support read-off, and ALL SIX paired depth contrasts with real
-bootstrap CIs -- from raw per-config arrays, matching
-dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_scripts/build_depth_localization_report.py
-line-for-line (confirmed by reading it in full).
+"""Regenerate the three-depth (blocks 3, 6, and 9) intervention analysis from per-configuration
+arrays: per-alpha damage and interval, the read-off at the common perturbation-magnitude
+support edge, and all six paired depth contrasts with real bootstrap intervals.
 
-STAGE-2 FIX (see AUDIT_STAGE2.md): a prior pass fully reproduced block 3 and block 6 (raw
-per-config data was already present in data/claim2/depth_localization/depth_localization_M1024.jsonl)
-but treated block 9 as passthrough (cited from data/claim2/frontier_ell4_degree_balanced_summary.json,
-believing no raw per-config array existed for it), and therefore also treated any depth contrast
-INVOLVING block 9 (L9-L6, L9-L3) as CI-passthrough, only recomputing the L6-L3 contrast's CI.
+Raw inputs, all in data/claim2/: depth_localization/depth_localization_M1024.jsonl for blocks 3
+and 6; dose_response.jsonl and frontier_ell4_sensitivity_raw.jsonl for block 9, whose `delta`
+field is the same log(L_int / L_base) computed from those arrays.
 
-Two things changed:
-1. Task 3 (build_frontier_ell4_degree_balanced.py) established that block 9's raw per-config
-   arrays DO exist in data/claim2/ -- dose_response.jsonl (w10/50k=LOW, w16/150k=MID) and
-   frontier_ell4_sensitivity_raw.jsonl (w20/200k, w24/300k) -- and that its "delta" field is
-   literally the same log(L_int/L_base) computed from those arrays. This script now loads block
-   9's raw arrays exactly the same way Task 3 does, instead of citing the frozen summary.
-2. Reading build_depth_localization_report.py's ACTUAL bootstrap structure (not assumed) shows it
-   uses ONE shared `rng = np.random.default_rng(BOOT_SEED=20260820); boot = rng.integers(0, n_cfg,
-   size=(N_BOOT, n_cfg))` idx matrix for EVERY owner AND EVERY depth (3, 6, AND 9) -- the same
-   seed already confirmed bit-exact for the block-9-only frontier_ell4_degree_balanced table (see
-   that script's docstring). Because one shared idx matrix backs all three depths, block9's
-   bootstrap replicate array is directly comparable (paired) to block3/6's, making a REAL bootstrap
-   CI possible for every depth contrast, not just L6-L3. This exactly ports lines 111-190 of
-   build_depth_localization_report.py: interpolate each depth's delta AND its full bootstrap
-   replicate row to the common P_bal support edge via `np.interp` (used identically for the point
-   curve and, per-replicate, for the boot array), then take contrasts as replicate-wise
-   differences.
+One shared index matrix, default_rng(20260820) drawing (2000, n_cfg) indices, backs every
+checkpoint and every depth. Because all three depths resample the same configuration positions,
+their replicate arrays are paired and every depth contrast gets a real interval rather than a
+passthrough. Each depth's damage curve and its full replicate array are interpolated to the
+common support edge with the same bracket weight, then contrasts are taken replicate-wise.
 
-Validated bit-exact (<1e-9 absolute) against every read_at_common_support and depth_contrasts
-entry in data/claim2/depth_localization/depth_localization_summary.json, including the
-previously-passthrough L9 CI and the L9-involving contrast CIs.
+Reproduces every read-off and contrast in the frozen summary to within 1e-9.
 """
 from __future__ import annotations
 
@@ -203,10 +185,31 @@ def build() -> dict:
                 "sign": sign,
             }
 
+    # ---- low-vs-high (w24/300k minus w10/50k) contrast at each depth, D_k ----
+    # Reuses the SAME shared bootstrap idx matrix as depth_contrasts above (no new bootstrap
+    # logic): dboot_at_x[("w24/300k", k)] and dboot_at_x[("w10/50k", k)] are draws from identical
+    # resampled config indices at every k, so their replicate-wise difference is a valid paired
+    # bootstrap CI for D_k = Delta_{w24,k} - Delta_{w10,k}.
+    low_vs_high_by_depth = {}
+    for k in DEPTHS:
+        d_high = read_at_common_support[f"w24/300k_L{k}"]["delta"]
+        d_low = read_at_common_support[f"w10/50k_L{k}"]["delta"]
+        diff_pt = d_high - d_low
+        diff_boot = dboot_at_x[("w24/300k", k)] - dboot_at_x[("w10/50k", k)]
+        lo, hi = np.quantile(diff_boot, [0.025, 0.975])
+        low_vs_high_by_depth[f"L{k}"] = {
+            "D_k": diff_pt,
+            "ci95": [float(lo), float(hi)],
+            "ci_excludes_zero": bool(lo > 0 or hi < 0),
+            "block": k,
+            "z": (k + 1) / 12,
+        }
+
     return {
         "common_P_bal_support": target_p_bal,
         "read_at_common_support": read_at_common_support,
         "depth_contrasts": depth_contrasts,
+        "low_vs_high_contrast_by_depth": low_vs_high_by_depth,
         "n_boot": N_BOOT,
         "bootstrap_seed": BOOT_SEED,
     }
@@ -216,8 +219,21 @@ def main():
     result = build()
     out = out_path("claim2", "depth_localization_recomputed.json")
     write_json(out, result)
+
+    # Small derived CSV, purely a flat re-serialization of low_vs_high_contrast_by_depth above
+    # (same numbers, no recomputation) -- convenient for the figure script and caption text.
+    dk_path = out_path("claim2", "depth_low_high_contrast.csv")
+    import csv as _csv
+    with open(dk_path, "w", newline="") as f:
+        w = _csv.writer(f)
+        w.writerow(["block", "z", "D_k", "ci_lo", "ci_hi", "ci_excludes_zero"])
+        for key, v in sorted(result["low_vs_high_contrast_by_depth"].items(), key=lambda kv: kv[1]["block"]):
+            w.writerow([v["block"], v["z"], v["D_k"], v["ci95"][0], v["ci95"][1], v["ci_excludes_zero"]])
+
     print(f"wrote {out} ({len(result['read_at_common_support'])} owner/depth cells, "
-          f"{len(result['depth_contrasts'])} depth contrasts)")
+          f"{len(result['depth_contrasts'])} depth contrasts, "
+          f"{len(result['low_vs_high_contrast_by_depth'])} low-vs-high D_k contrasts)")
+    print(f"wrote {dk_path}")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 {
- "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/depth_localization_block3_block6_2026_08_22/block_stats_M1024.json",
+ "source_file": "upstream-analysis/analysis_outputs/depth_localization_block3_block6_2026_08_22/block_stats_M1024.json",
  "purpose": "intervention-free per-block magnitude stats (raw + l=0-centered ss_by_ell) for the 4 canonical owners at blocks 3 and 6.",
  "layers": [
   3,

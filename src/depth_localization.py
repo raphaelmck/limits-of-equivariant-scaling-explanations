@@ -1,27 +1,15 @@
-"""Depth-localization helpers for the block-3/block-6/block-9 ell=4 NORM_FIXED intervention
-follow-up (`data/claim2/depth_localization/`), reproducing
-`dev-equivariant-scaling-laws-kernel-pilot-clean/DEPTH_LOCALIZATION_REPORT.md`'s own analysis
-structure: the same degree-balanced P_bal metric and matched-support readout/contrast machinery
-already used for the block-9-only result in `data/claim2/frontier_ell4_degree_balanced*`, applied
-to the two additional depths (block 3, block 6) for which raw per-config data now exists.
+"""Depth-localization helpers for the block-3, block-6, and block-9 interventions
+(data/claim2/depth_localization/).
 
-## Normalized block-depth location -- canonical vs. superseded convention
+Same degree-balanced perturbation magnitude P_bal and matched-support readout used for the
+block-9 result in data/claim2/frontier_ell4_degree_balanced*, applied at the two additional
+depths.
 
-DEPTH_LOCALIZATION_REPORT.md (and, by extension, the frozen JSON/CSV artifacts it narrates)
-labels the three probed blocks with a normalized depth fraction "z" using the OLDER convention
-z = k / 12: block 3 -> z=0.25, block 6 -> z=0.5, block 9 -> z=0.75 (see the report's own table
-header "block 3 (z=0.25) | block 6 (z=0.5) | block 9 (z=0.75)"). This is an off-by-one convention
-for a 12-block network: it treats the network as if block indices ran 1..12 with block k sitting
-at fractional position k/12, but the frozen eSEN block indices in this codebase are 0-indexed
-(blocks 0..11), so block k's own fractional depth among 12 blocks is (k+1)/12, not k/12.
-
-THIS MODULE TREATS z = (k+1)/12 AS CANONICAL. The older k/12 labels are retained below ONLY as an
-explicitly-marked superseded/non-canonical historical label, exactly as `AUDIT_STAGE1.md`
-retains the stale frontier-owner and seed-endpoint values as labeled historical/superseded
-provenance rather than silently discarding or silently renormalizing them (see `AUDIT_STAGE1.md`
-secs. 3a/3b) -- see `AUDIT_STAGE2.md` for the parallel note on this normalization-convention
-correction. This does not change any numeric result (delta, P_bal, CI) in this module; it only
-affects how block position is LABELED when reporting z alongside those numbers.
+Normalized block depth. Block indices in this codebase are 0-based (blocks 0 through 11), so
+block k sits at fractional depth z = (k + 1) / 12, which is the convention this module treats as
+canonical. Some frozen artifacts carry an older z = k / 12 label; that label is retained below
+only as an explicitly superseded field. The choice affects how a block position is reported, not
+any damage value, perturbation magnitude, or confidence interval.
 """
 from __future__ import annotations
 
@@ -42,10 +30,9 @@ def block_z_canonical(k: int) -> float:
 
 
 def block_z_superseded_label(k: int) -> float:
-    """SUPERSEDED / NON-CANONICAL. z = k/12, the older off-by-one convention used verbatim in
-    DEPTH_LOCALIZATION_REPORT.md's own prose and table headers (block 3 -> 0.25, block 6 -> 0.5,
-    block 9 -> 0.75). Retained here only for historical traceability when quoting that report --
-    do NOT use this value in any new computation or figure. See AUDIT_STAGE2.md."""
+    """Superseded: z = k/12, the off-by-one convention carried by some frozen artifacts
+    (block 3 -> 0.25, block 6 -> 0.5, block 9 -> 0.75). Kept only so those labels can be read
+    back; do not use it in a new computation or figure."""
     return k / N_BLOCKS
 
 

@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-"""Regenerate the per-(pair=same-width, ell, alpha) C_ell (=Delta_l2-Delta_l4) grid of
-data/claim2/same_width_control_B_summary.json from RAW per-config rows in
-data/claim2/same_width_control_B.jsonl.
+"""Regenerate the same-width control: the ell_max=2 minus ell_max=4 damage contrast per
+(width, degree, alpha), from data/claim2/same_width_control_B.jsonl.
 
-Category (a) -- same structure/schema as compensation.jsonl (see build_compensation.py's
-module docstring for the shared bootstrap/pairing convention and sign-convention verification
-method), just keyed by same-width pair (SW_w10_s50000 etc.) instead of matched-compute pair.
+Same file structure and the same paired-bootstrap convention as build_compensation.py, keyed by
+width rather than by matched-compute pair, so the comparison holds channel width fixed instead
+of holding compute fixed.
 
-Determinism caveat: same_width_control_B_summary.json documents no n_boot/seed at all -> the
-project-wide n_boot=2000 convention is used with a fixed seed=0 here, and make validate checks
-CI overlap rather than exact match.
+The frozen summary records no bootstrap configuration, so 2000 replicates are used here with a
+fixed seed and the intervals match statistically rather than bit-for-bit.
 """
 from __future__ import annotations
 

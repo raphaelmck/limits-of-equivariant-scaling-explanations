@@ -1,34 +1,19 @@
 #!/usr/bin/env python3
-"""make validate: compares every table `make analysis` regenerates in analysis_out/ against the
-corresponding frozen table already in data/claim1/ or data/claim2/. Prints a pass/fail summary
-per table and exits non-zero if any scientifically meaningful discrepancy is found (wrong sign,
-a CI that no longer excludes/includes zero where the frozen one did, a point-estimate off by more
-than tolerance). Passing floating-point noise never fails.
-
-STAGE-2 REWRITE (see AUDIT_STAGE2.md): every bootstrap in this repo now uses real numpy
-(numpy.random.default_rng or numpy.random.RandomState, matching whichever API the corresponding
-upstream analysis script actually used), not a same-shape stdlib substitute. Wherever the
-upstream bootstrap's seed AND exact call structure could be recovered (which turned out to be
-almost everywhere -- see AUDIT_STAGE2.md sec. 1), this reproduces the frozen CI BIT-EXACTLY, and
-this file's tolerance for that table is tightened accordingly from "CI overlap" to
-REL_TOL_EXACT-relative bound matching. Overlap-only checks remain ONLY for the small number of
-tables where the frozen file's own bootstrap seed is genuinely undocumented (dose_response,
-compensation, same_width_control_B, run_replication_control_C -- see AUDIT_STAGE2.md sec. 3);
-those are explicitly labeled below.
+"""Compare every table regenerated into analysis_out/ against the corresponding frozen table in
+data/. Prints a pass or fail line per table and exits non-zero on any scientifically meaningful
+discrepancy: a flipped sign, a confidence interval that no longer excludes or includes zero where
+the frozen one did, or a point estimate outside tolerance. Floating-point noise never fails.
 
 Tolerances:
-  - REL_TOL_EXACT = 1e-6 relative, used for every point estimate with NO randomness, and for
-    every CI this pass established is a BIT-EXACT bootstrap reproduction (in practice every one
-    of these matches to < 1e-9 relative -- pure floating-point noise from a different summation
-    order, not from a different RNG draw).
-  - CI OVERLAP + zero-exclusion-sign agreement, used ONLY for the 4 tables whose frozen bootstrap
-    seed is genuinely undocumented (see AUDIT_STAGE2.md sec. 3) -- their point estimates (always
-    deterministic) are still checked at REL_TOL_EXACT.
+  - 1e-6 relative, for every point estimate that involves no randomness, and for every interval
+    whose upstream bootstrap seed and call structure are known, where the reproduction is
+    bit-exact (in practice these match to better than 1e-9).
+  - Interval overlap plus agreement on whether zero is excluded, for the four tables whose frozen
+    bootstrap seed was never recorded: dose_response, compensation, same_width_control_B, and
+    run_replication_control_C. Their point estimates are still checked at 1e-6.
 
-This file's `main()` is organized around the ordered list of 8 MAIN-PAPER checks the user
-requested by name (see MAIN_PAPER_CHECKS below and AUDIT_STAGE2.md's final section) -- each one
-is printed as "C1./C2. <label>" so they are unambiguously identifiable in the output, in addition
-to (and built on top of) the lower-level per-table checks that were already here.
+`main()` is organized around the eight main-paper checks, printed as "C1." and "C2." lines, on
+top of the lower-level per-table checks.
 """
 from __future__ import annotations
 
@@ -170,6 +155,65 @@ def validate_force_scaling():
             ok = False
             details.append(f"{r['architecture_key']}: n_frontier_owners_in_range mismatch")
     record(name, ok, "; ".join(details))
+    return ok
+
+
+def validate_dense_grid_ranking_comparison():
+    """Exact, no randomness: four-architecture NN-vs-KRR ranking at all 8 budgets (LOW, MID,
+    PRECROSS, CROSS, FITX, POSTCROSS, HIGH, TOP). See
+    scripts/claim1/build_dense_grid_ranking_comparison.py."""
+    name = "claim1/dense_grid_ranking_comparison.csv (exact, no randomness, 8 budgets x 4 archs)"
+    regen = read_csv(out_path("claim1", "dense_grid_ranking_comparison_recomputed.csv"))
+    frozen = read_csv(data_path("claim1", "dense_grid_ranking_comparison.csv"))
+    key = lambda r: (r["budget_tier"], r["architecture"])
+    fmap = {key(r): r for r in frozen}
+    ok, details = True, []
+    for r in regen:
+        f = fmap.get(key(r))
+        if f is None:
+            ok = False
+            details.append(f"missing frozen row for {key(r)}")
+            continue
+        if int(r["nn_rank"]) != int(f["nn_rank"]) or int(r["krr_rank"]) != int(f["krr_rank"]):
+            ok = False
+            details.append(f"{key(r)}: rank mismatch")
+        if not rel_close(float(r["force_mse_norm"]), float(f["force_mse_norm"])):
+            ok = False
+            details.append(f"{key(r)}: force_mse_norm mismatch")
+        if not rel_close(float(r["krr_auc_log_nmse_n32_512"]), float(f["krr_auc_log_nmse_n32_512"])):
+            ok = False
+            details.append(f"{key(r)}: AUC mismatch")
+    record(name, ok, "; ".join(details[:10]))
+    return ok
+
+
+def validate_dense_grid_pairwise_gap():
+    """BIT-EXACT: dense-grid (PRECROSS/CROSS/FITX/POSTCROSS/TOP) GemNet-OC/eSEN signed gap +
+    paired-bootstrap CI, all 8 budgets, single shared RandomState(20260822) threaded across
+    budgets in fixed order. See scripts/claim1/build_dense_grid_pairwise_gap.py."""
+    regen = read_csv(out_path("claim1", "dense_grid_pairwise_gap_recomputed.csv"))
+    frozen = read_csv(data_path("claim1", "dense_grid_pairwise_gap.csv"))
+    fmap = {r["budget_tier"]: r for r in frozen}
+    ok, details = True, []
+    for r in regen:
+        f = fmap.get(r["budget_tier"])
+        if f is None:
+            ok = False
+            details.append(f"missing budget {r['budget_tier']}")
+            continue
+        if not rel_close(float(r["neural_signed_gap_log_gemnet_over_esen"]),
+                          float(f["neural_signed_gap_log_gemnet_over_esen"])):
+            ok = False
+            details.append(f"{r['budget_tier']}: neural gap mismatch")
+        if not rel_close(float(r["krr_signed_gap_log_gemnet_over_esen_at_n512"]),
+                          float(f["krr_signed_gap_log_gemnet_over_esen_at_n512"])):
+            ok = False
+            details.append(f"{r['budget_tier']}: krr gap mismatch")
+        if not ci_close(float(r["krr_bootstrap_ci_lo_2.5pct"]), float(r["krr_bootstrap_ci_hi_97.5pct"]),
+                         float(f["krr_bootstrap_ci_lo_2.5pct"]), float(f["krr_bootstrap_ci_hi_97.5pct"])):
+            ok = False
+            details.append(f"{r['budget_tier']}: CI not bit-exact")
+    record("claim1/dense_grid_pairwise_gap.csv (point + CI BIT-EXACT, 8 budgets)", ok, "; ".join(details[:10]))
     return ok
 
 
@@ -392,6 +436,30 @@ def validate_depth_localization():
         if not ci_close(lo, hi, flo, fhi):
             ok = False
             details.append(f"{k}: CI not bit-exact")
+    # New derived quantity (not in the frozen file, no upstream reproduction target): D_k =
+    # Delta_{w24,k} - Delta_{w10,k}, added for Figure 2 v2 panel A. Self-consistency only --
+    # checks the point estimate is exactly the arithmetic difference of the two already-validated
+    # deltas above, and that its CI is a well-formed interval containing the point estimate.
+    dk_ok = True
+    dk_details = []
+    for key, v in regen.get("low_vs_high_contrast_by_depth", {}).items():
+        k = v["block"]
+        d_high = regen["read_at_common_support"][f"w24/300k_L{k}"]["delta"]
+        d_low = regen["read_at_common_support"][f"w10/50k_L{k}"]["delta"]
+        if not rel_close(v["D_k"], d_high - d_low, tol=1e-9):
+            dk_ok = False
+            dk_details.append(f"{key}: D_k arithmetic identity mismatch")
+        lo, hi = v["ci95"]
+        if not (lo < hi):
+            dk_ok = False
+            dk_details.append(f"{key}: malformed CI [{lo},{hi}]")
+        if v["ci_excludes_zero"] != (lo > 0 or hi < 0):
+            dk_ok = False
+            dk_details.append(f"{key}: ci_excludes_zero flag inconsistent with bounds")
+    record("claim2/depth_localization_recomputed.json (low_vs_high D_k, self-consistency, no upstream frozen target)",
+           dk_ok, "; ".join(dk_details[:10]))
+    ok = ok and dk_ok
+
     for k, v in regen.get("depth_contrasts", {}).items():
         f = frozen.get("depth_contrasts", {}).get(k)
         if f is None:
@@ -588,6 +656,8 @@ def main():
     print("\n" + "=" * 78)
     print("SUPPORTING CHECKS (dose-response family, controls, appendix-only)")
     print("=" * 78)
+    validate_dense_grid_ranking_comparison()
+    validate_dense_grid_pairwise_gap()
     validate_dose_response()
     validate_compensation()
     validate_same_width_control_B()

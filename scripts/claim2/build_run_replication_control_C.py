@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
-"""Regenerate per-run Delta/CI and across-run (runA - runB) difference/CI for Control C
-(fixed-init trajectory replicate -- NOT an independent seed draw, see
-run_replication_type field) from RAW per-config rows in
-data/claim2/run_replication_control_C.jsonl.
+"""Regenerate per-run intervention damage and the paired between-run difference for the
+fixed-initialization replicate control.
 
-Category (a). Cross-run contrasts use the SAME bootstrap resample of configuration indices
-for both runs (paired), matching the pairing convention used throughout Claim-2's bootstrap
-files.
+These two runs share an initialization and differ only in trajectory, so they bound
+trajectory-level noise; they are not independent seed draws (see build_seed_replication_result.py
+for those). Raw input: data/claim2/run_replication_control_C.jsonl.
 
-Determinism caveat: run_replication_control_C_summary.json documents no n_boot/seed -> n_boot=2000
-convention with seed=0 fixed here; make validate checks CI overlap, not exact match.
+The between-run contrast uses the same bootstrap resample of configuration indices for both
+runs. The frozen summary records no seed, so 2000 replicates are used here with a fixed seed and
+the intervals match statistically rather than bit-for-bit.
 """
 from __future__ import annotations
 

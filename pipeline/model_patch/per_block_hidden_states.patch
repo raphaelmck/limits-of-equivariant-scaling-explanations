@@ -1,0 +1,105 @@
+diff --git a/nets/egnn/model.py b/nets/egnn/model.py
+index b9c16ca..3553f88 100644
+--- a/nets/egnn/model.py
++++ b/nets/egnn/model.py
+@@ -243,9 +243,17 @@ class MC_EGNN(nn.Module):
+ 
+         edge_attr = self.distance_expansion(edge_weight)  # RBF of pairwise distances
+                 
++        hidden_state_per_block = []
++        vector_state_per_block = []
+         for i in range(0, self.n_layers):
+             h, x, _ = self._modules["gcl_%d" % i](h, edge_index, x, edge_attr=edge_attr)
++            hidden_state_per_block.append(h)
++            vector_state_per_block.append(x)  # block 0's x has num_vectors_in=1 channel
++                # (see gcl_0 construction), a DIFFERENT shape than blocks 1.. (num_vectors
++                # channels) -- not force-head-compatible; Stage-2A callers must skip index 0.
+ 
++        hidden_state = h  # [num_atoms, hidden_channels] -- pre-decoder atom representations
++        vector_state = x  # [num_atoms, 3, num_vectors] -- Cartesian axis before channel axis
+         # h = self.out_norm(h)
+         h = self.energy_decoder(h)
+ 
+@@ -263,5 +271,7 @@ class MC_EGNN(nn.Module):
+                 )[0]
+             )
+ 
+-        outputs = {'energy' : energy, 'forces' : force }
++        outputs = {'energy' : energy, 'forces' : force, 'hidden_state': hidden_state,
++                   'vector_state': vector_state, 'hidden_state_per_block': hidden_state_per_block,
++                   'vector_state_per_block': vector_state_per_block}
+         return outputs
+\ No newline at end of file
+diff --git a/nets/faenet/model.py b/nets/faenet/model.py
+index b005572..9d982c4 100644
+--- a/nets/faenet/model.py
++++ b/nets/faenet/model.py
+@@ -533,6 +533,7 @@ class FAENet(BaseModel):
+ 
+         # Interaction blocks
+         energy_skip_co = []
++        hidden_state_per_block = []
+         for interaction in self.interaction_blocks:
+             if self.skip_co == "concat_atom":
+                 energy_skip_co.append(h)
+@@ -541,6 +542,7 @@ class FAENet(BaseModel):
+                     self.output_block(h, edge_index, edge_weight, batch, alpha)
+                 )
+             h = h + interaction(h, edge_index, e)
++            hidden_state_per_block.append(h)
+ 
+         # Atom skip-co
+         if self.skip_co == "concat_atom":
+@@ -556,6 +558,6 @@ class FAENet(BaseModel):
+         elif self.skip_co == "add":
+             energy = sum(energy_skip_co)
+ 
+-        preds = {"energy": energy, "hidden_state": h}
++        preds = {"energy": energy, "hidden_state": h, "hidden_state_per_block": hidden_state_per_block}
+ 
+         return preds
+\ No newline at end of file
+diff --git a/nets/uma/backbone.py b/nets/uma/backbone.py
+index 7e6cc85..2ce4a8f 100644
+--- a/nets/uma/backbone.py
++++ b/nets/uma/backbone.py
+@@ -476,6 +476,7 @@ class eSCNMDBackbone(nn.Module):
+         ###############################################################
+         # Update spherical node embeddings
+         ###############################################################
++        node_embedding_per_block = []
+         for i in range(self.num_layers):
+             with record_function(f"message passing {i}"):
+                 x_message = self.blocks[i](
+@@ -490,12 +491,17 @@ class eSCNMDBackbone(nn.Module):
+                     sys_node_embedding=None,
+                     node_offset=node_offset,
+                 )
++            # RAW (pre-final-norm) snapshot -- Stage-2A callers must apply self.norm to each
++            # snapshot themselves (the same fixed, equivariant, already-trained suffix
++            # component applied once below), not use these directly.
++            node_embedding_per_block.append(x_message)
+ 
+         # Final layer norm
+         x_message = self.norm(x_message)
+         out = {
+             "node_embedding": x_message,
+             "batch": data_dict["batch"],
++            "node_embedding_per_block": node_embedding_per_block,
+         }
+         return out
+ 
+diff --git a/nets/uma/model.py b/nets/uma/model.py
+index dc63ae9..5be70c0 100644
+--- a/nets/uma/model.py
++++ b/nets/uma/model.py
+@@ -75,4 +75,6 @@ class EquivariantNet(nn.Module):
+         outputs = self.backbone(data)
+         energy = self.energy_head(data, outputs)['energy']
+         forces = self.force_head(data, outputs)['forces']
+-        return {'energy' : energy, 'forces' : forces}
+\ No newline at end of file
++        return {'energy' : energy, 'forces' : forces,
++                'node_embedding': outputs['node_embedding'],
++                'node_embedding_per_block': outputs['node_embedding_per_block']}
+\ No newline at end of file

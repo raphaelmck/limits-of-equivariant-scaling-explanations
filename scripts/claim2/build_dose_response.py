@@ -1,18 +1,14 @@
 #!/usr/bin/env python3
-"""Regenerate the (budget, ell, alpha) grid of data/claim2/dose_response_summary.json's Delta/CI
-from RAW per-config rows in data/claim2/dose_response.jsonl.
+"""Regenerate the (budget, degree, alpha) intervention-damage grid from the per-configuration
+arrays in data/claim2/dose_response.jsonl.
 
-Category (a): dose_response.jsonl carries per_config_sum/per_config_natoms for every row
-(baseline and every alpha/ell cell), which is exactly what's needed to recompute
-L = sum(sum)/sum(natoms) and Delta = log(L_intervened/L_baseline) plus its paired
-configuration-level bootstrap CI.
+That file carries per_config_sum and per_config_natoms for the baseline and every intervened
+cell, which is what is needed to recompute L = sum(sum) / sum(natoms), Delta = log(L_int /
+L_base), and its paired configuration-level bootstrap interval.
 
-Determinism caveat: dose_response_summary.json does NOT document its own bootstrap
-seed (checked: no n_boot/seed key anywhere in the file). AUDIT_STAGE1.md's prose says n_boot=2000
-is the project-wide convention, so n_boot=2000 is used here, but with an unrecorded seed we
-cannot bit-reproduce the frozen Delta_ci95 bounds exactly. make validate therefore checks
-statistical consistency (point-estimate closeness + CI overlap) rather than exact match for the
-CI bounds; the point-estimate Delta itself IS deterministic (no randomness) and is checked exactly.
+The frozen summary records no bootstrap seed, so 2000 replicates are used here with a fixed
+seed stated at the call site: the intervals match the frozen ones statistically rather than
+bit-for-bit. The point estimates involve no randomness and are checked exactly.
 """
 from __future__ import annotations
 

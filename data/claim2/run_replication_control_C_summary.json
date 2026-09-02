@@ -1,5 +1,5 @@
 {
- "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/control_C_seeds/summary.json",
+ "source_file": "upstream-analysis/analysis_outputs/final_validation_sprint_2026_08_20/control_C_seeds/summary.json",
  "runs": {
   "runA_main_9721383": {
    "baseline_L": 0.01886284084051555,
@@ -38,7 +38,7 @@
     }
    },
    "checkpoint": {
-    "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch/esen/run_9721383_params_1.7_million/dim_32_step_step=50000.ckpt",
+    "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch/esen/run_9721383_params_1.7_million/dim_32_step_step=50000.ckpt",
     "checkpoint_sha256": "6010c0953377d1db754518b38e850e7abbc148e09f59b75043c391803992e770",
     "checkpoint_global_step": 50000,
     "checkpoint_net_state_parameter_count": 1722258,
@@ -84,7 +84,7 @@
     }
    },
    "checkpoint": {
-    "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch-lmax4-dense0to50k/esen/run_10359676_params_1.7_million/dim_32_step_step=50000.ckpt",
+    "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch-lmax4-dense0to50k/esen/run_10359676_params_1.7_million/dim_32_step_step=50000.ckpt",
     "checkpoint_sha256": "c7e294adb01aff58901eabfab085add975b765b735c0d3b7ef4ffcef3fe97d15",
     "checkpoint_global_step": 50000,
     "checkpoint_net_state_parameter_count": 1722258,

@@ -1,25 +1,16 @@
 #!/usr/bin/env python3
-"""Regenerate 2 more of the 8 frozen OOD tables in data/claim2/: a pure-stdlib port of
-analysis_outputs/esen_irrep_ood_2026_08_22/eval/robustness_analysis.py's PART 1 (its
-baseline-effect relative-vs-absolute robustness re-analysis over the already-saved arrays --
-domain decomposition / PART 2 of that source file is NOT reproduced here, see below).
+"""Regenerate the absolute-scale robustness check for the intervention effect: the same
+comparison expressed as an absolute loss increase rather than a log ratio.
+
+A = L_base * (exp(Delta) - 1), where Delta is the same P_bal-matched interpolated log ratio used
+throughout (src/ood_analysis.py), so the absolute statistic rests on the identical
+interpolation as the relative one.
 
 Writes into analysis_out/claim2/:
-  - ood_absolute_effect_robustness.csv          (ports part1_rows / robustness/baseline_effect_robustness.csv)
-  - ood_absolute_effect_A_OOD_minus_A_Neutral.csv (ports a_diff_rows / robustness/A_OOD_minus_A_Neutral.csv)
+  ood_absolute_effect_robustness.csv
+  ood_absolute_effect_A_OOD_minus_A_Neutral.csv
 
-A = L_base * (exp(Delta) - 1) where Delta is the SAME P_bal-matched-interpolated log-ratio used
-throughout (robustness_analysis.py:11-15, ported here via src.ood_analysis.interp_at_x), so the
-absolute-scale statistic is derived from the identical interpolation as the relative one, per the
-source's own stated design goal.
-
-`ood_domain_decomposition.csv` and `ood_shared_family_positive_control.csv` are NOT built by this
-script -- see build_ood_domain_decomposition.py, which closes the gap this script's earlier
-version had flagged as a missing-raw-input block (the per-configuration `data_id` array is now
-copied into data/claim2/ood_domain_labels.json; see that script's module docstring for the
-Stage-2 investigation that found it in dataset/ood_pool_manifest.json / id_pool/
-id_pool_manifest.json's "pools" field, which a prior pass had not copied and had concluded was
-simply absent).
+The chemistry-family decomposition is built by build_ood_domain_decomposition.py.
 """
 from __future__ import annotations
 

@@ -1,16 +1,11 @@
-"""Bit-exact numpy port of
-dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_scripts/analyze_seed_replication.py.
+"""Independent-training-run replication of the block-9 ell=4 intervention contrast.
 
-DELIBERATELY SEPARATE from src/ood_analysis.py / the frontier_ell4_degree_balanced code path
-(see scripts/claim2/build_seed_replication_result.py and AUDIT_STAGE2.md): this experiment's
-pre-registered estimand (PRE_REGISTRATION.md Sec 8) uses the RAW P_total = RMS(h_int-h_base) /
-RMS(h_base) metric read directly off each row's own `P_total`/`q_power` field, NOT the
-degree-balanced-RMS P_bal metric used by frontier_ell4_degree_balanced.csv/Task 3. The two
-metrics are numerically different (P_total is an unweighted-by-degree RMS ratio; P_bal reweights
-each spherical-harmonic degree by 1/(2l+1) after l=0-centering) even though both are computed from
-the same underlying per-configuration block-9 ell=4 NORM_FIXED intervention runs. This module must
-never import from src/ood_analysis.py's P_bal machinery, and vice versa, to keep that distinction
-structurally enforced, not just documented.
+Deliberately separate from src/ood_analysis.py: this experiment's pre-registered estimand uses
+the raw total perturbation norm P_total = RMS(h_int - h_base) / RMS(h_base), read directly off
+each row, not the degree-balanced P_bal metric used elsewhere. The two are numerically different
+-- P_bal reweights each spherical-harmonic degree by 1/(2l+1) after centering degree 0 -- even
+though both are computed from the same per-configuration intervention runs. Keeping the two code
+paths apart enforces that distinction structurally rather than by comment.
 """
 from __future__ import annotations
 

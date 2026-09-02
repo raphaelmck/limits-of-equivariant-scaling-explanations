@@ -1,32 +1,18 @@
 #!/usr/bin/env python3
-"""Reproduction of data/claim1/force_scaling.csv's headline gamma/logA/r2/rmse_log fits.
+"""Refit the four force compute-scaling exponents reported in Section 2 of the paper.
 
-AUDIT_STAGE2.md category (b) item 1 flagged force_scaling.csv as NOT reproducible from
-data/claim1/ alone, because only the already-fitted summary had been copied into the clean
-layer -- the per-checkpoint (FLOPs, force_mse_norm) table backing the fit was absent. This gap
-is now closed: data/claim1/four_arch_force_checkpoint_table.csv (the 501-row REPAIRED
-per-checkpoint table, copied verbatim from
-dev-equivariant-scaling-laws/analysis_outputs/four_arch_force_scaling_repaired_2026_08_14/) is
-the raw input, and this script re-derives the fit from it using the exact procedure implemented
-in src/force_scaling_fit.py (itself a line-for-line pure-stdlib port of that repo's
-frontier_fit.py + run_analysis.py collect_fits()/main() logic for the primary force_mse_norm
-metric, fit_domain="common", truncation_frac=1.0 row -- the row that appears in the frozen
-force_scaling.csv).
+The raw input is data/claim1/four_arch_force_checkpoint_table.csv, the per-checkpoint
+(compute, normalized force MSE) table; src/force_scaling_fit.py implements the fit.
 
-What IS reproduced: for each architecture with >=3 distinct widths among its metric_valid==True
-checkpoints (all four architectures here: MPNN, MC-EGNN, GemNet-OC, eSEN), the step-frontier
-L*_a(C), the common compute interval [max_a C_min_a, min_a C_max_a] intersected across all
-four, and the headline OLS fit (gamma, logA, r2, rmse_log, C_min, C_max, decades,
-n_frontier_owners_in_range) over 256 equally-spaced log-C grid points spanning that interval
-(truncation_frac=1.0, i.e. untruncated).
+Reproduced: per architecture, the step frontier L*(C), the common compute interval intersected
+across all four architectures, and the ordinary-least-squares fit of log L against log C over
+256 equally spaced log-compute grid points on that interval (gamma, logA, r2, rmse_log, the
+interval bounds, and the number of frontier checkpoints inside it).
 
-What is NOT reproduced: the frozen file's gamma_event_point_ols and gamma_nls_rawloss
-sensitivity-variant columns (fit over the unequally-spaced frontier event points themselves,
-and a nonlinear least-squares fit on raw un-logged loss respectively) -- these are documented
-in frontier_fit.py as "SENSITIVITY ONLY", not the headline number, and the NLS variant requires
-scipy.optimize.curve_fit, which is out of scope for this pure-stdlib repro layer. Both columns
-are written as empty in this script's output so the row shape still lines up with the frozen
-file's columns for comparison purposes.
+Not reproduced: the frozen table's two sensitivity columns, gamma_event_point_ols (fit over the
+unevenly spaced frontier events) and gamma_nls_rawloss (nonlinear least squares on unlogged
+loss, which needs scipy). Neither is the headline exponent; both are written empty here so the
+row shape still lines up with the frozen file.
 """
 from __future__ import annotations
 

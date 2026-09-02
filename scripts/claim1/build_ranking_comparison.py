@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""Regenerate data/claim1/ranking_comparison.csv from RAW inputs already in data/claim1/:
+"""Regenerate the neural-versus-KRR ranking per architecture and budget at LOW, MID, and HIGH.
 
-  - owner_manifest.csv          -> force_mse_norm (the real neural-network metric) per
-                                    (architecture, budget_tier)
-  - matched_compute_m1024_krr_results.csv -> ridgeless, target="common" KRR test_nmse_median
-                                    at n in {32,64,128,256,512}, per (architecture, budget_tier)
+Inputs, both in data/claim1/:
+  owner_manifest.csv                      normalized force MSE per (architecture, budget)
+  matched_compute_m1024_krr_results.csv   ridgeless KRR median test NMSE against the common
+                                          force target, at n in {32, 64, 128, 256, 512}
 
-This is category (a): directly re-derivable. See AUDIT_STAGE2.md.
-
-Reads ONLY from paper_repro/data/. Writes to paper_repro/analysis_out/claim1/ranking_comparison.csv.
+Deterministic: no bootstrap is involved, so this reproduces the frozen table exactly.
 """
 from __future__ import annotations
 

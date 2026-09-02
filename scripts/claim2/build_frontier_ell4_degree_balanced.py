@@ -1,44 +1,22 @@
 #!/usr/bin/env python3
-"""Regenerate data/claim2/frontier_ell4_degree_balanced_summary.json's per-alpha delta/CI,
-interpolated-to-common-support-edge Delta/CI per owner, and the 6 pairwise Delta-difference
-contrasts -- ALL from raw per-configuration arrays, with a REAL numpy bootstrap (Stage-2 fix;
-see AUDIT_STAGE2.md). A prior pass only interpolated the frozen CSV's own already-bootstrapped
-delta_ci_lo/delta_ci_hi columns (a passthrough of an upstream bootstrap it could not itself
-redo, since it believed no raw per-config array existed for this metric). Two things changed:
+"""Regenerate the block-9 ell=4 dose response shown in Figure 2A: per-alpha damage and interval
+at each of the four frontier checkpoints, the read-off at the common support edge, and the six
+pairwise contrasts between checkpoints -- all from per-configuration arrays.
 
-1. This Stage-2 pass discovered (numerically, not by assumption) that the degree-balanced-RMS
-   pass's "delta" field at every (owner, alpha) is IDENTICAL to log(L_intervened/L_baseline)
-   computed directly on the SAME raw per-atom-weighted force-MSE per_config_sum/per_config_natoms
-   arrays already sitting in data/claim2/dose_response.jsonl (for w10/50k=LOW, w16/150k=MID) and
-   the newly-copied data/claim2/frontier_ell4_sensitivity_raw.jsonl (for w20/200k=UPPERMID,
-   w24/300k=NEARMAX, copied from
-   dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/frontier_ell4_sensitivity_2026_08_20/
-   frontier_ell4_M1024.jsonl). The "degree-balanced" part of this table is ONLY the X-AXIS
-   (P_bal instead of alpha, already given per-row in frontier_ell4_degree_balanced.csv's own
-   P_bal column -- a deterministic function of ss_by_ell, not something to bootstrap); the Y-AXIS
-   quantity (delta) is the plain block-9 ell=4 NORM_FIXED loss-ratio metric this whole project
-   uses everywhere else. Verified to full float precision for all 4 owners at multiple alphas.
+Two things make this reproducible from data/ alone. First, the degree-balanced part of this
+table is only the horizontal axis: P_bal is a deterministic function of the per-degree
+activation power recorded per row, while the vertical axis is the same log(L_int / L_base) as
+every other intervention table, computable from the arrays in dose_response.jsonl (widths 10 and
+16) and frontier_ell4_sensitivity_raw.jsonl (widths 20 and 24). Second, the frozen summary
+records 2000 replicates at seed 20260820: default_rng(20260820) constructed fresh per
+(checkpoint, alpha) cell, drawing (2000, 1024) indices applied identically to the baseline and
+intervened arrays, reproduces every frozen interval to within 1e-12.
 
-2. The frozen summary documents `"n_boot": 2000, "boot_seed": 20260820` at its top level. Trying
-   `np.random.default_rng(20260820)` (the same Generator/PCG64 API confirmed for the OOD scripts,
-   see src/ood_analysis.py), constructed FRESH per (owner, alpha) cell with
-   `idx = rng.integers(0, 1024, size=(2000, 1024))` applied identically to baseline and
-   intervened per_config_sum/per_config_natoms, reproduces every one of the frozen per-alpha
-   delta_ci_lo/delta_ci_hi columns in frontier_ell4_degree_balanced.csv to full float precision
-   (< 1e-12 absolute) -- BIT-EXACT, not merely overlapping. The interpolated-to-common-support
-   read-off CI is reproduced the same way src/ood_analysis.interp_at_x does it: linearly
-   interpolate the BOOTSTRAP REPLICATE ARRAYS themselves (not just their quantiles) at the target
-   P_bal using the same bracket/weight as the point-estimate interpolation, then take the 2.5/97.5
-   percentile of the interpolated replicate array -- also verified bit-exact against
-   read_off_at_common_support_edge's loss_multiplier_ci95. The 6 pairwise Delta-difference
-   contrasts are then a THIRD, correlated use of the exact same idx matrices: because
-   default_rng(20260820) is re-seeded identically for every cell regardless of owner/alpha, two
-   different owners' bootstrap replicate arrays are implicitly a PAIRED resample of the SAME
-   underlying M=1024 configuration-index draws (position i in every owner's per_config_sum array
-   is the same frozen-pool molecule) -- exactly the paired-bootstrap convention documented
-   throughout this project (AUDIT_STAGE1.md / src/bootstrap.py's module docstring). Taking
-   (owner_B's interpolated replicate array - owner_A's) per replicate and its 2.5/97.5 percentile
-   reproduces all 6 frozen pairwise_contrasts_at_common_support_edge entries bit-exactly.
+The read-off interpolates the replicate arrays themselves at the target P_bal, using the same
+bracket and weight as the point estimate, and then takes percentiles. Because the generator is
+re-seeded identically for every cell, two checkpoints' replicate arrays resample the same
+configuration positions, so the pairwise contrasts are paired resamples and reproduce the frozen
+values bit-exactly as well.
 """
 from __future__ import annotations
 

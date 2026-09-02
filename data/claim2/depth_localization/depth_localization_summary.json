@@ -1,6 +1,6 @@
 {
- "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/depth_localization_block3_block6_2026_08_22/depth_localization_summary.json",
- "report_source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/DEPTH_LOCALIZATION_REPORT.md",
+ "source_file": "upstream-analysis/analysis_outputs/depth_localization_block3_block6_2026_08_22/depth_localization_summary.json",
+ "report_source_file": "upstream-analysis/DEPTH_LOCALIZATION_REPORT.md",
  "common_P_bal_support": 0.07769758626083846,
  "read_at_common_support": {
   "w10/50k_L3": {

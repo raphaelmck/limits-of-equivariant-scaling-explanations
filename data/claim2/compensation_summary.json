@@ -1,5 +1,5 @@
 {
- "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/stage3_lmax2_lmax4_compensation_2026_08_20/summary.json",
+ "source_file": "upstream-analysis/analysis_outputs/stage3_lmax2_lmax4_compensation_2026_08_20/summary.json",
  "pairs": {
   "LOW": {
    "L4_baseline": 0.02362621159161669,

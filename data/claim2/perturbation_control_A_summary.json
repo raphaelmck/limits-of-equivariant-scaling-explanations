@@ -1,5 +1,5 @@
 {
- "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/control_A_perturbation_magnitude/summary.json",
+ "source_file": "upstream-analysis/analysis_outputs/final_validation_sprint_2026_08_20/control_A_perturbation_magnitude/summary.json",
  "purpose": "Control A: does the compute-dependence of block-9 high-order intervention damage survive matching the representation-space perturbation magnitude?",
  "population": "M=1024 frozen molecule pool (identical to the dose-response run)",
  "n_boot": 2000,

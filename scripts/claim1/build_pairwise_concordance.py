@@ -1,49 +1,23 @@
 #!/usr/bin/env python3
-"""Reproduction of data/claim1/pairwise_concordance.csv, INCLUDING its bootstrap CI columns.
+"""Reproduce the pairwise neural-versus-KRR concordance table, including its bootstrap intervals.
 
-Originally this script could only recompute the point-estimate log-ratio direction (see git
-history / AUDIT_STAGE2.md category (b) item 3), because the 20 individual per-split test_nmse
-values that data/claim1/pairwise_concordance.csv's bootstrap CI is built from were not present
-anywhere in data/claim1/ -- only test_nmse_median/test_nmse_mean (already aggregated over the 20
-splits) were. That gap has since been closed: the raw per-split file was copied in as
-data/claim1/matched_compute_m1024_krr_split_results.csv (source:
-dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/matched_compute_large_m_krr_2026_08_22/
-krr_split_results_m1024.csv), so the full CI is now recomputable from data/ alone.
+Procedure, for each (budget, architecture A, architecture B) pair among the twelve frontier
+checkpoints:
+  1. Take the selected-ridge row at n_train=512 for each of the 20 split seeds, for both
+     architectures.
+  2. log_ratio[s] = log(NMSE_A[s]) - log(NMSE_B[s]) for each split where both arms have a
+     selected row, matched by split seed -- this is what makes the comparison paired.
+  3. The point estimate is the mean over splits; KRR favours whichever architecture has the
+     lower NMSE.
+  4. The interval comes from one RandomState(20260822) created before the loop and threaded
+     through all 18 pairs in file order, with one `.choice(...).mean()` call per replicate. The
+     shared stream is what makes this bit-exact against the frozen table; re-seeding per pair or
+     vectorizing across replicates would both desynchronize it.
+  5. A pair is concordant or discordant when the interval excludes zero and the sign agrees or
+     disagrees with the neural ordering, and unresolved otherwise.
 
-Procedure (confirmed by reading
-dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_scripts/build_matched_compute_m1024_comparison.py
-lines ~189-231, the exact script that produced the frozen pairwise_concordance.csv):
-  1. For each (budget_tier, architecture_a, architecture_b) pair among the 12 validated owners,
-     take the SELECTED-rho row (is_selected == True; rho chosen by inner validation NMSE) at
-     n_train=512 for each of the 20 split_seeds, for both architectures.
-  2. log_ratio[s] = log(test_nmse_a[s]) - log(test_nmse_b[s]) for each split s where both arms
-     have a selected row (matched by split_seed -- this is what makes it "paired").
-  3. point_estimate = mean(log_ratio); krr_favors = architecture_b if point_estimate > 0 else
-     architecture_a (i.e. whichever has the lower nmse).
-  4. Bootstrap CI, BIT-EXACT reproduction (Stage-2 fix -- see AUDIT_STAGE2.md): upstream created
-     ONE `rng = np.random.RandomState(RNG_SEED=20260822)` BEFORE any per-pair loop, then for
-     `budget in ["LOW","MID","HIGH"]`, for `a_tag,b_tag in itertools.combinations(tier_tags, 2)`
-     (tier_tags in the fixed OWNER_TAGS order: mpnn, egnn, gemnet_oc, esen within each budget --
-     verified by reading OWNER_TAGS in the upstream script, and confirmed this exactly matches
-     the frozen pairwise_concordance.csv's own row order), ran
-     `boot_means = np.array([rng.choice(log_ratios, size=len(log_ratios), replace=True).mean()
-     for _ in range(N_BOOT)])` -- i.e. ONE rng.choice() call PER bootstrap replicate, in a loop,
-     with the SAME RandomState instance carried across all 18 pairs in sequence (not
-     re-seeded per pair, not vectorized across replicates in one call -- both would desync the
-     draw sequence from upstream's). This script reproduces that exactly: a single
-     `np.random.RandomState(20260822)` is created once, then threaded via `rng=` through
-     `src/bootstrap.py::bootstrap_paired_log_ratio_ci` for each of the 18 frozen rows IN FILE
-     ORDER (== upstream's budget/combinations order, verified above), so the shared RNG state
-     advances identically to upstream's. CI = [2.5th, 97.5th] percentile of the 2000 replicate
-     means, via numpy's default 'linear' interpolation (matches np.quantile's default).
-  5. status = "concordant"/"discordant" if CI excludes zero (sign of point estimate agrees or
-     disagrees with nn_favors), else "unresolved" -- identical logic to the frozen script.
-
-Outputs (both retained -- the direction-only check is still valid and cheap):
-  - analysis_out/claim1/pairwise_concordance_direction_check.csv (unchanged from before: point
-    estimate + nn/krr-favors direction consistency against the frozen file, no CI).
-  - analysis_out/claim1/pairwise_concordance_recomputed.csv (full CI, one row per pair, now
-    BIT-EXACT -- see validate.py's tolerance, tightened from overlap-only to relative 1e-6).
+Writes both a direction-only check against the frozen file and the full recomputed table with
+intervals.
 """
 from __future__ import annotations
 

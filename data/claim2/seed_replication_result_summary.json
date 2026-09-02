@@ -1,5 +1,5 @@
 {
-  "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/seed_replication_2026_08_20/REPORT.md (+ results/G_s_analysis.json, results/alpha_curves_all_seeds.csv)",
+  "source_file": "upstream-analysis/analysis_outputs/seed_replication_2026_08_20/REPORT.md (+ results/G_s_analysis.json, results/alpha_curves_all_seeds.csv)",
   "status": "ANALYSIS_COMPLETE",
   "primary_estimand_p_star": 0.15,
   "metric": "P_total = RMS(h_int - h_base) / RMS(h_base) (raw metric, NOT degree-balanced-RMS)",
@@ -71,5 +71,5 @@
     }
   },
   "verdict": "Sign of G_s > 0 (block-9 ell=4 HIGH-vs-LOW causal-load-bearing contrast) replicates 3/3 across independent training seeds (both weight init and data order varied together) -- promotes seed-generality from PROVISIONAL/NOT-ESTABLISHED to ESTABLISHED FOR SIGN. Magnitude does NOT tightly replicate (G_s ranges 0.134 to 0.715, >5x spread) -- this is a separate, more qualified finding that must not be conflated with the sign result.",
-  "full_analysis_and_report": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/seed_replication_2026_08_20/REPORT.md"
+  "full_analysis_and_report": "upstream-analysis/analysis_outputs/seed_replication_2026_08_20/REPORT.md"
 }

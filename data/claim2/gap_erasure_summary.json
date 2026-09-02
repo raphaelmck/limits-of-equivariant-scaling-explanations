@@ -1,5 +1,5 @@
 {
- "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/stage3_high_order_gap_erasure_2026_08_20/summary.json",
+ "source_file": "upstream-analysis/analysis_outputs/stage3_high_order_gap_erasure_2026_08_20/summary.json",
  "task": "Stage-3 high-order-pathway gap-erasure follow-up (2026-08-20)",
  "m_eval": 1024,
  "pairs": {

@@ -1,5 +1,5 @@
 {
- "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/control_B_same_width/summary.json",
+ "source_file": "upstream-analysis/analysis_outputs/final_validation_sprint_2026_08_20/control_B_same_width/summary.json",
  "same_width": {
   "SW_w10_s50000": {
    "width": 10,
@@ -1125,13 +1125,13 @@
   "checkpoint_metadata": {
    "SW_w10_s50000": {
     "l4": {
-     "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-10-neutral-epoch/esen/run_9741255_params_1.1_million/dim_32_step_step=50000.ckpt",
+     "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-10-neutral-epoch/esen/run_9741255_params_1.1_million/dim_32_step_step=50000.ckpt",
      "checkpoint_sha256": "c839ef8fcf38f2bdfec7d9cdef8d92594bef88b51f890cad0a1eba83baa6d2d3",
      "checkpoint_global_step": 50000,
      "checkpoint_net_state_parameter_count": 1089390
     },
     "l2": {
-     "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-10-neutral-epoch-lmax2/esen/run_10337253_params_321.3_thousand/dim_32_step_step=50000.ckpt",
+     "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-10-neutral-epoch-lmax2/esen/run_10337253_params_321.3_thousand/dim_32_step_step=50000.ckpt",
      "checkpoint_sha256": "4c3c95d6ee8c8a23f01e88329dd3c58c428f9e0158e1cbeadcffbdb55356d923",
      "checkpoint_global_step": 50000,
      "checkpoint_net_state_parameter_count": 321334
@@ -1143,7 +1143,7 @@
      "expected_n": 321334,
      "D_atom_tokens": 86663206,
      "C_flops_kappa_l2": 6048970185416844.0,
-     "config_snapshot": "/home/mila/m/michnikr/CODE/dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/config_snapshots/esen_lmax2_w10_generated.yaml"
+     "config_snapshot": "<PROJECT_ROOT>/upstream-analysis/analysis_outputs/final_validation_sprint_2026_08_20/config_snapshots/esen_lmax2_w10_generated.yaml"
     },
     "D4_atom_tokens": 86650769,
     "N4_params": 1089390,
@@ -1153,13 +1153,13 @@
    },
    "SW_w16_s150000": {
     "l4": {
-     "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch/esen/run_9721383_params_1.7_million/dim_32_step_step=150000.ckpt",
+     "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch/esen/run_9721383_params_1.7_million/dim_32_step_step=150000.ckpt",
      "checkpoint_sha256": "1d7e8d23a3c29310c08925648eaf217d69cb62122011febf2805ccd23599abbf",
      "checkpoint_global_step": 150000,
      "checkpoint_net_state_parameter_count": 1722258
     },
     "l2": {
-     "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch-lmax2/esen/run_10337251_params_494.3_thousand/dim_32_step_step=150000.ckpt",
+     "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-16-neutral-epoch-lmax2/esen/run_10337251_params_494.3_thousand/dim_32_step_step=150000.ckpt",
      "checkpoint_sha256": "8796ae599137d690a14496003a2811deb8f824018744d7272dbd93ac10b397d4",
      "checkpoint_global_step": 150000,
      "checkpoint_net_state_parameter_count": 494290
@@ -1171,7 +1171,7 @@
      "expected_n": 494290,
      "D_atom_tokens": 259995645,
      "C_flops_kappa_l2": 2.7915017878158504e+16,
-     "config_snapshot": "/home/mila/m/michnikr/CODE/dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/config_snapshots/esen_lmax2_w16_generated.yaml"
+     "config_snapshot": "<PROJECT_ROOT>/upstream-analysis/analysis_outputs/final_validation_sprint_2026_08_20/config_snapshots/esen_lmax2_w16_generated.yaml"
     },
     "D4_atom_tokens": 259964327,
     "N4_params": 1722258,
@@ -1181,13 +1181,13 @@
    },
    "SW_w20_s200000": {
     "l4": {
-     "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-20-neutral-epoch/esen/run_9741258_params_2.1_million/dim_32_step_step=200000.ckpt",
+     "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-20-neutral-epoch/esen/run_9741258_params_2.1_million/dim_32_step_step=200000.ckpt",
      "checkpoint_sha256": "b7d9299cf2b7caabc817486ad32296ac374927715e1dd029c9a08d5bc3ebabae",
      "checkpoint_global_step": 200000,
      "checkpoint_net_state_parameter_count": 2144170
     },
     "l2": {
-     "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-20-neutral-epoch-lmax2/esen/run_10337246_params_609.6_thousand/dim_32_step_step=200000.ckpt",
+     "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-20-neutral-epoch-lmax2/esen/run_10337246_params_609.6_thousand/dim_32_step_step=200000.ckpt",
      "checkpoint_sha256": "8f7d65fea1e4e3720a6f6d52ea06bbeef1ed459c39a17323640a738c2ee4c574",
      "checkpoint_global_step": 200000,
      "checkpoint_net_state_parameter_count": 609594
@@ -1199,7 +1199,7 @@
      "expected_n": 609594,
      "D_atom_tokens": 346647268,
      "C_flops_kappa_l2": 4.590061220932231e+16,
-     "config_snapshot": "/home/mila/m/michnikr/CODE/dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/config_snapshots/esen_lmax2_w20_generated.yaml"
+     "config_snapshot": "<PROJECT_ROOT>/upstream-analysis/analysis_outputs/final_validation_sprint_2026_08_20/config_snapshots/esen_lmax2_w20_generated.yaml"
     },
     "D4_atom_tokens": 346575759,
     "N4_params": 2144170,
@@ -1209,13 +1209,13 @@
    },
    "SW_w24_s300000": {
     "l4": {
-     "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-24-neutral-epoch/esen/run_9721434_params_2.6_million/dim_32_step_step=300000.ckpt",
+     "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-24-neutral-epoch/esen/run_9721434_params_2.6_million/dim_32_step_step=300000.ckpt",
      "checkpoint_sha256": "22a19328ad8c3ec7f9566f63afb630f6b49c6dd6dd8cc026394a2ff46dfffbd8",
      "checkpoint_global_step": 300000,
      "checkpoint_net_state_parameter_count": 2566082
     },
     "l2": {
-     "checkpoint_path": "/network/scratch/m/michnikr/geometric_scaling_checkpoints_esen/esen-sphere-24-neutral-epoch-lmax2/esen/run_10337244_params_724.9_thousand/dim_32_step_step=300000.ckpt",
+     "checkpoint_path": "<CHECKPOINT_ROOT>/geometric_scaling_checkpoints_esen/esen-sphere-24-neutral-epoch-lmax2/esen/run_10337244_params_724.9_thousand/dim_32_step_step=300000.ckpt",
      "checkpoint_sha256": "36af59a1012d118c9f16c771856585090ff70ff36aeb5c43e4f513c5ebad16a0",
      "checkpoint_global_step": 300000,
      "checkpoint_net_state_parameter_count": 724898
@@ -1227,7 +1227,7 @@
      "expected_n": 724898,
      "D_atom_tokens": 519928706,
      "C_flops_kappa_l2": 8.186734574401053e+16,
-     "config_snapshot": "/home/mila/m/michnikr/CODE/dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/config_snapshots/esen_lmax2_w24_generated.yaml"
+     "config_snapshot": "<PROJECT_ROOT>/upstream-analysis/analysis_outputs/final_validation_sprint_2026_08_20/config_snapshots/esen_lmax2_w24_generated.yaml"
     },
     "D4_atom_tokens": 519711759,
     "N4_params": 2566082,

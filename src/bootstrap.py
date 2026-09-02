@@ -1,28 +1,19 @@
-"""Configuration-level paired bootstrap, matching the convention documented throughout
-AUDIT_STAGE1.md / the Claim-2 summary JSONs: resample *configuration indices* (with
-replacement, same resampled index set applied to every cell/tier/architecture in a given
-comparison so cross-cell contrasts stay paired), recompute the per-atom-weighted loss
-L = sum(per_config_sum) / sum(per_config_natoms) on the resample, then recompute whatever
-scalar statistic (Delta = log(L_int/L_base), a difference of two such Deltas, etc.) the
-caller needs from the resampled L values.
+"""Configuration-level paired bootstrap.
 
-STAGE-2 POLICY CHANGE (see AUDIT_STAGE2.md): this module now REQUIRES numpy
-(numpy.random.RandomState -- the same generator class, and the same `.choice(...)` API, as the
-upstream analysis scripts in dev-equivariant-scaling-laws-kernel-pilot-clean use). A prior pass
-used pure-stdlib `random.Random` specifically to avoid a numpy dependency in a sandbox that had
-no pip; that tradeoff has been reversed on explicit instruction -- a real numpy dependency
-(declared in pyproject.toml) is preferred to a same-shape-but-different-RNG stdlib substitute
-that can only ever produce a statistical (CI-overlap) match instead of a bit-exact one.
+Resample configuration indices with replacement, apply the same resampled index set to every
+cell, tier, or architecture in a comparison so cross-cell contrasts stay paired, recompute the
+per-atom-weighted loss L = sum(per_config_sum) / sum(per_config_natoms) on the resample, then
+recompute whatever scalar statistic the caller needs (Delta = log(L_int / L_base), a difference
+of two such Deltas, and so on).
 
-Where an upstream seed IS documented for a specific bootstrap (e.g. the Claim-1 KRR pairwise
-bootstrap, RNG_SEED=20260822, np.random.RandomState(seed).choice(...).mean() -- see
-scripts/claim1/build_pairwise_concordance.py), matching BOTH the seed AND the exact call
-sequence (same RandomState instance, same order of `.choice()` calls, one call per bootstrap
-replicate, never a single vectorized call across all replicates) reproduces the frozen CI
-bit-exactly. Where no upstream seed is documented, a fixed seed is chosen here and stated
-explicitly at each call site -- this makes THIS repro's own bootstrap deterministic and
-re-runnable, not a bit-match to an unseeded upstream computation (there is nothing to bit-match
-in that case).
+The bootstrap uses numpy.random.RandomState, the same generator class and the same `.choice`
+API as the analyses that produced the frozen tables. Where a seed is documented for a specific
+bootstrap -- for example the KRR pairwise bootstrap at seed 20260822 -- matching both the seed
+and the exact call sequence (one `.choice` call per replicate on a single shared RandomState,
+never one vectorized call across replicates) reproduces the frozen interval bit-exactly. Where
+no seed was recorded, a fixed seed is chosen here and stated at the call site: that makes this
+repository's own bootstrap deterministic and re-runnable, but the resulting interval matches the
+frozen one statistically rather than bit-for-bit.
 """
 from __future__ import annotations
 
@@ -158,9 +149,7 @@ def bootstrap_paired_log_ratio_ci(
     """Paired bootstrap CI over an already-paired list of per-split log-ratios
     (log(test_nmse_A[s]) - log(test_nmse_B[s]) for split index s), matching -- BIT-EXACTLY, when
     `rng` is threaded across pairs in the same order the upstream script processed them -- the
-    procedure in dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_scripts/
-    build_matched_compute_m1024_comparison.py (the script that produced
-    data/claim1/pairwise_concordance.csv), lines ~189-231:
+    procedure that produced data/claim1/pairwise_concordance.csv:
 
         rng = np.random.RandomState(RNG_SEED)                      # created ONCE, outside any
                                                                      # per-pair loop

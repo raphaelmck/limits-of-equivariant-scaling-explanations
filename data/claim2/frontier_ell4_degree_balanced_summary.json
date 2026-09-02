@@ -1,7 +1,7 @@
 {
-  "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/frontier_ell4_degree_balanced_perturbation_2026_08_21/summary.json",
-  "centered_ss_source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/frontier_ell4_degree_balanced_perturbation_2026_08_21/centered_ss_M1024.json",
-  "report_source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/frontier_ell4_degree_balanced_perturbation_2026_08_21/REPORT.md",
+  "source_file": "upstream-analysis/analysis_outputs/frontier_ell4_degree_balanced_perturbation_2026_08_21/summary.json",
+  "centered_ss_source_file": "upstream-analysis/analysis_outputs/frontier_ell4_degree_balanced_perturbation_2026_08_21/centered_ss_M1024.json",
+  "report_source_file": "upstream-analysis/analysis_outputs/frontier_ell4_degree_balanced_perturbation_2026_08_21/REPORT.md",
   "verdict": "ROBUST (per REPORT.md) - this is the FINAL authoritative exact ell=0-centered degree-balanced-RMS closure, superseding the earlier uncentered pass referenced within this same summary.json as 'raw_rms_comparison' / 'P_bal_uncentered' fields.",
   "purpose": "Degree-balanced-RMS robustness check of the block-9 ell=4 frontier-sensitivity figure, using the same degree-balanced quadratic form as eSEN's rms_norm_sh (component normalization, std_balance_degrees=True, l=0 centered) -- NOT a rerun of the full normalization operation (no affine weight/bias/eps/inverse-sqrt, none of which affect this ratio). No intervention was rerun; only a baseline-only forward pass (run_frontier_ell4_centered_ss.py) to get the exact l=0-centered SS.",
   "degree_weights_1_over_2l+1": {

@@ -20,7 +20,7 @@
   "terminology_correction": "OOD_ROBUSTNESS.md Sec 0 (2026-08-22) supersedes REPORT.md's 'ID vs OOD' shorthand: the Neutral-val pool is not an independently-sampled in-distribution set -- for its 4 constituent data_id families (ani2x, spice, geom_orca6, orbnet_denali) it is exactly, 100% identical to Val-Comp's eligible population for those same families. The precise framing is 'Neutral-domain validation vs. the broader support-matched Val-Comp population'; genuine OOD signal comes only from the 4 composition families Val-Comp has that Neutral-val excludes entirely (elytes, biomolecules, reactivity, metal_complexes).",
   "neutral_domain_pool": {
     "definition": "Frozen ID (Neutral-val) pool: open_mol/neutral_val, charge=0, spin=1, all Z in Neutral-training element support (17 elements)",
-    "source_scan_dir": "/network/scratch/k/khang.ngo/geometric_pos/dataset/open_mol/neutral_val",
+    "source_scan_dir": "<DATA_ROOT>/open_mol/neutral_val",
     "total_val_structures": 27697,
     "n_eligible": 27697,
     "fraction_eligible": 1.0,
@@ -101,8 +101,8 @@
     "seed": 42
   },
   "valcomp_ood_pool": {
-    "definition": "Frozen Val-Comp (OMol25-val) pool: /network/scratch/m/michnikr/omol25/val, charge=0, spin=1, all Z in Neutral-training element support (support-matched, NOT an unrestricted OOD sample)",
-    "source_scan_dir": "/network/scratch/m/michnikr/omol25/val",
+    "definition": "Frozen Val-Comp (OMol25-val) pool: <CHECKPOINT_ROOT>/omol25/val, charge=0, spin=1, all Z in Neutral-training element support (support-matched, NOT an unrestricted OOD sample)",
+    "source_scan_dir": "<CHECKPOINT_ROOT>/omol25/val",
     "total_val_structures": 2762021,
     "n_eligible": 1011426,
     "fraction_eligible": 0.36619055394582445,

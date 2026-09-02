@@ -1,33 +1,27 @@
-"""Claim-1 force compute-scaling frontier + power-law fit, matching the exact procedure in
-`dev-equivariant-scaling-laws/analysis_outputs/four_arch_force_scaling_repaired_2026_08_14/
-frontier_fit.py` and `run_analysis.py` (STEPS 3-6 of that repo's four-architecture FORCE-ONLY
-compute-scaling study), reimplemented here in pure Python standard library (no numpy) to match
-this repo's dependency policy (see src/__init__.py).
+"""Force compute-scaling frontier construction and power-law fit.
 
-Procedure reproduced (headline fit only -- gamma_event_point_ols / gamma_nls_rawloss sensitivity
-variants are NOT reimplemented, see build_force_scaling.py's docstring):
+Implements the headline fit only; the two sensitivity variants recorded in the frozen table
+(a fit over the unevenly spaced frontier events, and nonlinear least squares on unlogged loss)
+are not reimplemented here -- see scripts/claim1/build_force_scaling.py.
 
-  1. Frontier construction, per architecture, over its `metric_valid == True` checkpoint rows:
-     sort by (C, loss) ascending (stable sort, so at exact-C ties the lowest loss sorts first),
-     drop duplicate C keeping the first (= lowest-loss) row, then walk in increasing C and keep
-     a row only if its loss is a strict new minimum (a right-continuous step frontier:
-     L*_a(C) = min{loss(x) : C(x) <= C}).
-  2. Per-architecture observed domain: [min C, max C] over that architecture's valid rows.
-  3. Common interval: [max_a domain_lo_a, min_a domain_hi_a] intersected with (clamped to) each
-     architecture's own observed domain (the clamp is a no-op here since the frontier's own C
-     range always equals its architecture's observed domain by construction).
-  4. Truncation at frac (this repo only ever needs frac=1.0, i.e. the untruncated common
-     interval): tlo = clo, thi = clo * (chi/clo)**frac.
-  5. Fit: build 256 points equally spaced in log10(C) over [tlo, thi] (endpoints pinned exactly
-     to avoid a sub-ULP underflow below tlo), evaluate the step frontier at each grid point
-     (right-continuous lookup: the loss of the highest-C frontier point <= the query), keep only
-     finite positive evaluations (>=3 required), then run *unweighted* OLS of log(loss) on
-     log(C) over those grid points. gamma = -slope, logA = intercept. This grid means the fit
-     gives equal weight to every unit of log-compute, not to every raw checkpoint -- an
-     architecture with more frontier owners in a sub-range is not given extra weight there.
+Procedure:
 
-Pure Python standard library only.
+  1. Frontier construction, per architecture, over its `metric_valid` checkpoint rows: sort by
+     (compute, loss) ascending with a stable sort, so at equal compute the lowest loss comes
+     first; drop duplicate compute values keeping that first row; then walk in increasing
+     compute and keep only rows that set a new running minimum in loss. The result is the
+     right-continuous step minimum L*(C).
+  2. Common compute interval: the intersection across architectures of each one's frontier
+     support, so every exponent is fitted on the same interval.
+  3. Fit: evaluate L*(C) on 256 points equally spaced in log10(C) across that interval and take
+     the ordinary-least-squares fit of log L on log C. The slope is -gamma; the intercept is
+     logA. Reported alongside are r2, the root-mean-square residual in log space, the interval
+     bounds, its width in decades, and how many frontier checkpoints fall inside it.
+
+Pure standard library: no numpy is needed for this fit.
 """
+
+
 from __future__ import annotations
 
 import math

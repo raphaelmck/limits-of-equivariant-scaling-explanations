@@ -1,41 +1,25 @@
 #!/usr/bin/env python3
-"""Regenerate data/claim2/seed_replication_result_summary.json's per-(seed, tier)
-interpolated-to-P*=0.15 Delta AND its 95% CI, plus G_s = Delta_HIGH(P*) - Delta_LOW(P*) and its
-CI, for seeds 1/2/3 -- a REAL numpy bootstrap (Stage-2 fix; see AUDIT_STAGE2.md). A prior pass
-regenerated only the Delta/G point estimates from seed_replication_result.csv's measured-alpha
-rows (no CI, since that CSV carries none at the measured-alpha rows) and left the CI as
-passthrough, believing the raw per-config arrays needed to bootstrap it were not present.
+"""Regenerate the independent-training-run replication reported in the paper appendix: per-(run,
+checkpoint) damage interpolated to P_total = 0.15 with its interval, and the high-minus-low
+contrast G per run.
 
-Gap closed: dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/
-seed_replication_2026_08_20/results/seed_replication_ell4_M1024.jsonl (raw per-config arrays for
-the NEW seed-2/seed-3 runs) is now copied in as data/claim2/seed_replication_raw.jsonl. Seed 1's
-raw arrays are NOT re-sourced independently here -- per this task's explicit instruction, seed 1
-LOW reuses data/claim2/dose_response.jsonl (budget=LOW, ell=4 rows) and seed 1 HIGH reuses
-data/claim2/frontier_ell4_sensitivity_raw.jsonl (tag=esen_lmax4_NEARMAX_w24_s300000), i.e. EXACTLY
-the same raw inputs Task 3's degree-balanced reproduction already established, not a
-separately-recomputed copy of the same underlying data.
+Raw inputs: data/claim2/seed_replication_raw.jsonl for runs 2 and 3; for run 1, the same arrays
+the rest of the analysis uses, dose_response.jsonl for the low-compute checkpoint and
+frontier_ell4_sensitivity_raw.jsonl for the high-compute one.
 
-METRIC WARNING (read src/seed_replication.py's module docstring too): this experiment's
-pre-registered estimand uses the RAW P_total = RMS(h_int-h_base)/RMS(h_base) metric read directly
-off each row's own `P_total`/`q_power` field -- explicitly NOT the degree-balanced-RMS P_bal
-metric Task 3 / frontier_ell4_degree_balanced.csv uses. src/seed_replication.py is a standalone
-module for exactly this reason: it must never be conflated with src/ood_analysis.py's P_bal
-interpolation code, even though both bootstrap the same kind of block-9 ell=4 per-config arrays.
+Metric. This experiment's pre-registered estimand uses the raw total perturbation norm
+P_total = RMS(h_int - h_base) / RMS(h_base), read off each row, not the degree-balanced P_bal
+used in Figure 2A. src/seed_replication.py exists as a separate module to keep the two apart.
 
-Procedure (bit-exact port of analysis_scripts/analyze_seed_replication.py -- see
-src/seed_replication.py for the line-by-line correspondence):
-  1. idx_sets = bootstrap_index_sets(1024, 2000, seed=0) -- ONE shared index-set list, generated
-     once, reused for every seed/tier/cell (the project's paired-bootstrap convention).
-  2. For each (seed, tier) in {1,2,3} x {LOW,HIGH}: bracket the two measured alpha points whose
-     P_total straddles P*=0.15, linearly interpolate the point Delta, and -- separately, per
-     bootstrap replicate -- interpolate the RESAMPLED Delta at the two bracket alphas using the
-     SAME frac weight, then take the 2.5/97.5 percentile of the 2000 replicate values.
-  3. G_s = Delta_HIGH(P*) - Delta_LOW(P*), point and CI (interpolated-Delta bootstrap arrays are
-     themselves paired across tiers via the shared idx_sets, so G_s's CI is a valid paired
-     contrast, not an independent-difference approximation).
+Procedure:
+  1. One shared list of bootstrap index sets, default_rng(0) over 2000 replicates, reused for
+     every run and checkpoint, so contrasts stay paired.
+  2. Per (run, checkpoint), bracket the two measured alphas whose P_total straddles 0.15,
+     interpolate the point estimate, and interpolate each resampled damage value at the same
+     weight before taking percentiles.
+  3. G = damage(high) - damage(low), with its interval taken from the paired replicate arrays.
 
-Validated bit-exact (<1e-9 absolute) against every one of G_s_analysis.json's per-seed
-delta_ci95/G_ci95 entries.
+Reproduces every frozen per-run interval to within 1e-9.
 """
 from __future__ import annotations
 

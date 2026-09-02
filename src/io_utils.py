@@ -1,7 +1,8 @@
-"""Thin CSV/JSON/JSONL loading helpers shared by scripts/claim1 and scripts/claim2.
+"""CSV/JSON/JSONL loading helpers, and the only sanctioned way to build a path into data/,
+manifests/, or analysis_out/.
 
-No path in this module or anywhere else in src/ or scripts/ may point outside
-paper_repro/data/ or paper_repro/manifests/ (see AUDIT_STAGE2.md hard-scope constraint).
+No path constructed in src/ or scripts/ may point outside this repository: every number in
+analysis_out/ must be derivable from the frozen tables checked in here.
 """
 from __future__ import annotations
 

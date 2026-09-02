@@ -1,0 +1,12 @@
+The code in this directory is derived from the upstream training and analysis repositories of
+the scaling study this work reanalyzes. That code is licensed under the MIT License, reproduced
+in pipeline/LICENSE, and it remains under that license here: the repository-root LICENSE covers
+the analysis, figure, and test code written for this paper, not the files in this directory.
+
+The upstream copyright line in pipeline/LICENSE has the authors' names withheld for anonymous
+review. This is a redaction for double-blind submission only, not a removal of attribution:
+the full notice must be restored, verbatim, before any non-anonymous release. The upstream work
+is cited in the paper.
+
+Per-file origin, source revision, and checksums are recorded in
+provenance/pipeline_manifest.json, and provenance/check_pipeline.py verifies them.

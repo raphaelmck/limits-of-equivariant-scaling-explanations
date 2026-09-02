@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
-"""Regenerate the per-(pair, ell, alpha) Delta_l4 / Delta_l2 / C_ell (=Delta_l4-Delta_l2) grid
-of data/claim2/compensation_summary.json from RAW per-config rows in
-data/claim2/compensation.jsonl.
+"""Regenerate the per-(pair, degree, alpha) intervention-damage grid and the ell_max=4 minus
+ell_max=2 contrast, from the per-configuration arrays in data/claim2/compensation.jsonl.
 
-Category (a). compensation.jsonl carries per_config_sum/per_config_natoms for baseline and every
-(arch in {l4,l2}, ell in {0,1,2,012}, alpha in {0.5,0.0}) cell, for each of the 4 matched-compute
-pairs (LOW/MID/UPPERMID/HIGH). C_ell is a *paired* contrast (Delta_l4 - Delta_l2 using the SAME
-bootstrap resample of configuration indices for both architectures), matching
-compensation_summary.json's own bootstrap_unit convention documented in the sibling
-perturbation_control_A_summary.json ("SAME resample applied to every tier/cell so that
-cross-tier contrasts are paired").
+That file carries per_config_sum and per_config_natoms for the baseline and for every
+(model, degree, alpha) cell at each of the four matched-compute pairs, which is what is needed
+to recompute L = sum(sum) / sum(natoms) and Delta = log(L_int / L_base). The contrast uses the
+same bootstrap resample of configuration indices for both models, so it stays paired.
 
-Determinism caveat: compensation_summary.json documents n_boot=2000 in its own "config" block but
-no seed -> statistical-consistency (CI overlap) check in make validate, not exact match.
+The frozen summary records 2000 replicates but no seed, so the intervals here match the frozen
+ones statistically rather than bit-for-bit; the point estimates are deterministic and are
+checked exactly.
 """
 from __future__ import annotations
 

@@ -1,26 +1,20 @@
 #!/usr/bin/env python3
-"""Regenerate 4 of the 8 frozen OOD tables in data/claim2/ from the raw per-configuration arrays
-in data/claim2/ood_raw_per_config/{lmax4_block9_intervention.jsonl, lmax2_baseline.jsonl,
-run_meta.json}: a pure-stdlib port of
-analysis_outputs/esen_irrep_ood_2026_08_22/eval/analyze_and_report.py's main() (its GPU-free,
-CPU-only re-analysis of the already-saved arrays -- see src/ood_analysis.py's module docstring
-for the confirmed GPU/CPU boundary).
+"""Regenerate the intervention curves and contrasts on the two evaluation populations, from the
+per-configuration arrays in data/claim2/ood_raw_per_config/.
 
 Writes into analysis_out/claim2/:
-  - ood_full_alpha_curves.csv       (ports full_curve_rows / eval/full_alpha_curves.csv)
-  - ood_G_m_convergence.csv         (ports g_rows / eval/G_m_convergence.csv)
-  - ood_interaction_w24_vs_w10.csv  (ports interaction_rows / eval/interaction_w24_vs_w10.csv)
-  - ood_lmax2_vs_lmax4_baseline.csv (ports h_rows / eval/lmax2_vs_lmax4_baseline.csv)
+  ood_full_alpha_curves.csv        damage curve per checkpoint, population, and alpha
+  ood_G_m_convergence.csv          high-minus-low contrast as a function of pool size
+  ood_interaction_w24_vs_w10.csv   the same contrast across populations
+  ood_lmax2_vs_lmax4_baseline.csv  matched-compute log(L_2 / L_4), the source of Figure 2B
 
-G_m and the interaction contrast both require Delta interpolated to the common P_bal support
-edge (src/ood_analysis.interp_at_x) -- NOT a fixed-alpha contrast; see that function's docstring
-and AUDIT_STAGE2.md item 8 for why a naive alpha=0 contrast does not reproduce the frozen G.
+The contrasts are taken at the common P_bal support edge (src/ood_analysis.interp_at_x), not at
+a fixed alpha: two checkpoints reach different perturbation magnitudes at the same alpha, so a
+fixed-alpha contrast would compare unequal interventions.
 
-Performance note: the bootstrap index matrix depends only on (m, boot_seed), never on
-tag/domain/alpha/lmax (the source itself always passes the same constant BOOT_SEED -- see
-src/ood_analysis.gen_boot_indices docstring). This script generates it ONCE per pool size M and
-reuses it for every cell at that M, matching the source's actual (if implicit) sharing and
-keeping this pure-Python port tractable at M up to 16384.
+The bootstrap index matrix depends only on the pool size and the seed, never on the checkpoint,
+population, or alpha, so it is generated once per pool size and reused, which keeps the pure
+re-aggregation tractable at pools up to 16384 configurations.
 """
 from __future__ import annotations
 

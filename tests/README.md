@@ -1,7 +1,15 @@
-# tests/ — reserved for a later pass
+# tests/
 
-Not populated in this consolidation pass. This directory will eventually hold tests validating
-that `scripts/claim1/` and `scripts/claim2/` (once migrated) reproduce the frozen numeric values
-recorded in `data/claim1/` and `data/claim2/` — e.g. the m=256 block-KRR reproduction gate noted
-in `dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/final_validation_sprint_2026_08_20/INVENTORY.md`
-Sec. 8e, and the frozen numeric tables in that document's Sec. 8a-8d.
+`test_paper_numbers.py` checks every number the paper reports -- exponents, both figures' plotted
+values, all four appendix tables, the evaluation-population sizes, and the matched-frontier counts
+-- against the tables `make analysis` regenerates. Each check names the section, figure, or table
+it covers, so a failure points at the sentence that has to change.
+
+Run with `make test`, or directly:
+
+```bash
+python3 tests/test_paper_numbers.py
+```
+
+This is the complement to `make validate`, which checks the regenerated tables against the frozen
+ones rather than against the paper's prose.

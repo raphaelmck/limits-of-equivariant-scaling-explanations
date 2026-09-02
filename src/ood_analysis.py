@@ -1,32 +1,15 @@
-"""numpy port of the CPU-only OOD/ID re-analysis in
-analysis_outputs/esen_irrep_ood_2026_08_22/eval/analyze_and_report.py and
-.../eval/robustness_analysis.py.
+"""Re-analysis of the intervention runs on the two evaluation populations.
 
-GPU/CPU boundary (confirmed by reading run_gpu_eval.py, referenced in analyze_and_report.py's own
-module docstring): run_gpu_eval.py does the model forward passes and writes ONE JSONL row per
-(tag, domain, alpha) with already-reduced per_config_sum/per_config_natoms arrays (length
-m_eval=16384) plus ss_by_ell_centered summaries into eval/raw/*.jsonl and eval/raw/run_meta.json.
-analyze_and_report.py and robustness_analysis.py never touch a model or a checkpoint again --
-they open those saved JSONL/JSON files and do only numpy re-aggregation (sum/log/bootstrap) over
-the saved arrays. This module re-implements that same post-processing, reading from
-data/claim2/ood_raw_per_config/*.
+The model forward passes happen upstream and write one row per (checkpoint, population, alpha)
+with already-reduced per_config_sum / per_config_natoms arrays and per-degree activation-power
+summaries. Everything here is re-aggregation over those saved arrays: sums, logs, and bootstrap
+resampling, reading from data/claim2/ood_raw_per_config/.
 
-STAGE-2 UPGRADE (see AUDIT_STAGE2.md): a prior pass ported this module to pure-stdlib `random`
-to avoid a numpy dependency. Both source files use `np.random.default_rng(seed)` (the numpy
-Generator/PCG64 API, NOT RandomState -- confirmed by reading analyze_and_report.py's boot_L()
-and robustness_analysis.py's boot_L(), both of which do
-`rng = np.random.default_rng(seed); idx = rng.integers(0, m, size=(N_BOOT, m))`). Crucially, a
-FRESH `default_rng(seed)` is constructed on EVERY call, always with the SAME fixed seed constant
-regardless of (tag, domain, alpha, m) -- so, unlike the Claim-1 KRR pairwise bootstrap (which
-threads a single shared RandomState across calls, see src/bootstrap.py), no cross-call ordering
-matters here for bit-exactness: any two calls with the same m draw an identical index matrix
-because each call re-seeds from scratch. This module now reproduces that exactly with numpy,
-giving BIT-EXACT (not merely overlapping) CIs wherever the source used one of these two documented
-seeds (BOOT_SEED_ANALYZE=20260822 for analyze_and_report.py's tables; BOOT_SEED_ROBUST=20260823
-for robustness_analysis.py's tables).
-
-Every function below is a direct port of the corresponding source code; see the docstring of each
-for the exact file:line it reproduces. Nothing here is a guessed or reverse-engineered convention.
+The bootstrap uses numpy.random.default_rng, constructed fresh on every call with a fixed seed
+that does not depend on the checkpoint, population, alpha, or pool size. Any two calls at the
+same pool size therefore draw an identical index matrix, so no cross-call ordering affects the
+result: intervals here reproduce the frozen ones bit-exactly at the two documented seeds
+(20260822 for the main tables, 20260823 for the robustness tables).
 """
 from __future__ import annotations
 

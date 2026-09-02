@@ -1,5 +1,5 @@
 {
- "source_file": "dev-equivariant-scaling-laws-kernel-pilot-clean/analysis_outputs/depth_localization_block3_block6_2026_08_22/validation_M1024.json",
+ "source_file": "upstream-analysis/analysis_outputs/depth_localization_block3_block6_2026_08_22/validation_M1024.json",
  "baseline_reproduction": {
   "w10/50k": {
    "L_baseline": 0.023626211564459914,
