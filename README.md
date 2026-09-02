@@ -24,8 +24,10 @@ result depends on are listed, with their identifying configuration and hash, in
 python3 -m venv .venv && .venv/bin/pip install -e .   # numpy and matplotlib
 make analysis    # regenerate every derived table into analysis_out/
 make validate    # check those tables against the frozen ones in data/
-make test        # check every number the paper reports against those tables
+make test        # check the submitted values against those tables
 make figures     # render figures/figure1.pdf and figures/figure2.pdf
+
+make check-manuscript TEX=path/to/main.tex   # paper numbers, read out of the LaTeX source
 ```
 
 `make all` runs all four. The whole pipeline takes a few minutes on one core.

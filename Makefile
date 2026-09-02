@@ -1,4 +1,4 @@
-.PHONY: analysis validate test figures all clean
+.PHONY: analysis validate test check-manuscript figures all clean
 
 PY := $(shell test -x .venv/bin/python3 && echo .venv/bin/python3 || echo python3)
 
@@ -31,6 +31,13 @@ validate: analysis
 # Check every number the paper reports against the regenerated tables.
 test: analysis
 	$(PY) tests/test_paper_numbers.py
+
+# Check every number printed in the manuscript against the regenerated tables, reading the
+# values out of the LaTeX source rather than from hardcoded copies:
+#   make check-manuscript TEX=path/to/main.tex
+check-manuscript: analysis
+	@test -n "$(TEX)" || { echo "usage: make check-manuscript TEX=path/to/main.tex"; exit 2; }
+	$(PY) tests/check_manuscript.py --tex $(TEX)
 
 # Render the two paper figures from the regenerated tables. Plotting only: no scientific
 # quantity is computed here, which is why this is not a dependency of analysis or validate.
