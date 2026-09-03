@@ -19,10 +19,11 @@ import os
 import re
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(_REPO_ROOT, "code", "analysis"))
 
-from src.compute_axis import budget_flops
-from src.io_utils import data_path, out_path, read_csv, read_json
+from common.compute_axis import budget_flops
+from common.io_utils import data_path, out_path, read_csv, read_json
 
 BUDGET_ORDER = ["LOW", "MID", "PRECROSS", "CROSS", "FITX", "POSTCROSS", "HIGH", "TOP"]
 OWNERS_BY_COMPUTE = ["w10/50k", "w16/150k", "w20/200k", "w24/300k"]
@@ -69,14 +70,14 @@ def artifacts():
                  for r in read_csv(out_path("claim1", "dense_grid_pairwise_gap_recomputed.csv"))}
     a["flops"] = budget_flops()
     a["lmax_owners"] = sorted(
-        (r for r in read_csv(data_path("claim2", "matched_compute_lmax_owners.csv"))
+        (r for r in read_csv(data_path("claim2", "matched_compute_lmax_checkpoints.csv"))
          if r["lmax"] == "4"), key=lambda r: float(r["C_flops"]))
-    a["depth"] = read_json(out_path("claim2", "depth_localization_recomputed.json"))
+    a["depth"] = read_json(out_path("claim2", "depth_interventions_recomputed.json"))
     a["seeds"] = read_json(out_path("claim2", "seed_replication_result_recomputed.json"))
     a["families"] = {r["stratum"]: r
-                     for r in read_csv(out_path("claim2", "ood_shared_family_positive_control.csv"))}
+                     for r in read_csv(out_path("claim2", "chemistry_family_positive_control.csv"))}
     a["frontier"] = read_json(out_path("claim2", "lmax24_all_frontier_summary.json"))
-    a["pools"] = read_json(data_path("claim2", "ood_pool_provenance.json"))
+    a["pools"] = read_json(data_path("claim2", "evaluation_pool_provenance.json"))
     return a
 
 

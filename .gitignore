@@ -3,7 +3,3 @@ __pycache__/
 analysis_out/
 .venv/
 *.egg-info/
-
-# Contains pre-anonymization paths and names: exclude from the anonymous release,
-# restore on de-anonymization. See provenance/README.md.
-provenance/rename_table.json

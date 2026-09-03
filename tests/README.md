@@ -34,5 +34,5 @@ agreement.
 
 ## `make validate` — do the regenerated tables match the frozen ones?
 
-A third, separate question, answered by `scripts/validate.py`: that re-running the analysis
+A third, separate question, answered by `code/analysis/validate.py`: that re-running the analysis
 reproduces the frozen tables in `data/`.

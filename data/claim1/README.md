@@ -17,9 +17,9 @@ checks the derivations against the frozen copies also kept here.
 
 ## Checkpoint selection
 
-- **`owner_manifest.csv`** — the 12 frontier checkpoints (4 architectures x LOW/MID/HIGH) with
+- **`frontier_checkpoint_manifest.csv`** — the 12 frontier checkpoints (4 architectures x LOW/MID/HIGH) with
   parameter count, atom tokens, target and realized compute, and utilization.
-- **`dense_grid_owner_force_mse.csv`** — the same for the five added budgets, including which
+- **`dense_grid_frontier_force_mse.csv`** — the same for the five added budgets, including which
   budgets reuse a neighbouring budget's checkpoint.
 
 ## KRR
@@ -36,6 +36,6 @@ checks the derivations against the frozen copies also kept here.
 `make validate` compares the regenerated tables against.
 
 The kernel matrices themselves are not checked in; the evaluation pool that defines them is
-recorded in `data/claim2/ood_pool_provenance.json`. Per-cell kernel/KRR inventory tables (spectral
+recorded in `data/claim2/evaluation_pool_provenance.json`. Per-cell kernel/KRR inventory tables (spectral
 descriptors, alignment summaries) and an 18-pair LOW/MID/HIGH concordance table exist upstream but
 are not reported in the paper and are not part of this release.

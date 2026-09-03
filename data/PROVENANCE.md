@@ -17,8 +17,10 @@ Filesystem paths are written against placeholders rather than absolute locations
 
 | Placeholder | Meaning |
 |---|---|
-| `<CHECKPOINT_ROOT>` | the root of the checkpoint store, as used in `manifests/checkpoints.csv` and the frontier tables |
+| `<CHECKPOINT_ROOT>` | the root of the checkpoint store, as used in `data/checkpoints.csv` and the frontier tables |
+| `<DATA_ROOT>` | the root of the OMol25 dataset splits |
 | `<PROJECT_ROOT>` | the directory containing the repositories above |
+| `<PIPELINE_ROOT>` | the analysis repository itself, when a path is written relative to its own root |
 | `<REPO_ROOT>` | this repository |
 
 Neither upstream repository is required to run anything here: `make analysis` derives every

@@ -6,20 +6,20 @@ PY := $(shell test -x .venv/bin/python3 && echo .venv/bin/python3 || echo python
 # no dataset access, no network.
 analysis:
 	mkdir -p analysis_out/claim1 analysis_out/claim2
-	$(PY) scripts/claim1/build_force_scaling.py
-	$(PY) scripts/claim1/build_dense_grid_pairwise_gap.py
-	$(PY) scripts/claim1/build_dense_grid_ranking_comparison.py
-	$(PY) scripts/claim1/build_frontier_points.py
-	$(PY) scripts/claim2/build_frontier_ell4_degree_balanced.py
-	$(PY) scripts/claim2/build_seed_replication_result.py
-	$(PY) scripts/claim2/build_depth_localization.py
-	$(PY) scripts/claim2/build_lmax24_frontier.py
-	$(PY) scripts/claim2/build_ood_curves_and_contrasts.py
-	$(PY) scripts/claim2/build_ood_domain_decomposition.py
+	$(PY) code/analysis/claim1/build_force_scaling.py
+	$(PY) code/analysis/claim1/build_dense_grid_pairwise_gap.py
+	$(PY) code/analysis/claim1/build_dense_grid_ranking_comparison.py
+	$(PY) code/analysis/claim1/build_frontier_points.py
+	$(PY) code/analysis/claim2/build_frontier_ell4_degree_balanced.py
+	$(PY) code/analysis/claim2/build_seed_replication_result.py
+	$(PY) code/analysis/claim2/build_depth_interventions.py
+	$(PY) code/analysis/claim2/build_lmax24_frontier.py
+	$(PY) code/analysis/claim2/build_intervention_domain_curves.py
+	$(PY) code/analysis/claim2/build_chemistry_domain_decomposition.py
 
 # Check every regenerated table against the frozen table it reproduces.
 validate: analysis
-	$(PY) scripts/validate.py
+	$(PY) code/analysis/validate.py
 
 # Check every number the paper reports against the regenerated tables.
 test: analysis
@@ -36,8 +36,8 @@ check-manuscript: analysis
 # quantity is computed here, which is why this is not a dependency of analysis or validate.
 figures: analysis
 	mkdir -p figures
-	cd scripts/figures && ../../$(PY) figure1.py
-	cd scripts/figures && ../../$(PY) figure2.py
+	cd code/analysis/figures && ../../../$(PY) figure1.py
+	cd code/analysis/figures && ../../../$(PY) figure2.py
 
 all: validate test figures
 

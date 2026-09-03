@@ -14,10 +14,11 @@ import math
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(_REPO_ROOT, "code", "analysis"))
 
-from src.compute_axis import budget_flops
-from src.io_utils import data_path, out_path, read_csv, read_json
+from common.compute_axis import budget_flops
+from common.io_utils import data_path, out_path, read_csv, read_json
 
 failures = []
 checks = 0
@@ -114,7 +115,7 @@ INTERVENED = [
 
 
 def test_intervened_checkpoints():
-    rows = [r for r in read_csv(data_path("claim2", "matched_compute_lmax_owners.csv"))
+    rows = [r for r in read_csv(data_path("claim2", "matched_compute_lmax_checkpoints.csv"))
             if r["lmax"] == "4"]
     rows.sort(key=lambda r: float(r["C_flops"]))
     check("App. models, number of intervened checkpoints", len(rows), 4, tol=0)
@@ -138,7 +139,7 @@ OWNERS_BY_COMPUTE = ["w10/50k", "w16/150k", "w20/200k", "w24/300k"]
 
 
 def test_depth_table():
-    depth = read_json(out_path("claim2", "depth_localization_recomputed.json"))
+    depth = read_json(out_path("claim2", "depth_interventions_recomputed.json"))
     rel_check("App. depth, common perturbation magnitude",
               depth["common_P_bal_support"], 0.07770, rel_tol=1e-3)
     at_support = depth["read_at_common_support"]
@@ -181,7 +182,7 @@ FAMILIES = {
 
 def test_family_transfer_table():
     rows = {r["stratum"]: r
-            for r in read_csv(out_path("claim2", "ood_shared_family_positive_control.csv"))}
+            for r in read_csv(out_path("claim2", "chemistry_family_positive_control.csv"))}
     for stratum, (n_cfg, contrast, lo, hi) in FAMILIES.items():
         row = rows[stratum]
         check(f"App. transfer, {stratum} n_cfg", int(row["n_configs"]), n_cfg, tol=0)
@@ -241,7 +242,7 @@ def test_matched_frontier():
 # ---------------------------------------------------- evaluation populations (App. data/metric)
 
 def test_evaluation_populations():
-    pools = read_json(data_path("claim2", "ood_pool_provenance.json"))
+    pools = read_json(data_path("claim2", "evaluation_pool_provenance.json"))
     check("App. data, Neutral validation configurations",
           pools["neutral_domain_pool"]["n_eligible_total"], 27697, tol=0)
     check("App. data, broader validation configurations",

@@ -11,22 +11,22 @@ paired configuration-level bootstrap.
 - **`dose_response.jsonl`** — the main dose-response grid, block 9, all degrees and alphas, at the
   low- and mid-compute checkpoints.
 - **`frontier_ell4_sensitivity_raw.jsonl`** — the same at the two higher-compute checkpoints.
-- **`depth_localization/`** — blocks 3 and 6, plus the frozen summary and validation record.
+- **`depth_interventions/`** — blocks 3 and 6, plus the frozen summary and validation record.
 - **`seed_replication_raw.jsonl`** — the two additional independent training runs.
-- **`ood_raw_per_config/`** — both evaluation populations at the 16384-configuration pool, for the
+- **`per_config_intervention_raw/`** — both evaluation populations at the 16384-configuration pool, for the
   ell_max=4 intervention and the ell_max=2 baseline, with the run metadata.
 
 ## Pools and labels
 
-- **`ood_pool_provenance.json`** — both evaluation populations: sizes, charge/spin/element
+- **`evaluation_pool_provenance.json`** — both evaluation populations: sizes, charge/spin/element
   eligibility criteria, the stratification rule and seed, nesting verification, and the paths of
   the index arrays that are too large to check in.
-- **`ood_domain_labels.json`** — the per-configuration chemistry-family label for the
+- **`chemistry_domain_labels.json`** — the per-configuration chemistry-family label for the
   16384-configuration pool, aligned by pool order to the arrays above.
 
 ## Matched-compute comparison
 
-- **`matched_compute_lmax_owners.csv`** — the four matched ell_max=2 / ell_max=4 pairs that also
+- **`matched_compute_lmax_checkpoints.csv`** — the four matched ell_max=2 / ell_max=4 pairs that also
   have direct intervention measurements.
 - **`lmax24_all_frontier_matches.csv`** — all 126 ell_max=4 frontier checkpoints and their nearest
   ell_max=2 frontier partner, with the compute ratio and whether the pair is within tolerance.
@@ -40,7 +40,7 @@ paired configuration-level bootstrap.
 
 ## Frozen summaries kept for comparison
 
-`frontier_ell4_degree_balanced_summary.json`, the `ood_*.csv` files, and
+`frontier_ell4_degree_balanced_summary.json`, the chemistry- and domain-comparison CSV files, and
 `seed_replication_result_summary.json` are the frozen results that `make validate` compares the
 regenerated tables against.
 
