@@ -60,7 +60,8 @@ make check-manuscript TEX=path/to/main.tex   # paper numbers, read out of the La
 | Fig. 1B KRR learning-curve area | `data/claim1/dense_grid_krr_results.csv`, `frontier_checkpoint_manifest.csv` | `code/experiments/kernel/` | `build_dense_grid_ranking_comparison.py` |
 | Fig. 1C, Table 1: GemNet-OC/eSEN crossover, 8 budgets | `data/claim1/dense_grid_krr_split_results.csv`, `dense_grid_frontier_force_mse.csv` | `code/experiments/kernel/` | `build_dense_grid_pairwise_gap.py` |
 | Fig. 2A: block-9 ell=4 dose response, 4 checkpoints | `data/claim2/dose_response.jsonl`, `frontier_ell4_sensitivity_raw.jsonl` | `code/experiments/intervention/` | `build_frontier_ell4_degree_balanced.py` |
-| Fig. 2B, App.: matched-compute ell_max=2 vs. 4 | `data/claim2/per_config_intervention_raw/` | `code/experiments/evaluation_pools/` | `build_intervention_domain_curves.py` |
+| Fig. 2B: dense matched-compute frontier, ell_max=2 vs. 4 | `data/claim2/lmax24_all_frontier_gaps.csv`, `lmax24_frontier_dependence.csv`, `lmax4_causal_vs_comparative.csv` | `code/experiments/matched_compute/` | plotted directly by `figure2.py`; summarized by `build_lmax24_frontier.py` |
+| App.: matched-compute ell_max=2 vs. 4, four canonical pairs, both populations | `data/claim2/per_config_intervention_raw/` | `code/experiments/evaluation_pools/` | `build_intervention_domain_curves.py` |
 | App.: depth interventions (blocks 3, 6, 9) | `data/claim2/depth_interventions/` | `code/experiments/intervention/` | `build_depth_interventions.py` |
 | App.: independent training runs | `data/claim2/seed_replication_raw.jsonl` | `code/experiments/intervention/` | `build_seed_replication_result.py` |
 | App.: chemistry-family transfer | `data/claim2/chemistry_domain_labels.json` | `code/experiments/evaluation_pools/` | `build_chemistry_domain_decomposition.py` |

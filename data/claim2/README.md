@@ -36,7 +36,13 @@ paired configuration-level bootstrap.
   each checkpoint belongs to, which is what the appendix's trajectory counts are computed from.
   These counts are the reason the 102 matched pairs must not be read as 102 independent
   experiments: they are dense checkpoints from 11 ell_max=4 trajectories (nine among the matched
-  pairs) and eight ell_max=2 trajectories.
+  pairs) and eight ell_max=2 trajectories. Figure 2B also uses this file's `run_name` column to
+  exclude one densely-checkpointed training run from its scatter.
+- **`lmax4_causal_vs_comparative.csv`** — the same four checkpoints as
+  `matched_compute_lmax_checkpoints.csv`, with both their block-9 ell=4 causal-damage estimate
+  and their matched-compute log ratio on each population side by side. This is what lets
+  Figure 2B highlight, in Panel A's own colors, which four of the 102 dense-frontier points also
+  have a direct intervention measurement.
 
 ## Frozen summaries kept for comparison
 
