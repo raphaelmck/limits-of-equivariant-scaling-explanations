@@ -9,13 +9,8 @@ only from this repository.
   populations, including the matched-compute log ratio behind Figure 2B.
 - **`build_ood_domain_decomposition.py`** — the chemistry-family decomposition and the
   shared-source positive control.
-- **`build_ood_absolute_effect_robustness.py`** — the same effect on an absolute rather than a
-  relative scale.
 - **`build_depth_localization.py`** — blocks 3, 6, and 9, with paired contrasts between depths.
 - **`build_seed_replication_result.py`** — the three independent training runs.
 - **`build_lmax24_frontier.py`** — the 102 matched frontier pairs and their summary.
-- **`build_dose_response.py`**, **`build_compensation.py`**, **`build_same_width_control_B.py`**,
-  **`build_run_replication_control_C.py`** — the supporting dose-response grid and the three
-  controls (matched-compute compensation, same width, fixed-initialization replicate).
 
 Run via `make analysis`, or invoke one directly with `python3 scripts/claim2/<script>.py`.

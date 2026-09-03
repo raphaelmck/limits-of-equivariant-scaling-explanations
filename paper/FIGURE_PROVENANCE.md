@@ -1,19 +1,18 @@
 # Figure provenance
 
-Every panel of both figures, with the file it reads and the claim it visualizes (claim labels are
-from `CLAIMS.md`). All panels are plotting-only: nothing is recomputed, refit, or re-bootstrapped
-in `scripts/figures/`. Display transforms -- log axes, exponentiating the frozen power-law fit,
+Every panel of both figures, with the file it reads and what it shows. All panels are
+plotting-only: nothing is recomputed, refit, or re-bootstrapped in `scripts/figures/`. Display transforms -- log axes, exponentiating the frozen power-law fit,
 joining a compute value onto a row -- are transforms of already-validated numbers.
 
 Generate both with `make figures`.
 
 ## Figure 1 (`scripts/figures/figure1.py` -> `figures/figure1.{pdf,png}`)
 
-| Panel | Reads | Shows | Claim |
-|---|---|---|---|
-| A | `analysis_out/claim1/frontier_points.csv`, `force_scaling_recomputed.csv`, `dense_grid_ranking_comparison_recomputed.csv`, `manifests/checkpoints.csv` | Observed frontier checkpoints as scatter, the fitted power law per architecture as a dashed guide, the eight evaluation budgets as markers | K1, K2 |
-| B | `analysis_out/claim1/dense_grid_ranking_comparison_recomputed.csv` | KRR learning-curve area per architecture at the eight budgets | K3 |
-| C | `analysis_out/claim1/dense_grid_pairwise_gap_recomputed.csv` | Neural gap (top) and KRR gap with 95% intervals (bottom), sharing a compute axis and a zero line | K4 |
+| Panel | Reads | Shows |
+|---|---|---|
+| A | `analysis_out/claim1/frontier_points.csv`, `force_scaling_recomputed.csv`, `dense_grid_ranking_comparison_recomputed.csv`, `manifests/checkpoints.csv` | Observed frontier checkpoints as scatter, the fitted power law per architecture as a dashed guide, the eight evaluation budgets as markers |
+| B | `analysis_out/claim1/dense_grid_ranking_comparison_recomputed.csv` | KRR learning-curve area per architecture at the eight budgets |
+| C | `analysis_out/claim1/dense_grid_pairwise_gap_recomputed.csv` | Neural gap (top) and KRR gap with 95% intervals (bottom), sharing a compute axis and a zero line |
 
 Two vertical references appear in all three panels: `C_obs`, the observed crossover compute
 (labelled, long dash), and the power-law-implied crossover (unlabelled, fine dotted). The dashed
@@ -30,10 +29,10 @@ Two display filters, neither of which changes a plotted value:
 
 ## Figure 2 (`scripts/figures/figure2.py` -> `figures/figure2.{pdf,png}`)
 
-| Panel | Reads | Shows | Claim |
-|---|---|---|---|
-| A | `analysis_out/claim2/frontier_ell4_degree_balanced_recomputed.json` | Block-9 ell=4 dose response at the four frontier checkpoints, all measured alphas with 95% intervals | I1, I2 |
-| B | `analysis_out/claim2/ood_lmax2_vs_lmax4_baseline.csv`, `data/claim2/matched_compute_lmax_owners.csv` | log(L_2 / L_4) at the four matched-compute pairs, on Neutral and support-matched validation, against the ell_max=4 checkpoint's own compute | I6 |
+| Panel | Reads | Shows |
+|---|---|---|
+| A | `analysis_out/claim2/frontier_ell4_degree_balanced_recomputed.json` | Block-9 ell=4 dose response at the four frontier checkpoints, all measured alphas with 95% intervals |
+| B | `analysis_out/claim2/ood_lmax2_vs_lmax4_baseline.csv`, `data/claim2/matched_compute_lmax_owners.csv` | log(L_2 / L_4) at the four matched-compute pairs, on Neutral and support-matched validation, against the ell_max=4 checkpoint's own compute |
 
 Panel B plots the two populations at a small multiplicative horizontal offset so their intervals
 do not overlap; both series sit at the same actual compute. The points are not joined by lines:

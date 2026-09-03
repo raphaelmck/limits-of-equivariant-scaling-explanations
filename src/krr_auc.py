@@ -1,6 +1,5 @@
-"""Claim-1 KRR-curve statistics: auc_log_nmse, matching the frozen convention documented in
-data/claim1/REPORT.md ('trapezoid(log(ridgeless_nmse_median), log(n)) / (log(n_max)-log(n_min))')
-and reproduced verbatim in ranking_comparison.csv's own auc_statistic_definition column.
+"""Claim-1 KRR-curve statistics: auc_log_nmse, the trapezoidal area of log ridgeless median NMSE
+against log training size, trapezoid(log(nmse_median), log(n)) / (log(n_max) - log(n_min)).
 """
 from __future__ import annotations
 

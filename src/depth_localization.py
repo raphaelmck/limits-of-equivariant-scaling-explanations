@@ -62,8 +62,7 @@ def p_bal(alpha: float, ss4_base: float, denom: float, ell: int = 4) -> float:
 def alpha_grid_deltas(rows_for_owner_layer: Sequence[dict], n_boot: int = 2000, seed: int = 0) -> list[dict]:
     """Given the raw per-alpha rows (each carrying baseline_per_config_sum/natoms and
     per_config_sum/natoms) for one (owner, layer), return one dict per alpha with the bootstrap
-    Delta/CI, matching `src.bootstrap.bootstrap_delta_ci`'s convention (also used by
-    scripts/claim2/build_dose_response.py)."""
+    Delta/CI, matching `src.bootstrap.bootstrap_delta_ci`'s convention."""
     out = []
     for r in rows_for_owner_layer:
         result = bootstrap_delta_ci(

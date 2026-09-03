@@ -5,10 +5,9 @@ only from this repository.
 
 - **`build_force_scaling.py`** — the four compute-scaling exponents (paper Sec. 2).
 - **`build_frontier_points.py`** — the empirical step frontier plotted in Figure 1A.
-- **`build_ranking_comparison.py`** — neural versus KRR ranking at LOW, MID, and HIGH.
-- **`build_dense_grid_ranking_comparison.py`** — the same at all eight budgets (Figure 1B).
+- **`build_dense_grid_ranking_comparison.py`** — neural versus KRR ranking at all eight budgets
+  (Figure 1B).
 - **`build_dense_grid_pairwise_gap.py`** — the signed GemNet-OC/eSEN gap, neural and KRR, at all
   eight budgets (Figure 1C, Table 1).
-- **`build_pairwise_concordance.py`** — all 18 architecture pairs, with bootstrap intervals.
 
 Run via `make analysis`, or invoke one directly with `python3 scripts/claim1/<script>.py`.

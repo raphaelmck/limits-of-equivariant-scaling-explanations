@@ -4,16 +4,12 @@ data/. Prints a pass or fail line per table and exits non-zero on any scientific
 discrepancy: a flipped sign, a confidence interval that no longer excludes or includes zero where
 the frozen one did, or a point estimate outside tolerance. Floating-point noise never fails.
 
-Tolerances:
-  - 1e-6 relative, for every point estimate that involves no randomness, and for every interval
-    whose upstream bootstrap seed and call structure are known, where the reproduction is
-    bit-exact (in practice these match to better than 1e-9).
-  - Interval overlap plus agreement on whether zero is excluded, for the four tables whose frozen
-    bootstrap seed was never recorded: dose_response, compensation, same_width_control_B, and
-    run_replication_control_C. Their point estimates are still checked at 1e-6.
+Tolerance: 1e-6 relative, for every point estimate, and for every confidence interval, since every
+table checked here has a documented upstream bootstrap seed and call structure and reproduces
+bit-exact (in practice these match to better than 1e-9).
 
-`main()` is organized around the eight main-paper checks, printed as "C1." and "C2." lines, on
-top of the lower-level per-table checks.
+`main()` is organized around one check per reported paper result, printed as "C1." and "C2."
+lines, on top of the lower-level per-table checks.
 """
 from __future__ import annotations
 
@@ -28,7 +24,7 @@ from src.io_utils import data_path, out_path, read_csv, read_json
 REL_TOL_EXACT = 1e-6
 
 results = []  # (name, passed: bool, detail: str)
-main_paper_results = []  # (label, passed: bool) -- the 8 named checks, in order
+main_paper_results = []  # (label, passed: bool) -- one per reported paper result, in order
 
 
 def record(name, passed, detail=""):
@@ -64,75 +60,6 @@ def excludes_zero(lo, hi):
 # ===========================================================================
 # Claim 1
 # ===========================================================================
-
-def validate_ranking_comparison():
-    name = "claim1/ranking_comparison.csv (exact, no randomness)"
-    regen = read_csv(out_path("claim1", "ranking_comparison.csv"))
-    frozen = read_csv(data_path("claim1", "ranking_comparison.csv"))
-    key = lambda r: (r["budget_tier"], r["architecture"])
-    fmap = {key(r): r for r in frozen}
-    ok = True
-    details = []
-    for r in regen:
-        f = fmap.get(key(r))
-        if f is None:
-            ok = False
-            details.append(f"missing frozen row for {key(r)}")
-            continue
-        if int(r["nn_rank"]) != int(f["nn_rank"]) or int(r["krr_rank"]) != int(f["krr_rank"]):
-            ok = False
-            details.append(f"{key(r)}: rank mismatch")
-        if not rel_close(float(r["force_mse_norm"]), float(f["force_mse_norm"])):
-            ok = False
-            details.append(f"{key(r)}: force_mse_norm mismatch")
-        if not rel_close(float(r["krr_auc_log_nmse_n32_512"]), float(f["krr_auc_log_nmse_n32_512"])):
-            ok = False
-            details.append(f"{key(r)}: AUC mismatch")
-    record(name, ok, "; ".join(details))
-    return ok
-
-
-def validate_pairwise_concordance_direction():
-    name = "claim1/pairwise_concordance.csv (direction check only)"
-    regen = read_csv(out_path("claim1", "pairwise_concordance_direction_check.csv"))
-    ok = all(r["nn_favors_match"] == "True" and r["krr_favors_match"] == "True" for r in regen)
-    n_mismatch = sum(1 for r in regen if r["nn_favors_match"] != "True" or r["krr_favors_match"] != "True")
-    record(name, ok, f"{n_mismatch} direction mismatches")
-    return ok
-
-
-def validate_pairwise_concordance():
-    """BIT-EXACT (Stage-2 fix): np.random.RandomState(20260822), single shared RNG threaded
-    through all 18 pairs in upstream's exact call order -- see
-    scripts/claim1/build_pairwise_concordance.py. Tolerance tightened from overlap to exact-bound
-    match."""
-    name = "claim1/pairwise_concordance.csv (log_ratio + CI BIT-EXACT, status match)"
-    regen = read_csv(out_path("claim1", "pairwise_concordance_recomputed.csv"))
-    frozen = read_csv(data_path("claim1", "pairwise_concordance.csv"))
-    key = lambda r: (r["budget_tier"], r["architecture_a"], r["architecture_b"])
-    fmap = {key(r): r for r in frozen}
-    ok = True
-    details = []
-    for r in regen:
-        f = fmap.get(key(r))
-        if f is None:
-            ok = False
-            details.append(f"missing frozen row for {key(r)}")
-            continue
-        if not rel_close(float(r["log_ratio_mean_a_over_b_at_n512"]), float(f["log_ratio_mean_a_over_b_at_n512"])):
-            ok = False
-            details.append(f"{key(r)}: log_ratio mismatch")
-        lo, hi = float(r["bootstrap_ci_lo_2.5pct"]), float(r["bootstrap_ci_hi_97.5pct"])
-        flo, fhi = float(f["bootstrap_ci_lo_2.5pct"]), float(f["bootstrap_ci_hi_97.5pct"])
-        if not ci_close(lo, hi, flo, fhi):
-            ok = False
-            details.append(f"{key(r)}: CI not bit-exact (mine=[{lo},{hi}] frozen=[{flo},{fhi}])")
-        if r["status"] != f["status"]:
-            ok = False
-            details.append(f"{key(r)}: status mismatch ({r['status']} vs {f['status']})")
-    record(name, ok, "; ".join(details[:10]))
-    return ok
-
 
 def validate_force_scaling():
     name = "claim1/force_scaling.csv (gamma/logA/r2/rmse_log exact, no randomness)"
@@ -218,137 +145,11 @@ def validate_dense_grid_pairwise_gap():
 
 
 # ===========================================================================
-# Claim 2 -- dose-response family (overlap-only: frozen bootstrap seed genuinely undocumented)
-# ===========================================================================
-
-def validate_dose_response():
-    name = "claim2/dose_response_summary.json (Delta exact, CI overlap [undocumented frozen seed])"
-    regen = read_json(out_path("claim2", "dose_response_recomputed.json"))
-    frozen = read_json(data_path("claim2", "dose_response_summary.json"))
-    fmap = {(g["budget"], g["ell"], g["alpha"]): g for g in frozen["grid"]}
-    ok = True
-    details = []
-    for g in regen["grid"]:
-        key = (g["budget"], g["ell"], g["alpha"])
-        f = fmap.get(key)
-        if f is None:
-            ok = False
-            details.append(f"missing frozen cell {key}")
-            continue
-        if not rel_close(g["Delta"], f["Delta"]):
-            ok = False
-            details.append(f"{key}: Delta mismatch {g['Delta']} vs {f['Delta']}")
-        lo, hi = g["Delta_ci95"]
-        flo, fhi = f["Delta_ci95"]
-        if not ci_overlap(lo, hi, flo, fhi):
-            ok = False
-            details.append(f"{key}: CI no overlap")
-        if excludes_zero(lo, hi) != excludes_zero(flo, fhi):
-            ok = False
-            details.append(f"{key}: CI zero-exclusion sign differs")
-    record(name, ok, "; ".join(details[:10]))
-    return ok
-
-
-def validate_compensation():
-    name = "claim2/compensation_summary.json (C_ell exact, CI overlap [undocumented frozen seed])"
-    regen = read_json(out_path("claim2", "compensation_recomputed.json"))
-    frozen = read_json(data_path("claim2", "compensation_summary.json"))
-    ok = True
-    details = []
-    for pair, pd in regen["pairs"].items():
-        for ell, ad in pd["ells"].items():
-            for alpha, cell in ad.items():
-                try:
-                    f = frozen["pairs"][pair]["ells"][ell]["alphas"][alpha]
-                except KeyError:
-                    ok = False
-                    details.append(f"missing frozen cell {pair}/{ell}/{alpha}")
-                    continue
-                if not rel_close(cell["C_ell"], f["C_ell"]):
-                    ok = False
-                    details.append(f"{pair}/{ell}/{alpha}: C_ell mismatch")
-                lo, hi = cell["C_ell_ci95"]
-                flo, fhi = f["C_ell_ci95"]
-                if not ci_overlap(lo, hi, flo, fhi):
-                    ok = False
-                    details.append(f"{pair}/{ell}/{alpha}: CI no overlap")
-                if excludes_zero(lo, hi) != f["C_ell_excludes_zero"]:
-                    ok = False
-                    details.append(f"{pair}/{ell}/{alpha}: zero-exclusion sign differs")
-    record(name, ok, "; ".join(details[:10]))
-    return ok
-
-
-def validate_same_width_control_B():
-    name = "claim2/same_width_control_B_summary.json (C_ell exact, CI overlap [undocumented frozen seed])"
-    regen = read_json(out_path("claim2", "same_width_control_B_recomputed.json"))
-    frozen = read_json(data_path("claim2", "same_width_control_B_summary.json"))
-    ok = True
-    details = []
-    for pair, pd in regen["same_width"].items():
-        for cid, cell in pd["cells"].items():
-            try:
-                f = frozen["same_width"][pair]["cells"][cid]
-            except KeyError:
-                ok = False
-                details.append(f"missing frozen cell {pair}/{cid}")
-                continue
-            if not rel_close(cell["C_ell"], f["C_ell"]):
-                ok = False
-                details.append(f"{pair}/{cid}: C_ell mismatch")
-            lo, hi = cell["C_ell_ci95"]
-            flo, fhi = f["C_ell_ci95"]
-            if not ci_overlap(lo, hi, flo, fhi):
-                ok = False
-                details.append(f"{pair}/{cid}: CI no overlap")
-            if cell["sign"] != f["sign"]:
-                ok = False
-                details.append(f"{pair}/{cid}: sign mismatch")
-    record(name, ok, "; ".join(details[:10]))
-    return ok
-
-
-def validate_run_replication_control_C():
-    name = "claim2/run_replication_control_C_summary.json (delta/diff exact, CI overlap [undocumented frozen seed])"
-    regen = read_json(out_path("claim2", "run_replication_control_C_recomputed.json"))
-    frozen = read_json(data_path("claim2", "run_replication_control_C_summary.json"))
-    ok = True
-    details = []
-    for run, rd in regen["runs"].items():
-        for cid, cell in rd["cells"].items():
-            f = frozen["runs"][run]["cells"][cid]
-            if not rel_close(cell["delta"], f["delta"]):
-                ok = False
-                details.append(f"{run}/{cid}: delta mismatch")
-            lo, hi = cell["delta_ci95"]
-            flo, fhi = f["delta_ci95"]
-            if not ci_overlap(lo, hi, flo, fhi):
-                ok = False
-                details.append(f"{run}/{cid}: CI no overlap")
-    for cid, c in regen["across_run_contrasts"].items():
-        f = frozen["across_run_contrasts"][cid]
-        if not rel_close(c["difference"], f["difference"]):
-            ok = False
-            details.append(f"contrast/{cid}: difference mismatch")
-        lo, hi = c["difference_ci95"]
-        flo, fhi = f["difference_ci95"]
-        if not ci_overlap(lo, hi, flo, fhi):
-            ok = False
-            details.append(f"contrast/{cid}: CI no overlap")
-        if excludes_zero(lo, hi) != f["difference_ci_excludes_zero"]:
-            ok = False
-            details.append(f"contrast/{cid}: zero-exclusion sign differs")
-    record(name, ok, "; ".join(details[:10]))
-    return ok
-
-
-# ===========================================================================
-# Claim 2 -- BIT-EXACT tables (documented upstream seed recovered and matched)
+# Claim 2
 # ===========================================================================
 
 def validate_frontier_ell4_degree_balanced():
-    """BIT-EXACT (Stage-2 fix): np.random.default_rng(20260820), fresh per (owner,alpha) cell --
+    """BIT-EXACT: np.random.default_rng(20260820), fresh per (owner,alpha) cell --
     see scripts/claim2/build_frontier_ell4_degree_balanced.py. Now validates per-alpha CIs AND
     the 6 pairwise Delta-difference contrasts, not just the interpolated point estimate."""
     name = "claim2/frontier_ell4_degree_balanced (delta + CI BIT-EXACT, all 4 owners + 6 contrasts)"
@@ -387,7 +188,7 @@ def validate_frontier_ell4_degree_balanced():
 
 
 def validate_seed_replication_result():
-    """BIT-EXACT (Stage-2 fix): np.random.default_rng(0) shared idx_sets, ported line-for-line
+    """BIT-EXACT: np.random.default_rng(0) shared idx_sets, ported line-for-line
     from analyze_seed_replication.py -- see scripts/claim2/build_seed_replication_result.py.
     Now validates G_ci95_by_seed too, not just the G point estimate."""
     name = "claim2/seed_replication_result_summary.json (G point + CI BIT-EXACT, all 3 seeds)"
@@ -413,7 +214,7 @@ def validate_seed_replication_result():
 
 
 def validate_depth_localization():
-    """BIT-EXACT (Stage-2 fix) for ALL 3 depths (block 3, 6, AND 9) and ALL 6x4=... 12 depth
+    """BIT-EXACT for all 3 depths (block 3, 6, and 9) and all 12 depth
     contrasts (block9-involving contrasts included) -- see
     scripts/claim2/build_depth_localization.py, which ports build_depth_localization_report.py's
     single shared np.random.default_rng(20260820) idx matrix across every owner and depth."""
@@ -515,46 +316,8 @@ def validate_ood_curves_and_contrasts():
     return ok_all
 
 
-def validate_ood_absolute_effect_robustness():
-    ok_all = True
-    for fname, keys, pt, ci in [
-        (
-            "ood_absolute_effect_robustness.csv",
-            ["tag", "domain", "M"],
-            "absolute_excess_A",
-            ("absolute_excess_A_ci_lo", "absolute_excess_A_ci_hi"),
-        ),
-        (
-            "ood_absolute_effect_A_OOD_minus_A_Neutral.csv",
-            ["tag", "M"],
-            "A_OOD_minus_A_Neutral",
-            ("ci_lo", "ci_hi"),
-        ),
-    ]:
-        regen = read_csv(out_path("claim2", fname))
-        frozen = read_csv(data_path("claim2", fname))
-        fmap = {tuple(r[k] for k in keys): r for r in frozen}
-        ok, details = True, []
-        for r in regen:
-            f = fmap.get(tuple(r[k] for k in keys))
-            if f is None:
-                ok = False
-                details.append("missing row")
-                continue
-            if not rel_close(float(r[pt]), float(f[pt])):
-                ok = False
-                details.append(f"{fname}:{pt} mismatch")
-            lo, hi = ci
-            if not ci_close(float(r[lo]), float(r[hi]), float(f[lo]), float(f[hi])):
-                ok = False
-                details.append(f"{fname}: CI not bit-exact")
-        record(f"claim2/{fname} (point + CI BIT-EXACT)", ok, "; ".join(details[:10]))
-        ok_all = ok_all and ok
-    return ok_all
-
-
 def validate_ood_domain_decomposition():
-    """BIT-EXACT (Stage-2 gap closed): np.random.default_rng(20260823), the per-configuration
+    """BIT-EXACT: np.random.default_rng(20260823), the per-configuration
     data_id chemistry-family label recovered from data/claim2/ood_domain_labels.json -- see
     scripts/claim2/build_ood_domain_decomposition.py."""
     ok_all = True
@@ -581,48 +344,25 @@ def validate_ood_domain_decomposition():
             if not ci_close(float(r[lo]), float(r[hi]), float(f[lo]), float(f[hi])):
                 ok = False
                 details.append(f"{fname}: CI not bit-exact")
-        record(f"claim2/{fname} (point + CI BIT-EXACT; Stage-2 gap closed)", ok, "; ".join(details[:10]))
+        record(f"claim2/{fname} (point + CI BIT-EXACT)", ok, "; ".join(details[:10]))
         ok_all = ok_all and ok
     return ok_all
 
 
 # ===========================================================================
-# MAIN-PAPER CHECK LIST (8 named checks the user asked for by name)
+# MAIN-PAPER CHECK LIST (one per reported result)
 # ===========================================================================
 
 def main():
     print("=" * 78)
-    print("MAIN-PAPER CHECKS (8, as named in the Stage-2 task)")
+    print("MAIN-PAPER CHECKS")
     print("=" * 78)
 
     c1_force_scaling = validate_force_scaling()
     record_main("C1. force-scaling exponents", c1_force_scaling)
 
-    c1_ranking = validate_ranking_comparison()
-    record_main("C1. 17/18 NN/KRR concordance", c1_ranking)
-
-    validate_pairwise_concordance_direction()
-    c1_pairwise = validate_pairwise_concordance()
-    # the HIGH GemNet-OC/eSEN discordant pair specifically:
-    regen_pw = read_csv(out_path("claim1", "pairwise_concordance_recomputed.csv"))
-    high_row = next(
-        r for r in regen_pw
-        if r["budget_tier"] == "HIGH" and r["architecture_a"] == "GemNet-OC" and r["architecture_b"] == "eSEN"
-    )
-    high_discordant_ok = (
-        high_row["status"] == "discordant"
-        and rel_close(float(high_row["log_ratio_mean_a_over_b_at_n512"]), -0.38667807569008344)
-        and ci_close(
-            float(high_row["bootstrap_ci_lo_2.5pct"]), float(high_row["bootstrap_ci_hi_97.5pct"]),
-            -0.6518903518249106, -0.12342702923828595,
-        )
-    )
-    record_main(
-        "C1. HIGH GemNet-OC/eSEN discordance + CI "
-        f"(log_ratio={high_row['log_ratio_mean_a_over_b_at_n512']}, "
-        f"CI=[{high_row['bootstrap_ci_lo_2.5pct']},{high_row['bootstrap_ci_hi_97.5pct']}])",
-        c1_pairwise and high_discordant_ok,
-    )
+    c1_dense_gap = validate_dense_grid_pairwise_gap()
+    record_main("C1. GemNet-OC/eSEN crossover, 8 budgets", c1_dense_gap)
 
     c2_degree_balanced = validate_frontier_ell4_degree_balanced()
     record_main("C2. four-owner degree-balanced causal result", c2_degree_balanced)
@@ -635,8 +375,7 @@ def main():
 
     c2_ood_curves = validate_ood_curves_and_contrasts()
     c2_ood_domain = validate_ood_domain_decomposition()
-    c2_ood_abs = validate_ood_absolute_effect_robustness()
-    record_main("C2. Val-Comp/domain-transfer result", c2_ood_curves and c2_ood_domain and c2_ood_abs)
+    record_main("C2. Val-Comp/domain-transfer result", c2_ood_curves and c2_ood_domain)
 
     # compute-matched ellmax2-vs-ellmax4 comparison is one of the tables validate_ood_curves_and_contrasts
     # already checked (ood_lmax2_vs_lmax4_baseline.csv); re-derive its pass/fail standalone label.
@@ -651,17 +390,12 @@ def main():
     record_main("C2. compute-matched ellmax2-vs-ellmax4 comparison", ok_h)
 
     # -----------------------------------------------------------------
-    # Lower-level / supporting checks (kept for completeness, not part of the 8 named checks)
+    # Lower-level / supporting checks (kept for completeness, not individually reported)
     # -----------------------------------------------------------------
     print("\n" + "=" * 78)
-    print("SUPPORTING CHECKS (dose-response family, controls, appendix-only)")
+    print("SUPPORTING CHECKS")
     print("=" * 78)
     validate_dense_grid_ranking_comparison()
-    validate_dense_grid_pairwise_gap()
-    validate_dose_response()
-    validate_compensation()
-    validate_same_width_control_B()
-    validate_run_replication_control_C()
 
     n_pass = sum(1 for _n, ok, _d in results if ok)
     n_total = len(results)

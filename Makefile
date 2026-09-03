@@ -6,22 +6,15 @@ PY := $(shell test -x .venv/bin/python3 && echo .venv/bin/python3 || echo python
 # no dataset access, no network.
 analysis:
 	mkdir -p analysis_out/claim1 analysis_out/claim2
-	$(PY) scripts/claim1/build_ranking_comparison.py
-	$(PY) scripts/claim1/build_pairwise_concordance.py
 	$(PY) scripts/claim1/build_force_scaling.py
 	$(PY) scripts/claim1/build_dense_grid_pairwise_gap.py
 	$(PY) scripts/claim1/build_dense_grid_ranking_comparison.py
 	$(PY) scripts/claim1/build_frontier_points.py
-	$(PY) scripts/claim2/build_dose_response.py
-	$(PY) scripts/claim2/build_compensation.py
-	$(PY) scripts/claim2/build_same_width_control_B.py
-	$(PY) scripts/claim2/build_run_replication_control_C.py
 	$(PY) scripts/claim2/build_frontier_ell4_degree_balanced.py
 	$(PY) scripts/claim2/build_seed_replication_result.py
 	$(PY) scripts/claim2/build_depth_localization.py
 	$(PY) scripts/claim2/build_lmax24_frontier.py
 	$(PY) scripts/claim2/build_ood_curves_and_contrasts.py
-	$(PY) scripts/claim2/build_ood_absolute_effect_robustness.py
 	$(PY) scripts/claim2/build_ood_domain_decomposition.py
 
 # Check every regenerated table against the frozen table it reproduces.

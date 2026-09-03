@@ -2,7 +2,11 @@
 
 Everything under `data/` was produced by the scripts in this directory: the force tangent kernels
 and their KRR curves, the symmetry-preserving interventions on eSEN's irreducible
-representations, the matched-compute evaluations, and the two evaluation populations.
+representations, the matched-compute evaluations, and the two evaluation populations. This is the
+subset of the original analysis codebase that the submitted results transitively depend on;
+exploratory analyses that are not reported in the paper (a compensation control, a same-width
+control, an activation-statistics probe, and a full-validation-population dose-response
+confirmation, among others) are not included here.
 
 **These scripts do not run from this repository.** They need the model checkpoints, the OMol25
 splits, `torch`, `fairchem-core==2.14.0`, the model implementations from the training repository,
@@ -43,16 +47,14 @@ number in `data/` can be traced to the script that produced it.
 |---|---|
 | `esen_intervention.py` | the intervention itself: scale one degree at one block by alpha, leaving every sub-module unmodified |
 | `esen_norm_control.py` | the shared normalization, reconstructed exactly, and the fixed-normalization control |
-| `checkpoint_loading.py`, `evaluation_data.py`, `rotation.py`, `provenance.py` | checkpoint reconstruction, evaluation batches and the force metric, equivariance checks, result provenance |
+| `checkpoint_loading.py`, `evaluation_data.py`, `rotation.py` | checkpoint reconstruction, evaluation batches and the force metric, equivariance checks |
 | `lmax_checkpoints.py`, `lmax_frontier_checkpoints.py` | the ell_max=2 and ell_max=4 checkpoint specifications |
-| `run_dose_response.py`, `run_dose_response_full_val.py` | the block-9 alpha sweep, on the evaluation pool and on the full Neutral population |
-| `run_activation_stats.py`, `run_degree_balanced.py` | the per-degree activation power that normalizes the degree-balanced perturbation magnitude |
+| `run_dose_response.py` | the block-9 alpha sweep on the evaluation pool |
+| `run_degree_balanced.py` | the per-degree activation power that normalizes the degree-balanced perturbation magnitude |
 | `run_frontier_sensitivity.py` | the sweep at the two highest-compute checkpoints |
 | `run_depth_localization.py` | the same intervention at blocks 3 and 6 |
 | `run_independent_runs.py` | the two additional independent training runs |
-| `run_norm_control.py` | natural versus fixed normalization |
-| `run_compensation.py`, `run_same_width_control.py` | the matched-compute and same-width controls |
-| `bundle.py`, `decoder.py`, `ridge.py`, `spectra.py` | shared probe machinery used by the controls |
+| `run_norm_control.py` | natural versus fixed normalization; also a shared utility (checkpoint git state, per-configuration accumulation) imported by every runner above |
 
 ### `matched_compute/` — Figure 2B and the 102-pair appendix result
 

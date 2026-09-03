@@ -61,28 +61,12 @@
       "ported_sha256": "fdd079d6e25ac3fcfcd19779d69cf9ea51f478fe59245d44b2b6a3235bff28c2"
     },
     {
-      "ported_path": "pipeline/intervention/bundle.py",
-      "original_path": "analysis_scripts/repr_probe/bundle.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "89f9b12b973540cbaee25da7800b858f4d4ceae53081baeae30b7284a61a42a6",
-      "ported_sha256": "9fb006884fb5d47d19c38ddda2a2fc06b4b205ad0a30275ee55c8c3d746df4f5"
-    },
-    {
       "ported_path": "pipeline/intervention/checkpoint_loading.py",
       "original_path": "analysis_scripts/repr_probe/checkpoint_loading.py",
       "original_repository": "upstream-analysis",
       "upstream_commit": "withheld-for-anonymous-review",
       "original_sha256": "086f943f68121cfdeaa9fe6ea61c59045139e37d9edf116b76c5d06ba2da297f",
       "ported_sha256": "7da4e43267a182a0cd09c08e895c18ccade373beae71ff627bfc5c68b3abf526"
-    },
-    {
-      "ported_path": "pipeline/intervention/decoder.py",
-      "original_path": "analysis_scripts/repr_probe/common_decoder.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "fd96c29442e2f66d215938444833ae2cc0985e333af7996a25c061ea656285f3",
-      "ported_sha256": "7917cde2612d71e9ede305af8eb88e6d31e81372c22caf8e93485e0c8c696e48"
     },
     {
       "ported_path": "pipeline/intervention/esen_intervention.py",
@@ -125,44 +109,12 @@
       "ported_sha256": "9b5121959fdeade724880869dd6b5afe81bff5b5d5875c930ee4e40f089fee37"
     },
     {
-      "ported_path": "pipeline/intervention/provenance.py",
-      "original_path": "analysis_scripts/repr_probe/provenance.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "b7c7267c14501ab6d49d44aac781bbfc2963af8e7d627c400ff9a014b18c1aac",
-      "ported_sha256": "c7cf69026a21fe868ef0a8c4ef7202695d9d652697e6b992bac38932ecd88e89"
-    },
-    {
-      "ported_path": "pipeline/intervention/ridge.py",
-      "original_path": "analysis_scripts/repr_probe/ridge.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "4bd6ef448ba0b7c1f78cbe29d488c185d335cf16e34bc2b20948457e36bfffda",
-      "ported_sha256": "f60826f75409c411099baf08ae34c8b7a9dedab0fcb164cfeab1af93e09c72ba"
-    },
-    {
       "ported_path": "pipeline/intervention/rotation.py",
       "original_path": "analysis_scripts/repr_probe/rotation.py",
       "original_repository": "upstream-analysis",
       "upstream_commit": "withheld-for-anonymous-review",
       "original_sha256": "c871c5c52f70b930ff0ef7ee575acd3b20f3e5ccc191699716de3f06e5f95386",
       "ported_sha256": "a3b1c8096747df61373ee9df2bcf600d1dc64185204c13acb482b7b9f7dc281c"
-    },
-    {
-      "ported_path": "pipeline/intervention/run_activation_stats.py",
-      "original_path": "analysis_scripts/run_fvs_controlA_block9_stats.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "fe13f75d3df0de38aba568e9b256643fe787401229224926212c75c8d28ec032",
-      "ported_sha256": "313b8592e393b31651ec1dd655f4ef82520c32666dfc690bde33a2452cf1ec41"
-    },
-    {
-      "ported_path": "pipeline/intervention/run_compensation.py",
-      "original_path": "analysis_scripts/run_stage3_compensation.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "715ff25595acfd5c68c2f29ee05af4c9b369351fe1199bef84080644847bb8de",
-      "ported_sha256": "d7deb6e428e7d20d0cedafb082e2e59423b0f563f142bab718f69a05e4f2d5cc"
     },
     {
       "ported_path": "pipeline/intervention/run_degree_balanced.py",
@@ -189,14 +141,6 @@
       "ported_sha256": "af6c5b4783afeadeb63a63e016fbbad9b1d92767b507d719885e2984708d1fd4"
     },
     {
-      "ported_path": "pipeline/intervention/run_dose_response_full_val.py",
-      "original_path": "analysis_scripts/run_stage3_block9_dose_response_fullval_subset.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "1e27e6b53930875806637bedaf31399265b556f4f0af0b2244389a424f34da1d",
-      "ported_sha256": "3e6ce3b05a5899ee9ec53bb94710dfb02ebfa1a29b0159e0ee596e0276a16dda"
-    },
-    {
       "ported_path": "pipeline/intervention/run_frontier_sensitivity.py",
       "original_path": "analysis_scripts/run_frontier_ell4_sensitivity.py",
       "original_repository": "upstream-analysis",
@@ -219,22 +163,6 @@
       "upstream_commit": "withheld-for-anonymous-review",
       "original_sha256": "521478c5fcead1b3eca9840711358cabc259d189a79ba55ab89b774c3176cd10",
       "ported_sha256": "6c35b1d670571ac2799fb10ae7fc421b4def135022486faec891bf46931db3c7"
-    },
-    {
-      "ported_path": "pipeline/intervention/run_same_width_control.py",
-      "original_path": "analysis_scripts/run_fvs_controlB_same_width.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "d1515a5e65e270379c7f50234dc2e4bfdcff2df4adb48044605d7b3d3e7b176a",
-      "ported_sha256": "11da5bddbc7183a40c42079e294fad9a20579ba0586ea1d5a1284eacd541ea58"
-    },
-    {
-      "ported_path": "pipeline/intervention/spectra.py",
-      "original_path": "analysis_scripts/repr_probe/spectra.py",
-      "original_repository": "upstream-analysis",
-      "upstream_commit": "withheld-for-anonymous-review",
-      "original_sha256": "497363963674998586fd24b5105b7a46727e9a86c09a3358a6f5a0ce45dd15d1",
-      "ported_sha256": "550703a2e946193b530d141723266b28afdddce6388719716143ba468284ddb4"
     },
     {
       "ported_path": "pipeline/kernel/build_probe_pool.py",

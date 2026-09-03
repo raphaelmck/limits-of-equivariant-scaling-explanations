@@ -22,25 +22,20 @@ checks the derivations against the frozen copies also kept here.
 - **`dense_grid_owner_force_mse.csv`** — the same for the five added budgets, including which
   budgets reuse a neighbouring budget's checkpoint.
 
-## Kernel and KRR
+## KRR
 
-- **`existing_kernel_inventory.csv`** — every (architecture, checkpoint) cell with a constructed
-  force tangent kernel and its spectral and alignment summaries. The `checkpoint_state` and `m`
-  columns distinguish the probe pools; no row was created for a cell without a kernel on disk.
-- **`existing_krr_inventory.csv`** — the stacked KRR table in long form: architecture, checkpoint
-  state, budget, pool size, training size, ridge setting, target definition, and median and mean
-  test NMSE.
 - **`matched_compute_m1024_krr_results.csv`** and **`..._split_results.csv`** — the learning
   curves and the per-split test NMSE at LOW, MID, and HIGH on the 1024-atom pool. The split-level
   file is what the paired bootstrap resamples.
-- **`dense_grid_krr_results.csv`**, **`dense_grid_krr_split_results.csv`**,
-  **`dense_grid_kernel_inventory.csv`** — the same for the five added budgets.
+- **`dense_grid_krr_results.csv`**, **`dense_grid_krr_split_results.csv`** — the same for the
+  five added budgets.
 
 ## Frozen outputs kept for comparison
 
-`ranking_comparison.csv`, `dense_grid_ranking_comparison.csv`, `dense_grid_pairwise_gap.csv`, and
-`pairwise_concordance.csv` are the frozen results that `make validate` compares the regenerated
-tables against.
+`dense_grid_ranking_comparison.csv` and `dense_grid_pairwise_gap.csv` are the frozen results that
+`make validate` compares the regenerated tables against.
 
 The kernel matrices themselves are not checked in; the evaluation pool that defines them is
-recorded in `data/claim2/ood_pool_provenance.json`.
+recorded in `data/claim2/ood_pool_provenance.json`. Per-cell kernel/KRR inventory tables (spectral
+descriptors, alignment summaries) and an 18-pair LOW/MID/HIGH concordance table exist upstream but
+are not reported in the paper and are not part of this release.

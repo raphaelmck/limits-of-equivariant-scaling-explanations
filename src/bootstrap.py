@@ -65,8 +65,9 @@ def paired_config_bootstrap(
     rng: an existing numpy.random.RandomState to draw from (advances its state) -- pass this
       when a shared RNG stream must be threaded across multiple bootstrap calls in a fixed
       order to reproduce an upstream computation bit-exactly (see
-      scripts/claim1/build_pairwise_concordance.py). If omitted, a fresh
-      numpy.random.RandomState(seed) is created for this call alone.
+      scripts/claim1/build_dense_grid_pairwise_gap.py, which threads one RandomState across
+      all eight budgets in a fixed order). If omitted, a fresh numpy.random.RandomState(seed)
+      is created for this call alone.
     Returns the list of n_boot replicate statistic values (caller computes the CI and, if
     wanted, the point estimate separately from the *unresampled* data).
 
@@ -149,13 +150,11 @@ def bootstrap_paired_log_ratio_ci(
     """Paired bootstrap CI over an already-paired list of per-split log-ratios
     (log(test_nmse_A[s]) - log(test_nmse_B[s]) for split index s), matching -- BIT-EXACTLY, when
     `rng` is threaded across pairs in the same order the upstream script processed them -- the
-    procedure that produced data/claim1/pairwise_concordance.csv:
+    procedure that produced the frozen dense-grid pairwise-gap table:
 
         rng = np.random.RandomState(RNG_SEED)                      # created ONCE, outside any
-                                                                     # per-pair loop
-        for budget in BUDGETS:                                     # LOW, MID, HIGH in that order
-            for a_tag, b_tag in itertools.combinations(tier_tags, 2):   # tier_tags in
-                                                                     # OWNER_TAGS order
+                                                                     # per-budget loop
+        for budget in BUDGETS:                                     # all 8 budgets, fixed order
                 ...
                 boot_means = np.array([
                     rng.choice(log_ratios, size=len(log_ratios), replace=True).mean()
@@ -170,12 +169,12 @@ def bootstrap_paired_log_ratio_ci(
                                                                      # loop form must be matched
                                                                      # exactly for bit-exactness.
 
-    This function performs exactly the inner list-comprehension for ONE pair; the caller
-    (scripts/claim1/build_pairwise_concordance.py) is responsible for creating a single shared
-    `np.random.RandomState(RNG_SEED)` and threading it through all 18 pairs in the SAME
-    (budget, combinations) order the upstream script used, via the `rng=` argument, for
-    bit-exact reproduction. If `rng` is omitted, a fresh RandomState(seed) is created for this
-    call alone (used for tables where no shared cross-pair RNG stream is required/documented).
+    This function performs exactly the inner list-comprehension for ONE budget; the caller
+    (scripts/claim1/build_dense_grid_pairwise_gap.py) is responsible for creating a single shared
+    `np.random.RandomState(RNG_SEED)` and threading it through all 8 budgets in the SAME order
+    the upstream script used, via the `rng=` argument, for bit-exact reproduction. If `rng` is
+    omitted, a fresh RandomState(seed) is created for this call alone (used for tables where no
+    shared cross-budget RNG stream is required/documented).
     """
     arr = np.asarray(log_ratios, dtype=np.float64)
     n = len(arr)
