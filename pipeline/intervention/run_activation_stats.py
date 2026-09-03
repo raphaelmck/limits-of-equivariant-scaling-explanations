@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_fvs_controlA_block9_stats.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 fe13f75d3df0de38aba568e9b256643fe787401229224926212c75c8d28ec032
+# source revision withheld for anonymous review, original SHA256 fe13f75d3df0de38aba568e9b256643fe787401229224926212c75c8d28ec032
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_fvs_controlA_block9_stats.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 fe13f75d3df0de38aba568e9b256643fe787401229224926212c75c8d28ec032
+# source revision withheld for anonymous review, original SHA256 fe13f75d3df0de38aba568e9b256643fe787401229224926212c75c8d28ec032
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Block-9 baseline representation-magnitude statistics: the per-degree activation power that

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_stage3_compensation.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 715ff25595acfd5c68c2f29ee05af4c9b369351fe1199bef84080644847bb8de
+# source revision withheld for anonymous review, original SHA256 715ff25595acfd5c68c2f29ee05af4c9b369351fe1199bef84080644847bb8de
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_stage3_compensation.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 715ff25595acfd5c68c2f29ee05af4c9b369351fe1199bef84080644847bb8de
+# source revision withheld for anonymous review, original SHA256 715ff25595acfd5c68c2f29ee05af4c9b369351fe1199bef84080644847bb8de
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Compensation follow-up: whether compute-matched ell_max=2 and ell_max=4 models reach

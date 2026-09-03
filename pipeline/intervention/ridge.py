@@ -1,5 +1,5 @@
 # Adapted for anonymous release from analysis_scripts/repr_probe/ridge.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 4bd6ef448ba0b7c1f78cbe29d488c185d335cf16e34bc2b20948457e36bfffda
+# source revision withheld for anonymous review, original SHA256 4bd6ef448ba0b7c1f78cbe29d488c185d335cf16e34bc2b20948457e36bfffda
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Ridge-regression probe fitting and its regularization protocol.

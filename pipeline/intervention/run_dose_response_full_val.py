@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_stage3_block9_dose_response_fullval_subset.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 1e27e6b53930875806637bedaf31399265b556f4f0af0b2244389a424f34da1d
+# source revision withheld for anonymous review, original SHA256 1e27e6b53930875806637bedaf31399265b556f4f0af0b2244389a424f34da1d
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_stage3_block9_dose_response_fullval_subset.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 1e27e6b53930875806637bedaf31399265b556f4f0af0b2244389a424f34da1d
+# source revision withheld for anonymous review, original SHA256 1e27e6b53930875806637bedaf31399265b556f4f0af0b2244389a424f34da1d
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Full-population confirmation of the block-9 dose response: ell=4 only, the lowest- and

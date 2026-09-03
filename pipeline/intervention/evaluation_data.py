@@ -1,5 +1,5 @@
 # Adapted for anonymous release from analysis_scripts/repr_probe/stage3a_data.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 768ec5333ec66c7b76116fc657b3965cdfe840f5e44e0dab80bbe9d8ef53a862
+# source revision withheld for anonymous review, original SHA256 768ec5333ec66c7b76116fc657b3965cdfe840f5e44e0dab80bbe9d8ef53a862
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Shared data and metric utilities for the interventions: dataset paths, the training-set force

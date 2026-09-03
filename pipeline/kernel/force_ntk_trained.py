@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/four_arch_trained_force_kernel_pilot.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 ee2ea9e0a54b6ac4d27bb980f1ba6a366980db8a555fc3802216b8e0be0a5df2
+# source revision withheld for anonymous review, original SHA256 ee2ea9e0a54b6ac4d27bb980f1ba6a366980db8a555fc3802216b8e0be0a5df2
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/four_arch_trained_force_kernel_pilot.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 ee2ea9e0a54b6ac4d27bb980f1ba6a366980db8a555fc3802216b8e0be0a5df2
+# source revision withheld for anonymous review, original SHA256 ee2ea9e0a54b6ac4d27bb980f1ba6a366980db8a555fc3802216b8e0be0a5df2
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Trained force-tangent-kernel pilot (Phase 2): K0 vs K50k vs K500k full block force-NTK

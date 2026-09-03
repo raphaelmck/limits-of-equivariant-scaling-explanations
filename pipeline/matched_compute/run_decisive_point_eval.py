@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/stage3b1_decisive_point_eval.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 638aad93c3865403063120a33e1f5ea916e2a41bb9644f59cfa3fe7d3737d1cc
+# source revision withheld for anonymous review, original SHA256 638aad93c3865403063120a33e1f5ea916e2a41bb9644f59cfa3fe7d3737d1cc
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/stage3b1_decisive_point_eval.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 638aad93c3865403063120a33e1f5ea916e2a41bb9644f59cfa3fe7d3737d1cc
+# source revision withheld for anonymous review, original SHA256 638aad93c3865403063120a33e1f5ea916e2a41bb9644f59cfa3fe7d3737d1cc
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """the matched-frontier study: full-val evaluation (with per-graph residuals retained, for paired bootstrap)

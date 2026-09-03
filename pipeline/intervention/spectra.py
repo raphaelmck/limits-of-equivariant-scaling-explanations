@@ -1,5 +1,5 @@
 # Adapted for anonymous release from analysis_scripts/repr_probe/spectra.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 497363963674998586fd24b5105b7a46727e9a86c09a3358a6f5a0ce45dd15d1
+# source revision withheld for anonymous review, original SHA256 497363963674998586fd24b5105b7a46727e9a86c09a3358a6f5a0ce45dd15d1
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Unsupervised representation spectra.

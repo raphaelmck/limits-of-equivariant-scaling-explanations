@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/four_arch_initial_force_kernel_pilot.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 da79a628e4d6cc8f6aa51d4aeda553f498fb5722621ed13bb9af379ef534802a
+# source revision withheld for anonymous review, original SHA256 da79a628e4d6cc8f6aa51d4aeda553f498fb5722621ed13bb9af379ef534802a
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/four_arch_initial_force_kernel_pilot.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 da79a628e4d6cc8f6aa51d4aeda553f498fb5722621ed13bb9af379ef534802a
+# source revision withheld for anonymous review, original SHA256 da79a628e4d6cc8f6aa51d4aeda553f498fb5722621ed13bb9af379ef534802a
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Frozen-probe, full block force-NTK production for the four-architecture pilot.

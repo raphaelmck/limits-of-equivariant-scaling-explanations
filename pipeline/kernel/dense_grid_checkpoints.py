@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/owners_dense_grid_2026_08_23.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 34db1f7b72e66489aa473628df162e38dc245dce355157f601cfc5f96496939b
+# source revision withheld for anonymous review, original SHA256 34db1f7b72e66489aa473628df162e38dc245dce355157f601cfc5f96496939b
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/owners_dense_grid_2026_08_23.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 34db1f7b72e66489aa473628df162e38dc245dce355157f601cfc5f96496939b
+# source revision withheld for anonymous review, original SHA256 34db1f7b72e66489aa473628df162e38dc245dce355157f601cfc5f96496939b
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Checkpoint specifications for the five added evaluation budgets that bracket the GemNet-OC

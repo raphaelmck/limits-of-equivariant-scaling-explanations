@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_fvs_controlD_large_m_krr.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 8f2657f21635832aa4852d291330b5ce2436f53d56a95da80ecf85c982c444a6
+# source revision withheld for anonymous review, original SHA256 8f2657f21635832aa4852d291330b5ce2436f53d56a95da80ecf85c982c444a6
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_fvs_controlD_large_m_krr.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 8f2657f21635832aa4852d291330b5ce2436f53d56a95da80ecf85c982c444a6
+# source revision withheld for anonymous review, original SHA256 8f2657f21635832aa4852d291330b5ce2436f53d56a95da80ecf85c982c444a6
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Kernel ridge regression on the force NTK: the block-KRR solver and its scoring.

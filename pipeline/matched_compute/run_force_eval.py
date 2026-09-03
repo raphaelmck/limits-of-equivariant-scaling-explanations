@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_stage3b_force_performance.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 74abc60d2a05ab7d04d5761af8a94657c38f48b0d35378718bb028b78f7909d8
+# source revision withheld for anonymous review, original SHA256 74abc60d2a05ab7d04d5761af8a94657c38f48b0d35378718bb028b78f7909d8
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_stage3b_force_performance.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 74abc60d2a05ab7d04d5761af8a94657c38f48b0d35378718bb028b78f7909d8
+# source revision withheld for anonymous review, original SHA256 74abc60d2a05ab7d04d5761af8a94657c38f48b0d35378718bb028b78f7909d8
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """the lmax=2 vs lmax=4 study Part A: neural force performance for all 6 frozen owners (3 ell_max=4 unchanged

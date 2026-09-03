@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_frontier_ell4_centered_ss.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 3b36d48454105e701ad4d087b150b7744341582212e627d3dbdd65c1a3179aa6
+# source revision withheld for anonymous review, original SHA256 3b36d48454105e701ad4d087b150b7744341582212e627d3dbdd65c1a3179aa6
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_frontier_ell4_centered_ss.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 3b36d48454105e701ad4d087b150b7744341582212e627d3dbdd65c1a3179aa6
+# source revision withheld for anonymous review, original SHA256 3b36d48454105e701ad4d087b150b7744341582212e627d3dbdd65c1a3179aa6
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Forward-pass measurement of the per-degree activation power with degree-0 centering, which

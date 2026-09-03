@@ -1,5 +1,5 @@
 # Adapted for anonymous release from analysis_scripts/repr_probe/esen_intervention.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 08234b6d15003ee229889d4374a4c29943c0d7561a0e042d67bc3008e7f8d271
+# source revision withheld for anonymous review, original SHA256 08234b6d15003ee229889d4374a4c29943c0d7561a0e042d67bc3008e7f8d271
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Symmetry-preserving intervention on eSEN irreducible-representation sectors.

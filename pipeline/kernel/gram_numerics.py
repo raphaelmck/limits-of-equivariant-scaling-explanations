@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/oak_schedulefree_kernel_falsification.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 9cefe77b0a258ed1f2f38a8538e21e6f77909a2965b9b7c4987ea8939ae04ea7
+# source revision withheld for anonymous review, original SHA256 9cefe77b0a258ed1f2f38a8538e21e6f77909a2965b9b7c4987ea8939ae04ea7
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/oak_schedulefree_kernel_falsification.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 9cefe77b0a258ed1f2f38a8538e21e6f77909a2965b9b7c4987ea8939ae04ea7
+# source revision withheld for anonymous review, original SHA256 9cefe77b0a258ed1f2f38a8538e21e6f77909a2965b9b7c4987ea8939ae04ea7
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Gram-matrix assembly and numerical checks for the force NTK, shared by every kernel build.

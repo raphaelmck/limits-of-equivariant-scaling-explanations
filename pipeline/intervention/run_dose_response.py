@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_stage3_block9_dose_response.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 17e0d3ea95b5b05e0b3a4d3f686fa0ecc0d940f3a7cda48da227bf6f2a00e4df
+# source revision withheld for anonymous review, original SHA256 17e0d3ea95b5b05e0b3a4d3f686fa0ecc0d940f3a7cda48da227bf6f2a00e4df
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_stage3_block9_dose_response.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 17e0d3ea95b5b05e0b3a4d3f686fa0ecc0d940f3a7cda48da227bf6f2a00e4df
+# source revision withheld for anonymous review, original SHA256 17e0d3ea95b5b05e0b3a4d3f686fa0ecc0d940f3a7cda48da227bf6f2a00e4df
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Block-9 alpha dose-response for the ell=4 intervention.

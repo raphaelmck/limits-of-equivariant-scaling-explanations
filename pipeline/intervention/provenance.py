@@ -1,5 +1,5 @@
 # Adapted for anonymous release from analysis_scripts/repr_probe/provenance.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 b7c7267c14501ab6d49d44aac781bbfc2963af8e7d627c400ff9a014b18c1aac
+# source revision withheld for anonymous review, original SHA256 b7c7267c14501ab6d49d44aac781bbfc2963af8e7d627c400ff9a014b18c1aac
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Provenance schema attached to every result row: checkpoint identity, configuration, code

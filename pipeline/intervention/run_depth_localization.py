@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_depth_localization_block3_block6.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 20cd5ab347a97dffeddd8c3c9a8a0abd56339ea7fa702369963ce21f0b8a410c
+# source revision withheld for anonymous review, original SHA256 20cd5ab347a97dffeddd8c3c9a8a0abd56339ea7fa702369963ce21f0b8a410c
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_depth_localization_block3_block6.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 20cd5ab347a97dffeddd8c3c9a8a0abd56339ea7fa702369963ce21f0b8a410c
+# source revision withheld for anonymous review, original SHA256 20cd5ab347a97dffeddd8c3c9a8a0abd56339ea7fa702369963ce21f0b8a410c
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Depth-localization follow-up to the block-9 result: the same ell=4 intervention applied at

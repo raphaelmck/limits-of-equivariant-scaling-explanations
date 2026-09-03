@@ -6,4 +6,4 @@ analysis_out/
 
 # Contains pre-anonymization paths and names: exclude from the anonymous release,
 # restore on de-anonymization. See provenance/README.md.
-# provenance/rename_table.json
+provenance/rename_table.json

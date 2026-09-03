@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/four_arch_matched_compute_frontier_kernel.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 15e80029589cd7a837fac9615a3a265fef1f3464e1336d51096ea1dc36a07870
+# source revision withheld for anonymous review, original SHA256 15e80029589cd7a837fac9615a3a265fef1f3464e1336d51096ea1dc36a07870
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/four_arch_matched_compute_frontier_kernel.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 15e80029589cd7a837fac9615a3a265fef1f3464e1336d51096ea1dc36a07870
+# source revision withheld for anonymous review, original SHA256 15e80029589cd7a837fac9615a3a265fef1f3464e1336d51096ea1dc36a07870
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Matched-compute frontier-owner force-tangent-kernel pilot (2026-08-15).

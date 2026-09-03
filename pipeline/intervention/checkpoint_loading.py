@@ -1,5 +1,5 @@
 # Adapted for anonymous release from analysis_scripts/repr_probe/checkpoint_loading.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 086f943f68121cfdeaa9fe6ea61c59045139e37d9edf116b76c5d06ba2da297f
+# source revision withheld for anonymous review, original SHA256 086f943f68121cfdeaa9fe6ea61c59045139e37d9edf116b76c5d06ba2da297f
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Checkpoint reconstruction: instantiate a model from its frozen configuration snapshot and

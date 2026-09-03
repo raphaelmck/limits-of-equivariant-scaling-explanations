@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/build_large_m_probe_pool.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 e1e6b4356a11a262343f950a4e8034bcd541903564944535199da2ccfa915553
+# source revision withheld for anonymous review, original SHA256 e1e6b4356a11a262343f950a4e8034bcd541903564944535199da2ccfa915553
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/build_large_m_probe_pool.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 e1e6b4356a11a262343f950a4e8034bcd541903564944535199da2ccfa915553
+# source revision withheld for anonymous review, original SHA256 e1e6b4356a11a262343f950a4e8034bcd541903564944535199da2ccfa915553
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Extend the frozen 256-atom force-NTK probe pool to 1024 atoms using the identical sampling

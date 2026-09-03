@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_dense_grid_large_m_krr_2026_08_23.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 0223ac42a6faf93208278d43e0ddce0f3a2e28ee38d2e8a855d68c0e1911aa1e
+# source revision withheld for anonymous review, original SHA256 0223ac42a6faf93208278d43e0ddce0f3a2e28ee38d2e8a855d68c0e1911aa1e
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_dense_grid_large_m_krr_2026_08_23.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 0223ac42a6faf93208278d43e0ddce0f3a2e28ee38d2e8a855d68c0e1911aa1e
+# source revision withheld for anonymous review, original SHA256 0223ac42a6faf93208278d43e0ddce0f3a2e28ee38d2e8a855d68c0e1911aa1e
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Dense-grid (PRECROSS/CROSS/FITX/POSTCROSS/TOP) m=1024 block-KRR (2026-08-23).

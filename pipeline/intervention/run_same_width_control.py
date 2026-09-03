@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_fvs_controlB_same_width.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 d1515a5e65e270379c7f50234dc2e4bfdcff2df4adb48044605d7b3d3e7b176a
+# source revision withheld for anonymous review, original SHA256 d1515a5e65e270379c7f50234dc2e4bfdcff2df4adb48044605d7b3d3e7b176a
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_fvs_controlB_same_width.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 d1515a5e65e270379c7f50234dc2e4bfdcff2df4adb48044605d7b3d3e7b176a
+# source revision withheld for anonymous review, original SHA256 d1515a5e65e270379c7f50234dc2e4bfdcff2df4adb48044605d7b3d3e7b176a
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Same-width control: the ell_max=2 versus ell_max=4 intervention comparison at equal channel

@@ -1,5 +1,5 @@
 # Adapted for anonymous release from analysis_scripts/repr_probe/stage3b1_extra_owners.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 66b15857e1b9939c2de43899a868848d3598b484be5e0b20edc32254ed180cbb
+# source revision withheld for anonymous review, original SHA256 66b15857e1b9939c2de43899a868848d3598b484be5e0b20edc32254ed180cbb
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Checkpoint specifications for the matched-frontier comparison: the frontier points that are

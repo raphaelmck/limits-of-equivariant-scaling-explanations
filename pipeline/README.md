@@ -12,13 +12,13 @@ are assembled, how the evaluation pools were drawn — not so that `make` can in
 here is part of `make all`; the reproduction path that does run here is described in
 `REPRODUCING.md`.
 
-Every file here was taken from source revision
-`3cd17ea1aa59336bef0252504ebbfb1bc8c6a412`, on branch `raphael/esen-spectra-extraction` of the
-analysis repository. That revision is the state the reported results were produced with, and it
-is what `provenance/pipeline_manifest.json` records per file and
-`provenance/check_pipeline.py` verifies against. Six files under `evaluation_pools/` were copied
-from a working directory that was not under version control at the time; their manifest entries
-carry no revision, and the copies here are the versioned record of that code.
+Every file here was taken from a single frozen revision of the analysis repository, committed and
+tagged specifically so the code that produced the reported results is versioned rather than left
+in an uncommitted working tree. That revision's identifier (repository, branch, commit) is
+withheld from this public copy for double-blind review — see `provenance/README.md` — and is
+recorded privately for restoration after acceptance. Six files under `evaluation_pools/` were
+copied from a working directory that was not under version control at the time; the copies here
+are now the versioned record of that code.
 
 Output directory names in these scripts match the study names in `data/PROVENANCE.md`, so a
 number in `data/` can be traced to the script that produced it.

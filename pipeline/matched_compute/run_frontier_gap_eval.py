@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/stage3b1_gap_eval.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 40322e3af078be89b02b6728bdb3b380172eb7c2ff33a20f5b5e4758d8846f77
+# source revision withheld for anonymous review, original SHA256 40322e3af078be89b02b6728bdb3b380172eb7c2ff33a20f5b5e4758d8846f77
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/stage3b1_gap_eval.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 40322e3af078be89b02b6728bdb3b380172eb7c2ff33a20f5b5e4758d8846f77
+# source revision withheld for anonymous review, original SHA256 40322e3af078be89b02b6728bdb3b380172eb7c2ff33a20f5b5e4758d8846f77
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """the matched-frontier study Phase C gap-fill: full-neutral_val force_mse_norm evaluation for a small,

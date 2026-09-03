@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_dense_grid_large_m_kernels_2026_08_23.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 d7f63f918227e682a31a9f9a44860aceb55e5dd3d80ecfa219e80ca580497731
+# source revision withheld for anonymous review, original SHA256 d7f63f918227e682a31a9f9a44860aceb55e5dd3d80ecfa219e80ca580497731
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_dense_grid_large_m_kernels_2026_08_23.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 d7f63f918227e682a31a9f9a44860aceb55e5dd3d80ecfa219e80ca580497731
+# source revision withheld for anonymous review, original SHA256 d7f63f918227e682a31a9f9a44860aceb55e5dd3d80ecfa219e80ca580497731
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Dense-grid (PRECROSS/CROSS/FITX/POSTCROSS/TOP) m=1024 force-tangent-kernel construction

@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_matched_compute_large_m_kernels.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 d552e0bfd26819309b9b0ec55a0e324e003e6612d60664a89c96f0a06b36c19a
+# source revision withheld for anonymous review, original SHA256 d552e0bfd26819309b9b0ec55a0e324e003e6612d60664a89c96f0a06b36c19a
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_matched_compute_large_m_kernels.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 d552e0bfd26819309b9b0ec55a0e324e003e6612d60664a89c96f0a06b36c19a
+# source revision withheld for anonymous review, original SHA256 d552e0bfd26819309b9b0ec55a0e324e003e6612d60664a89c96f0a06b36c19a
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Matched-compute owner force-tangent-kernel construction at m=1024 (2026-08-22).

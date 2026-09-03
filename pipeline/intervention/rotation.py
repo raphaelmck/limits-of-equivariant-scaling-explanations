@@ -1,5 +1,5 @@
 # Adapted for anonymous release from analysis_scripts/repr_probe/rotation.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 c871c5c52f70b930ff0ef7ee575acd3b20f3e5ccc191699716de3f06e5f95386
+# source revision withheld for anonymous review, original SHA256 c871c5c52f70b930ff0ef7ee575acd3b20f3e5ccc191699716de3f06e5f95386
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Rotation-equivariance checks for an intervened forward pass.

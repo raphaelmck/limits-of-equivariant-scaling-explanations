@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Adapted for anonymous release from analysis_scripts/run_matched_compute_large_m_krr.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 a58a1dbf22b10b9004edbdfce7b5777ca71e127a2d6bb08e93bb41be369174cc
+# source revision withheld for anonymous review, original SHA256 a58a1dbf22b10b9004edbdfce7b5777ca71e127a2d6bb08e93bb41be369174cc
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 # Adapted for anonymous release from analysis_scripts/run_matched_compute_large_m_krr.py
-# source revision 3cd17ea1aa59336bef0252504ebbfb1bc8c6a412, original SHA256 a58a1dbf22b10b9004edbdfce7b5777ca71e127a2d6bb08e93bb41be369174cc
+# source revision withheld for anonymous review, original SHA256 a58a1dbf22b10b9004edbdfce7b5777ca71e127a2d6bb08e93bb41be369174cc
 # Logic unchanged; import paths, filesystem paths, and identifying names rewritten.
 # Verify with: python3 provenance/check_pipeline.py
 """Matched-compute owner block-KRR at m=1024, generalized to all 12 LOW/MID/HIGH owners
