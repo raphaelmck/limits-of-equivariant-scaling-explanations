@@ -76,10 +76,13 @@ def apply_style():
 
 
 def save_fig(fig, name: str):
+    """Save as PDF and PNG, byte-for-byte reproducible: matplotlib's PDF backend otherwise
+    embeds the current wall-clock time as /CreationDate, which would make every regeneration
+    of an unchanged figure look like a change to `git status`."""
     os.makedirs(FIGURES_OUT, exist_ok=True)
     pdf_path = os.path.join(FIGURES_OUT, f"{name}.pdf")
     png_path = os.path.join(FIGURES_OUT, f"{name}.png")
-    fig.savefig(pdf_path, bbox_inches="tight")
+    fig.savefig(pdf_path, bbox_inches="tight", metadata={"CreationDate": None})
     fig.savefig(png_path, bbox_inches="tight")
     plt.close(fig)
     return pdf_path, png_path

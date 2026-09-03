@@ -26,8 +26,22 @@ result depends on are listed, with their identifying configuration and hash, in
 
 ## Quick start
 
+Only two dependencies are needed: `numpy` and `matplotlib`. Either of these gets them into an
+isolated environment:
+
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -e .   # numpy and matplotlib
+python3 -m venv .venv && .venv/bin/pip install -e .   # if your Python has venv/ensurepip
+```
+
+```bash
+uv venv .venv && uv pip install --python .venv/bin/python -e .   # if it doesn't (e.g. a
+                                                                   # cluster node without the
+                                                                   # python3-venv package)
+```
+
+Then, from the repository root:
+
+```bash
 make analysis    # regenerate every derived table into analysis_out/
 make validate    # check those tables against the frozen ones in data/
 make test        # check the submitted values against those tables

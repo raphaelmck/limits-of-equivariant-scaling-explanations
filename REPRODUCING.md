@@ -6,7 +6,9 @@ and the dataset.
 ## 1. Reproduce the paper's numbers and figures (runs here, minutes, CPU only)
 
 ```bash
-python3 -m venv .venv && .venv/bin/pip install -e .
+python3 -m venv .venv && .venv/bin/pip install -e .   # or, if venv/ensurepip isn't available:
+                                                        # uv venv .venv && uv pip install
+                                                        #   --python .venv/bin/python -e .
 make all
 ```
 
